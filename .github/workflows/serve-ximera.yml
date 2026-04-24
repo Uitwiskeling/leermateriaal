@@ -7,7 +7,7 @@ on:
 env:
   GPG_KEY: ${{ secrets.GPG_KEY }}
   GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-  XIMERA_URL: https://wiskunde.opmaat.org/
+  XIMERA_URL: https://leermateriaal.uitwiskeling.be/
 
 jobs:
   build-ximera:
@@ -84,7 +84,7 @@ jobs:
           
       - name: Serve
         env:
-          XIMERA_NAME:  uitwiskeling
+          XIMERA_NAME:  doc # overwrites XIMERA_NAME in config.txt
         run: |
           ./xmScripts/xmlatex name         
           ./xmScripts/xmlatex serve -f  # NOTE: -f  should not be needed ...        
