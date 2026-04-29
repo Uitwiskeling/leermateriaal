@@ -1,22 +1,18 @@
-%\documentclass[12pt,numbers,noauthor,nooutcomes,wordchoicegiven]{xourse}
-
 \documentclass[10pt,numbers,noauthor,nooutcomes,wordchoicegiven]{xourse}
 % \input{./preamble.tex}
 % \input{../preambles/tcolorbox.tex}   % voor formularia ...
 % \addPrintStyle{.}
 
 \pdfOnly{\renewcommand{\xmcursusnaam}{{\textsc{Uitwiskeling}}}}
-
-
-\logo{xmPictures/logouitwiskelingloep.png}
+\logo{xmPictures/Uitwiskelinglogo-zwart.png}
 
 \newcommand*{\uitgavenr}{42/1 (Winter 2026)}
 \newcommand*{\uitgaveseizoen}{Onder de loep: Vectorruimten}
+% TODO: redefine this per number, so it changes per number? also \rubriek
 
 
 \begin{document}
-%	\setcounter{tocdepth}{2}
-    \xmtitle{Vectorruimten (Loep UW4201)}  
+\xmtitle{Leeractiviteiten volgens nummer}  
 
 \providecommand{\rubriek}[2]{}    % only defined in prontstyle ...
 
@@ -28,14 +24,14 @@
 \activitychapter{inleiding.tex}
 
 
-\part{Onderzoekende leeractiviteiten}
+\part{UW4201}
+\activitychapter{UW4201/lineairecombinatie_voortbrengendedelen.tex}
+\activitychapter{UW4201/basis_definieren.tex}
+\activitychapter{UW4201/vectorruimten_definieren.tex}
+\activitychapter{UW4201/matrixtransformaties.tex}
 
-
-
-\activitychapter{Vectorruimten/lineairecombinatie_voortbrengendedelen.tex}
-\activitychapter{Vectorruimten/basis_definieren.tex}
-\activitychapter{Vectorruimten/vectorruimten_definieren.tex}
-\activitychapter{Vectorruimten/matrixtransformaties.tex}
+\part{UW4202}
+\activitychapter{UW4202/simpele zandhopen.tex}
 
 \end{document}
 

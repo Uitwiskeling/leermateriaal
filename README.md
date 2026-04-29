@@ -4,3 +4,10 @@ Hier maken we leermateriaal van Uitwiskeling beschikbaar, waarbij we telkens ter
 Een abonnement nemen op Uitwiskeling staat [hier](https://www.uitwiskeling.be/abonnementen/?v=d3dcf429c679) uitgelegd; je krijgt er driemaandelijkse didactische inspiratie met becommentarieerde lesactiviteiten ter illustratie.
 
 Geïnteresseerd om mee te werken aan deze verzameling materialen? Contacteer ons op [info@uitwiskeling.be](mailto:info@uitwiskeling.be)!
+
+# TODOs
+- [ ] Decide on integrating teacher advice and references in UW articles
+- [ ] merge uitwiskeling.css and Vectorruimten.css (loep specifiek)
+- [ ] preambule integration is turned off currently?
+- [ ] only one definition of \pdfOnly{\renewcommand{\xmcursusnaam}{{\textsc{Uitwiskeling}}}} ? global.sty
+- [ ] 

@@ -28,18 +28,6 @@
 	--menu-2:  #d15399;
 }
 
-img.brandlogo {
-	border-radius: 10px;	
-	max-height: 6rem;
-}
-
-img.xourselogo {
-	max-height: 6rem;
-	max-width: 20vw;
-	border-radius: 10px;
-}
-
-
 .main-title {
 	background-color: var(--main-title);
 	color: white;
