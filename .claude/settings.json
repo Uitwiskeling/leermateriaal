@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xmlatex *)",
+      "Bash(make4ht *)",
+      "Bash(pdflatex *)",
+      "Bash(lualatex *)",
+      "Bash(texlua *)",
+      "Bash(kpsewhich *)",
+      "Bash(mktexlsr *)",
+      "Bash(mutool *)",
+      "Bash(pdf2svg *)",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(grep *)",
+      "Bash(ls *)"
+    ],
+    "deny": [
+      "Bash(docker pull *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v xmlatex >/dev/null 2>&1 && { echo 'Ximera-toolchain aanwezig (xmlatex gevonden).'; exit 0; }; if [ \"$(id -u)\" = \"0\" ]; then bash xmScripts/setup-claude-cloud.sh; else echo 'xmlatex ontbreekt. Draai handmatig: bash xmScripts/setup-claude-cloud.sh (vereist root, ~5-10 min), of gebruik de devcontainer.'; fi",
+            "timeout": 900,
+            "statusMessage": "Ximera-toolchain installeren (eenmalig per cloud-sessie, ~5-10 min)..."
+          }
+        ]
+      }
+    ]
+  }
+}
