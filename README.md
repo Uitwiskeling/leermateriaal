@@ -8,6 +8,6 @@ Geïnteresseerd om mee te werken aan deze verzameling materialen? Contacteer ons
 # TODOs
 - [ ] Decide on integrating teacher advice and references in UW articles
 - [ ] merge uitwiskeling.css and Vectorruimten.css (loep specifiek)
-- [ ] preambule integration is turned off currently?
+- [ ] preambule integration is turned off currently? difference between preamble.tex and xmPreamble.tex ? Should i include preambule in every document individually?
 - [ ] only one definition of \pdfOnly{\renewcommand{\xmcursusnaam}{{\textsc{Uitwiskeling}}}} ? global.sty
-- [ ] 
+- [ ] how to add extra packages? 
