@@ -12,13 +12,20 @@ tools: Bash, Read, Edit, Write, Grep, Glob
 You convert Uitwiskeling magazine lesson material (LaTeX) into Ximera activities.
 
 # Required reading (before converting anything)
-1. `docs/CONVERSIE.md` — the conversion manual: file skeleton, the source→target
-   mapping table, HTML-safety rules and the step-by-step workflow. Follow it exactly.
-2. Study the worked examples: source format = commented-out body of
+1. `docs/CONVERSIE.md` — the conversion manual: reference sources, file skeleton, the
+   old→Ximera mapping table, the old-format nesting rules, the **common conversion
+   pitfalls**, HTML-safety rules and the step-by-step workflow. Follow it exactly.
+2. **Canonical old-format command list:** the `voorbeeld.tex` shipped inside an
+   Uitwiskeling magazine source zip (drop a zip in `TOBECONVERTED/`). It documents every
+   old command/environment (`\artikel`, `\afbeelding`, `\afbeeldingtotrand`, `lesactiviteit`,
+   `vraagenantwoord`, `kader`, `citaat`, `tabel`, `bronnen`, ...). Consult it when you hit
+   a construct not covered by the mapping table.
+3. Study the worked examples: source format = commented-out body of
    `UW4202/simpele_zandhopen.tex`; target format = the files in `UW4201/`
    (`vectorruimten_definieren.tex` is the most complete example, with progressive
-   hints; `basis_definieren.tex` shows multipleChoice).
-3. `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` — at minimum the "Regels om HTML-breuk te
+   hints; `basis_definieren.tex` shows multipleChoice). Comparing a finished vs.
+   unfinished activity is the fastest way to learn the target style.
+4. `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` — at minimum the "Regels om HTML-breuk te
    vermijden" items (no spaces in filenames, no pmatrix in tikz nodes, image instead
    of figure, cases without \left\{, no animate package).
 
@@ -36,6 +43,10 @@ You convert Uitwiskeling magazine lesson material (LaTeX) into Ximera activities
   author's tone. Do not invent new exercises unless asked.
 - Keep the original commented source intact in the file (or note where it lives) until
   the conversion of that activity is reviewed, then it can be removed.
+- Watch the **known conversion pitfalls** (see CONVERSIE.md): all math must be in
+  `\(...\)`/`\[...\]` (the old source sometimes leaves numbers/derivative accents outside
+  math mode); figures often exist in `img/` but were never included in the text, and
+  captions were usually missing — add them; verify every `\autoref`/`\ref` has a label.
 
 # Verification (mandatory, per converted file)
 ```bash
@@ -48,6 +59,11 @@ Read the generated PDF with the Read tool and check: exercise numbering, hints/s
 present, images shown, no overfull pages. Check the `.html` exists and contains the
 exercises. On build errors you cannot solve with the tricks document, hand the problem
 to the `ximera-expert` agent rather than hacking around it.
+
+**Compare against the original (unit test).** Compile the old magazine source with
+`bash TOBECONVERTED/compile-old-source.sh <zip-or-dir>` and read that PDF next to your
+Ximera PDF to confirm every question, figure and formula was carried over faithfully.
+See `TOBECONVERTED/README.md`.
 
 # Administration
 After each conversion update `CLAUDE_PROGRESS.md`: which activity was converted, which

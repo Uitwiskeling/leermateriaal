@@ -43,7 +43,9 @@ if ! command -v pdflatex >/dev/null || ! command -v make4ht >/dev/null; then
         texlive-latex-extra texlive-science texlive-lang-european \
         texlive-luatex texlive-fonts-recommended texlive-fonts-extra \
         texlive-extra-utils tex4ht texlive-plain-generic \
-        mupdf-tools pdf2svg imagemagick jq git-restore-mtime dos2unix
+        mupdf-tools poppler-utils pdf2svg imagemagick jq git-restore-mtime dos2unix
+        # poppler-utils (pdftoppm) laat Claude PDF's als beeld inlezen — handig om
+        # oude bron en Ximera-conversie visueel te vergelijken (zie TOBECONVERTED/).
 else
     log "TeX Live al aanwezig, sla apt-installatie over."
 fi

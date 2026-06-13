@@ -55,6 +55,46 @@ In GitHub Codespaces everything is preinstalled; just use `xmlatex`.
   `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` (symptom → cause → structural solution), and
   note session progress in `CLAUDE_PROGRESS.md`.
 
+# Documentation references (online; use WebFetch when you have internet)
+Some of these are authoritative, some may be **outdated** — always trust the actual
+installed `ximera.cls`/luaxake source over docs when they disagree. In the Claude
+cloud environment, `ximera.osu.edu` and `set.kuleuven.be` are usually **blocked** by
+the network policy; `github.com`/`raw.githubusercontent.com` work. So treat the
+"Offline essentials" section below as your fallback when the web is unreachable.
+
+- Getting started: https://ximera.osu.edu/intro/gettingStarted
+- User manual / deploying: https://ximera.osu.edu/xman/ximeraUserManual/gettingWorkDone/deploying
+- KU Leuven author guide: https://set.kuleuven.be/ximera-wis/demo/auteur/auteurs/auteur
+- Ximera environments (KU Leuven): https://set.kuleuven.be/ximera-wis/demo/auteur/auteurs/ximeraEnvironments
+- "Black magic" advanced content: https://set.kuleuven.be/voorkennis/examples/examples/advancedContent/blackMagic/examples
+- New xourse (admin): https://set.kuleuven.be/ximera-wis/demo/admin/auteurs/ximeraNewXourse
+- Architecture (PDF): https://set.kuleuven.be/ximera-wis/demo/ximera-downloads/handout_pdf/auteurs/ximeraArchitectuur.pdf
+- Class/luaxake source: https://github.com/XimeraProject/ximeraLatex
+- Server (self-hosting): https://github.com/XimeraProject/server  and  https://github.com/XimeraProject/docker
+- All Ximera repos: https://github.com/orgs/XimeraProject/repositories
+- Overleaf-based project template: https://github.com/wiobber/ximeraNewOverleafProject
+
+# Offline essentials (survive without internet)
+- **Toolchain & build**: see `COMPILING.md` and `xmScripts/setup-claude-cloud.sh`.
+- **Architecture & known bugs**: `docs/XIMERA_PROBLEMEN_EN_TRICKS.md`.
+- **Interactive Ximera elements** available in this project's ximera.cls v2.7.8
+  (online-only; in PDF they degrade gracefully). Verify exact syntax in the installed
+  `ximera.cls` / `xmPreamble.tex` before using:
+  - `\begin{exercise}`, `\begin{hint}`, `\begin{oplossing}` (this repo's solution env),
+    `\begin{definition}`/`proposition`/`example` (themed theorem envs).
+  - `\answer{...}` — free-response answer box; `\begin{selectAll}...\end{selectAll}`;
+    `\begin{multipleChoice}\choice{...}\choice[correct]{...}\end{multipleChoice}`.
+  - `\wordChoice{\choice{}\choice[correct]{}}` — inline dropdown; `\choiceTrue/\choiceFalse`.
+  - Embeds: `\youtube{<id>}`, `\geogebra{<id>}`, `\desmos{...}`/`\desmosThreeD{...}`.
+  - `\begin{image}[width] ... \end{image}` for figures (NOT `figure`; no floats in HTML).
+
+# Self-hosting / deployment notes
+Publishing happens via `.github/workflows/serve-ximera.yml` (`xmlatex ghaction`) to
+`https://leermateriaal.uitwiskeling.be/`. For a self-hosted Ximera server see
+XimeraProject/server and XimeraProject/docker. There is interest in an **Overleaf ->
+Ximera** workflow for the Uitwiskeling server (more author-friendly); see
+`CLAUDE_PROGRESS.md` for that TODO and the `ximeraNewOverleafProject` template.
+
 # Report back
 End with: what was broken, the root cause, what you changed (files), proof it works
 (compile results for pdf and html), and what you added to the knowledge base.

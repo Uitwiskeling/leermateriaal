@@ -15,6 +15,13 @@ Dit repo zet Uitwiskeling-lesmateriaal (LaTeX) om naar Ximera-pagina's (PDF + HT
 - `ximera-expert` — technische build-/LaTeX-/Ximera-problemen, structurele oplossingen.
 - `uitwiskeling-converter` — Uitwiskeling-formaat → Ximera-formaat omzetten
   (handleiding: `docs/CONVERSIE.md`).
+- `didactical-review` — PLACEHOLDER (nog in te vullen; didactische review vanuit
+  edtech/leertheorieën). Nog niet gebruiken in de workflow.
+
+**Oude bron compileren ter vergelijking:** gooi een Uitwiskeling-tijdschrift-`.zip` in
+`TOBECONVERTED/` en draai `bash TOBECONVERTED/compile-old-source.sh` (gewone pdflatex,
+geen Ximera). Zo vergelijk je de originele lesactiviteit visueel met de Ximera-conversie.
+Zie `TOBECONVERTED/README.md`. Conversie verloopt nooit via Word — altijd LaTeX→LaTeX.
 
 **Harde regels:**
 - Geen `\input{./preamble.tex}` of `\addPrintStyle{.}` in documenten (auto-geladen door

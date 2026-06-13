@@ -37,6 +37,35 @@
 
 ## Wat is er gedaan (log, nieuwste bovenaan)
 
+### 2026-06-13 (sessie 2)
+- **GitHub-push werkt nu** (branch `claude/focused-dirac-x12mr3`); de GitHub App kreeg
+  schrijfrechten. Commit-auteur = `Claude <noreply@anthropic.com>`.
+- **`.claude/settings.json` aangepast:** SessionStart-hook verwijderd (op verzoek),
+  en de permissies `Bash(bash xmScripts/setup-claude-cloud.sh)` + `git branch` weg.
+  De setup-toolchain draai je dus zelf bij een verse cloud-sessie:
+  `bash xmScripts/setup-claude-cloud.sh`.
+- **`ximera-expert` agent uitgebreid** met documentatie-links (osu.edu/kuleuven.be zijn
+  in de cloud-omgeving geblokkeerd; github werkt) + "offline essentials" (interactieve
+  Ximera-elementen, self-hosting/Overleaf-pointers).
+- **Conversie-skill verfijnd** met de échte tijdschriftbron (`voorbeeld.tex` uit de zip):
+  `docs/CONVERSIE.md` heeft nu de volledige omzettingstabel (artikel, afbeeldingtotrand,
+  kader, citaat, tabel, bronnen, ...), de nesting-regels van het oude formaat, en een
+  sectie **veelvoorkomende valkuilen** (wiskunde niet in math-modus, afgeleide-accenten,
+  figuren wel in img/ maar niet in tekst, ontbrekende captions, dode `\autoref`).
+  `uitwiskeling-converter` agent verwijst nu naar `voorbeeld.tex` en de unit-test.
+- **`TOBECONVERTED/` opgezet (unit test voor conversies):** `compile-old-source.sh` pakt
+  een Uitwiskeling-tijdschrift-`.zip` uit in `TOBECONVERTED/_work/` (gitignored) en
+  compileert de oude bron met gewone `pdflatex` (2 passes). **Getest met UW4203.zip →
+  Uitwiskeling.pdf, 23 pagina's, 0 fouten.** Zo vergelijk je origineel vs. Ximera-versie.
+  `_work/` en `*.zip` staan in `.gitignore`.
+- **`poppler-utils` toegevoegd** aan `setup-claude-cloud.sh` (pdftoppm; laat Claude PDF's
+  als beeld inlezen voor de visuele vergelijking).
+- **`didactical-review` agent als placeholder** aangemaakt (`.claude/agents/`); leeg op een
+  notitie na dat we meerdere agents per didactisch perspectief voorzien. README-TODO erbij.
+- Belangrijk inzicht uit het oude tijdschriftrepo (`.claude/` in de zip): hun workflow
+  was Word→LaTeX (pandoc) + layout; **dat doen wij hier NIET** — wij doen alleen
+  LaTeX(Uitwiskeling)→LaTeX(Ximera). Hun nesting-regels en `voorbeeld.tex` zijn wel nuttig.
+
 ### 2026-06-12 (sessie 1)
 **Omgeving werkend gekregen (Claude cloud):**
 - Docker-route faalt structureel: netwerkpolicy blokkeert image-blob-hosts
