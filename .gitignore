@@ -337,3 +337,11 @@ gpgkey
 
 # File used to update DevEnv config-files  (xmlatex updateDevEnv)
 xmDevEnvFiles.tgz
+
+## Claude Code: persoonlijke overrides niet committen
+.claude/settings.local.json
+
+## TOBECONVERTED: tijdelijk uitgepakte bronnen en de (grote) bron-zips niet committen.
+## Het script en de README blijven wel in git.
+TOBECONVERTED/_work/
+TOBECONVERTED/*.zip
