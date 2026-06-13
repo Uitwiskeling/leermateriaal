@@ -1332,6 +1332,13 @@
 \providecommand{\xmcursusnaam}{}
 \providecommand{\xmafdelingsnaam}{}
 
+%% Uitgave-info: defaults hier (xmPreamble wordt voor pdf EN html geladen),
+%% overschrijf per nummer in de xourse met \renewcommand*.
+%% NIET in xmPrintstyle.sty zetten: dat wordt enkel voor pdf geladen, waardoor
+%% de \renewcommand* in de xourse in de html-build op een ongedefinieerd commando botst.
+\providecommand*{\uitgavenr}{}
+\providecommand*{\uitgaveseizoen}{}
+
 
 
 
