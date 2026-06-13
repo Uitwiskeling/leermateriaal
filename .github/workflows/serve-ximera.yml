@@ -46,12 +46,16 @@ jobs:
 
       - name: Build and publish Ximera courses
         env:
-          XIMERA_NAME: uitwiskeling*${{ github.ref_name }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
           ls -alrt
           # git config --global --add safe.directory "$(pwd)"
           # export COMMAND=./xmScripts/xmlatex.test
-          ./xmScripts/xmlatex ghaction -j 4 
+          # XIMERA_NAME mag enkel [a-z0-9] en .*- bevatten; saneer de branchnaam
+          # (bv. een '/' in 'claude/...' is niet toegelaten) tot een geldige naam.
+          SAFE_REF=$(printf '%s' "$REF_NAME" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9.-' '-')
+          export XIMERA_NAME="uitwiskeling*${SAFE_REF}"
+          ./xmScripts/xmlatex ghaction -j 4
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
 
       - name: Setup ximera serve cache (only .git)

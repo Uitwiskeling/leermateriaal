@@ -6,6 +6,7 @@ Een abonnement nemen op Uitwiskeling staat [hier](https://www.uitwiskeling.be/ab
 Geïnteresseerd om mee te werken aan deze verzameling materialen? Contacteer ons op [info@uitwiskeling.be](mailto:info@uitwiskeling.be)!
 
 # TODOs
+- [ ] Vervang de dummy-links naar Uitwiskeling-artikels in `activiteitenvolgensnummer.tex` (bv. UW4202 / 42-2) door de echte artikel-URLs. Deze konden tijdens een cloud-sessie niet opgezocht worden wegens netwerkrestricties; controleer ook de bestaande vectorruimten-link (42/1).
 - [ ] Decide on integrating teacher advice and references in UW articles
 - [ ] merge uitwiskeling.css and Vectorruimten.css (loep specifiek)
 - [x] preambule integration: ximera.cls v2.7.8 laadt `xmPreamble.tex` en `xmPrintstyle.sty` automatisch; documenten mogen GEEN `\input{./preamble.tex}`/`\addPrintStyle{.}` meer doen. `preamble.tex`/`printstyle.sty` zijn verouderde kopieën (te verwijderen?). Zie `docs/XIMERA_PROBLEMEN_EN_TRICKS.md`.
