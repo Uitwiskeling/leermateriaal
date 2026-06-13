@@ -974,7 +974,7 @@
 	
 	
 	.main-title {
-		background-color: #5d98d2;
+		background-color: #5983c2;
 		color: white;
 		/* align-items: anchor-center; */
 	}
@@ -998,7 +998,7 @@
 	
 	.toc .part {
 		font-size: larger;
-		background-color: rgb(93, 152, 210);
+		background-color: #5983c2;
 	}
 	
 	.toc .activity-card.active {
@@ -1008,15 +1008,20 @@
 	
 	
 	img.brandlogo {
-		max-height: 6rem;
-		max-width: 20vw;
+		/* organisatie-logo verbergen: we tonen enkel de xourse-\logo (Uitwiskeling, links) */
+		display: none;
 	}
 	
 	
 	.title-xourse, .title-activity {
-		text-transform: uppercase;
 		font-family: Times New Roman;
 		font-size: xxx-large;
+	}
+	.title-activity {
+		text-transform: uppercase;
+	}
+	.title-xourse {
+		text-transform: none;   /* hoofdtitel niet in kapitalen */
 	}
 	
 	.main-inhoud .activity-title {
