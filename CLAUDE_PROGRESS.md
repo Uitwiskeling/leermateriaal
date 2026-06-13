@@ -23,9 +23,10 @@
 - [x] Agent `uitwiskeling-converter` aangemaakt
 - [x] `docs/CONVERSIE.md` geschreven
 - [x] `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` geschreven (uit git history + sessiebevindingen)
-- [ ] **VOLGENDE STAP:** UW4202 `simpele_zandhopen` effectief converteren met de
-      `uitwiskeling-converter` agent (inhoud staat klaar in comments; figuren deels in
-      `UW4202/img/`, sommige verwijzen naar `UW4201/img/`-paden die niet bestaan — checken!)
+- [x] **UW4202 `simpele_zandhopen` geconverteerd** (sessie 3, 2026-06-13). 33 exercises,
+      9 hints, 33 oplossingen, 1 instructorNotes, 23 image-omgevingen. Zie log hieronder.
+      Nog te doen: standalone pdf+html compileren ter verificatie (toolchain niet aanwezig
+      in deze sessie), en opnemen in de xourse `activiteitenvolgensnummer.tex`.
 - [ ] GitHub Action opnieuw laten draaien na merge en controleren dat hij groen wordt
 - [ ] Beslissing Alexander: `preamble.tex` en `printstyle.sty` verwijderen?
       (verouderde kopieën; xmPreamble/xmPrintstyle zijn de echte; zie tricks-doc #1)
@@ -42,6 +43,28 @@
       of de cursus-URL https://leermateriaal.uitwiskeling.be/ klopt na eerste publish
 
 ## Wat is er gedaan (log, nieuwste bovenaan)
+
+### 2026-06-13 (sessie 3) — conversie zandhopen
+- **`UW4202/simpele_zandhopen.tex` geconverteerd** van Uitwiskeling-formaat (`%`-comments)
+  naar Ximera. Titel: ``Zandhopen: kegels, piramides en kegelsneden''. 8 deelparagrafen
+  (`\subsection*`): ronde ondergrond, vierkant, rechthoek, driehoek, trapezia (convex),
+  oefening convexe veelhoeken, schijf met gat, cirkelsegment, niet-convexe veelhoek, ellips.
+  33 `exercise`, 9 progressieve `hint`, 33 `oplossing`, 1 `instructorNotes` (didactische
+  regie bij de trapezia), 23 `image`-omgevingen. Bronnen onderaan als `itemize` (open
+  beslissing, geflagd).
+- **Afbeeldingen waren al hernoemd** (staged in git, commit/working tree): `Zand 01.JPG`
+  → `zand01.jpg`, `Lmateriaal.jpg` → `lmateriaal.jpg`, enz. (spaties/hoofdletters/`.JPG`
+  weg). Alle 33 `\includegraphics` in het bestand wijzen naar bestaande `UW4202/img/*.jpg`.
+- **Ontbrekende figuren:** alle lijntekeningen (`.png`) en diverse `L*`-figuren uit de bron
+  zitten NIET in `img/` (`.png` is gitignored; ze werden nooit gecommit). Voorbeelden:
+  `Lrusthoek`, `LPiramide`, `LRHhoogtelijnen.png`, `Ltrapezia.png`, `Ltrap2/3/4*.png`,
+  `Lconvexeveelhoeken.png`, `zandopdriehoek.png`, `Ldriehoekkortsteweg.png`. Op elke plek
+  staat een `% TODO`-comment. **Alexander: deze lijntekeningen aanleveren of opnieuw maken.**
+- **Niet gecompileerd:** `xmlatex`/`pdflatex` niet aanwezig in deze sessie; setup duurt
+  5-10 min en mocht niet gedraaid worden. Wel gecontroleerd: alle environments gebalanceerd,
+  alle beeldpaden bestaan. Verificatie pdf+html overgelaten aan CI / volgende sessie.
+- **Xourse NIET aangeraakt** (zoals gevraagd): `activiteitenvolgensnummer.tex` ongewijzigd;
+  wiring volgt apart.
 
 ### 2026-06-13 (sessie 2)
 - **GitHub-push werkt nu** (branch `claude/focused-dirac-x12mr3`); de GitHub App kreeg
