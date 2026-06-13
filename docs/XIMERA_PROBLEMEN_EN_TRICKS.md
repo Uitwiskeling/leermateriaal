@@ -45,7 +45,17 @@ alleen in de xourse gedefinieerd waren.
 **Oplossing (toegepast 2026-06-12):** defaults in `xmPrintstyle.sty`
 (`\providecommand*{\uitgavenr}{}`, grijze `paginanrbg`/logo-defaults); de xourse
 overschrijft met `\renewcommand*`. **Regel:** elke activiteit moet standalone compileren;
-xourse-specifieke waarden krijgen altijd een default in de stylefile.
+xourse-specifieke waarden krijgen altijd een default.
+
+**Vervolg (2026-06-13): default in stylefile is niet genoeg voor de html-build.**
+`xmPrintstyle.sty` wordt door ximera.cls **alleen voor pdf** geladen, maar de xourse
+doet `\renewcommand*{\uitgavenr}` die in **beide** builds draait. In de html-build was de
+default dus nog niet geladen → `Command \uitgavenr undefined` bij
+`html|activiteitenvolgensnummer.tex` (pdf werkte wel). **Oplossing:** defaults voor
+waarden die de xourse met `\renewcommand*` overschrijft horen in `xmPreamble.tex`
+(pdf én html), niet in `xmPrintstyle.sty` (pdf-only). `\uitgavenr`/`\uitgaveseizoen`
+verhuisd naar `xmPreamble.tex`. **Regel:** een default die in de html-build nodig is,
+hoort in `xmPreamble.tex`; alleen puur typografische pdf-defaults mogen in `xmPrintstyle.sty`.
 
 ### 3. HTML-build faalt: `pmatrix` in een tikz-node
 **Symptoom:** `Extra \right.`, `Missing $ inserted`, ... in de `.online.log`, op het
