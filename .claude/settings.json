@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xmlatex *)",
+      "Bash(make4ht *)",
+      "Bash(pdflatex *)",
+      "Bash(lualatex *)",
+      "Bash(texlua *)",
+      "Bash(kpsewhich *)",
+      "Bash(mktexlsr *)",
+      "Bash(mutool *)",
+      "Bash(pdf2svg *)",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(grep *)",
+      "Bash(ls *)"
+    ],
+    "deny": [
+      "Bash(docker pull *)"
+    ]
+  }
+}

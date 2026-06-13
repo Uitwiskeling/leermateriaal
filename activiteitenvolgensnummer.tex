@@ -1,13 +1,12 @@
 \documentclass[10pt,numbers,noauthor,nooutcomes,wordchoicegiven]{xourse}
-\input{./preamble.tex}
-% \input{../preambles/tcolorbox.tex}   % voor formularia ...
-\addPrintStyle{.}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
 
 \pdfOnly{\renewcommand{\xmcursusnaam}{{\textsc{Uitwiskeling}}}}
 \logo{xmPictures/Uitwiskelinglogo-zwart.png}
 
-\newcommand*{\uitgavenr}{42/1 (Winter 2026)}
-\newcommand*{\uitgaveseizoen}{Onder de loep: Vectorruimten}
+\renewcommand*{\uitgavenr}{42/1 (Winter 2026)}    % default ({}) staat in xmPrintstyle.sty
+\renewcommand*{\uitgaveseizoen}{Onder de loep: Vectorruimten}
 % TODO: redefine this per number, so it changes per number? also \rubriek
 
 
@@ -31,7 +30,7 @@
 \activitychapter{UW4201/matrixtransformaties.tex}
 
 \part{UW4202}
-\activitychapter{UW4202/simpele zandhopen.tex}
+\activitychapter{UW4202/simpele_zandhopen.tex}   % geen spaties in bestandsnamen: breekt de HTML-build
 
 \end{document}
 

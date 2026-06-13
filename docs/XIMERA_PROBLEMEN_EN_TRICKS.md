@@ -1,0 +1,116 @@
+# Ximera: bekende problemen & tricks
+
+Kennisbank voor dit project (ximeraLatex **v2.7.8** + luaxake). Vul aan bij elk nieuw
+opgelost probleem: beschrijf het symptoom, de oorzaak en de **structurele** oplossing.
+Quick fixes die het onderliggende probleem laten bestaan horen hier niet thuis —
+los het op in `xmPreamble.tex`/`xmPrintstyle.sty` of in de bron, niet met een hack per bestand.
+
+Bronnen: git history van dit repo, de sessie van 2026-06-12, en de
+[ximeraLatex-documentatie](https://github.com/XimeraProject/ximeraLatex).
+
+## Architectuur in het kort
+
+- `ximera.cls` (en `xourse.cls`, dat `ximera.cls` laadt) laadt op het einde van de klasse
+  **automatisch** `xmPreamble.tex` en (alleen voor PDF) `xmPrintstyle.sty` uit de projectroot
+  (zoekpad `./`, `../`, ...). Zie `\xmDefaultPreamble` in ximera.cls.
+- `luaxake` (aangeroepen via `xmlatex bake`) compileert:
+  - **PDF**: `pdflatex -shell-escape -file-line-error`
+  - **HTML**: `make4ht -c ximera.cfg -f html5+dvisvgm_hashes ... 'svg,htex4ht,mathjax,-css'`
+    → gewone wiskunde wordt MathJax, maar `image`/tikz-omgevingen worden door echte TeX
+    gezet en via dvisvgm naar SVG omgezet. **HTML is dus strenger dan PDF**: wat in de PDF
+    werkt kan in HTML nog breken.
+- Logbestanden: PDF-run → `bestand.log`; HTML-run → `bestand.online.log` (jobname `.online`).
+  Fouten zoeken: regels van de vorm `./bestand.tex:123:`.
+- Een mislukte PDF wordt hernoemd naar `bestand.pdf.failed`.
+
+## Bekende problemen
+
+### 1. Honderden "Command \... already defined"-fouten
+**Oorzaak:** `\input{./preamble.tex}` of `\addPrintStyle{.}` in een document, terwijl
+ximera.cls v2.7.8 `xmPreamble.tex`/`xmPrintstyle.sty` al automatisch laadt → alles wordt
+dubbel gedefinieerd.
+**Oplossing:** die regels gewoon weglaten. (Opgelost in `inleiding.tex` en
+`activiteitenvolgensnummer.tex` op 2026-06-12; dit was ook de oorzaak van de gefaalde
+GitHub Action run #3.)
+**Status preamble.tex/printstyle.sty:** verouderde kopieën; `xmPreamble.tex` is een
+superset (op `\usepackage{XCharter}` na, dat al door `xmPrintstyle.sty` met opties wordt
+geladen — voeg het dus NIET nogmaals toe, dat geeft een 'option clash'). Kandidaten om
+te verwijderen na akkoord van Alexander.
+
+### 2. Losse activiteit faalt op `\uitgavenr` / lege `\includegraphics{}`
+**Symptoom:** `Undefined control sequence \uitgavenr` of `File '' not found` bij het
+standalone compileren van één activiteit; in een xourse werkt alles wel.
+**Oorzaak:** de pagestyle `uitwiskeling` in `xmPrintstyle.sty` gebruikt commando's die
+alleen in de xourse gedefinieerd waren.
+**Oplossing (toegepast 2026-06-12):** defaults in `xmPrintstyle.sty`
+(`\providecommand*{\uitgavenr}{}`, grijze `paginanrbg`/logo-defaults); de xourse
+overschrijft met `\renewcommand*`. **Regel:** elke activiteit moet standalone compileren;
+xourse-specifieke waarden krijgen altijd een default in de stylefile.
+
+### 3. HTML-build faalt: `pmatrix` in een tikz-node
+**Symptoom:** `Extra \right.`, `Missing $ inserted`, ... in de `.online.log`, op het
+moment dat de SVG geschreven wordt (`Writing ....idv`).
+**Oorzaak:** `\begin{pmatrix}...\end{pmatrix}` in een node-label van een tikzpicture
+breekt in de tex4ht/dvisvgm-fase (PDF werkt wel!).
+**Oplossing:** in tikz-nodes `\left(\begin{smallmatrix}...\end{smallmatrix}\right)` of
+`\binom{a}{b}` gebruiken (beide getest OK). Buiten figuren is pmatrix prima (MathJax).
+
+### 4. Spaties in bestandsnamen breken de HTML-build
+**Symptoom:** make4ht maakt o.a. `simpele.log` van `simpele zandhopen.tex`; html ontbreekt,
+en `frost` faalt daarna op het ontbrekende bestand.
+**Oplossing:** geen spaties in `.tex`-bestandsnamen; underscores zijn OK voor .tex-bestanden
+(`vectorruimten_definieren.tex` werkt al jaren).
+
+### 5. Underscores in afbeeldingsbestandsnamen (bij `\logo` e.d.)
+Commit `68610c4 "geen underscore...."`: `\logo{xmPictures/logo_uitwiskeling.png}` brak;
+hernoemd naar `logouitwiskeling.png`. Vermijd `_` in namen van afbeeldingen die in
+HTML-context verwerkt worden.
+
+### 6. `cases` niet in `\left\{...\right.` wikkelen
+Commit `ae06d7b`: `\begin{cases}` zet zelf al de accolade; extra `\left\{ ... \right.`
+errond geeft fouten. Idem: geen overbodige `\left.`-constructies rond omgevingen die
+zelf delimiters zetten.
+
+### 7. `image` gebruiken in plaats van `figure`
+Commit `3f681e6`: Ximera kent geen floats in HTML; gebruik de `image`-omgeving
+(uit printstyle: `\begin{image}[breedte] ... \end{image}`), niet `figure`/`\centering`.
+
+### 8. Pakketten die de HTML-structuur breken
+Uit commentaar in `xmPreamble.tex`:
+- `animate`: **breekt de HTML-structuur** — niet gebruiken.
+- `babel` en `doclicense`: alleen binnen `\pdfOnly{...}` laden (geven anders
+  syntaxfouten in de gegenereerde `.jax`-bestanden).
+- Extra packages toevoegen doe je in `xmPreamble.tex`; check daarna ALTIJD zowel pdf
+  als html van een testbestand.
+
+### 9. Omgevingsverschillen (alleen Claude cloud-omgeving)
+De native toolchain (zie `xmScripts/setup-claude-cloud.sh`) gebruikt Ubuntu's TeX Live
+2023 i.p.v. TL2024 uit de officiële container. Al verholpen in het setup-script:
+- LuaXML te oud (geen `luaxml-mod-html.lua`) → recente versie van GitHub in TEXMFHOME.
+- babel 24.1 heeft `\localename` nog als foutmelding-stub ("Find an armchair...")
+  terwijl ximera.cls het gebruikt → recente babel van GitHub in TEXMFHOME.
+Bij een onbegrijpelijke fout hier: controleer eerst of de GitHub Action (officiële
+container) hetzelfde doet voor je iets aan het project verandert.
+
+### 10. `docker pull` lijkt te werken maar faalt
+In de Claude cloud-omgeving zijn `pkg-containers.githubusercontent.com` en
+`production.cloudflare.docker.com` geblokkeerd (`x-deny-reason: host_not_allowed`);
+`ghcr.io` zelf antwoordt wél, dus de fout komt pas bij de blobs. Niet blijven proberen:
+gebruik de native setup. Check exit codes nooit door een pipe (`| tail` verbergt ze).
+
+## Tricks
+
+- **Snelle foutdiagnose:** `grep -n -m5 ':[0-9]*:' bestand.log` (PDF) of
+  `bestand.online.log` (HTML). luaxake crasht soms zelf bij het formatteren van
+  fouten (`luaxake-bake.lua:246: attempt to concatenate a nil value (field 'context')`) —
+  dat betekent gewoon: er zijn LaTeX-fouten, lees de log rechtstreeks.
+- **Strenger testen:** compileer na elke wijziging zowel `--compile pdf` als
+  `--compile html`; HTML vangt de meeste structurele problemen.
+- **Cache omzeilen:** `--force` hercompileert ook als luaxake denkt dat alles up-to-date
+  is; `xmlatex bake` zonder argumenten doet het hele project met dependency-checking.
+- **GitHub Action als referentie:** de Action-logs (Ximera Workflow) tonen het gedrag
+  van de officiële container; vergelijk daarmee bij twijfel over omgevingsverschillen.
+- **`\rubriek{loep}{...}`** zet de kleuren/headers van een Uitwiskeling-rubriek
+  (redactioneel, spin, loep, bib, actua); zonder rubriek krijg je grijze defaults.
+- **Handout-modus:** `\ifhandout` verbergt `oplossing`-omgevingen in de print;
+  online verschijnen ze als uitklapbare "Toon uitwerking".

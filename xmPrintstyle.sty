@@ -1529,11 +1529,17 @@
 
 
 %% DEFINIEER RUBRIEKEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Grijze defaults zodat een losse activiteit (zonder \rubriek in een xourse)
+%% ook standalone compileert; \rubriek{...}{...} overschrijft ze.
 \newcommand*{\rubriekkleur}{kleurnone}
 \newcommand*{\rubriekimg}{}
-\newcommand*{\rubriekheaderimg}{}
+\newcommand*{\rubriekheaderimg}{imgDesign/Uitwiskeling_logo_mini_grijs.png}
 \newcommand*{\rubriekcheckmark}{}
-\newcommand*{\rubriekpagenrbg}{}
+\newcommand*{\rubriekpagenrbg}{imgDesign/paginanrbg_grijs.png}
+
+%% Uitgave-info: defaults hier, overschrijf per nummer in de xourse met \renewcommand
+\providecommand*{\uitgavenr}{}
+\providecommand*{\uitgaveseizoen}{}
 
 %% Start nieuwe rubriek commando - typeset hoofding en stel o.a. de rubriekkleur in
 %% \rubriek{type}{titel}

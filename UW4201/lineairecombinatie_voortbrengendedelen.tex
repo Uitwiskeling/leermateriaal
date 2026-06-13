@@ -82,22 +82,22 @@ Maak ten slotte een overtuigend argument of er onbereikbare plaatsen zijn waar G
 
     Meetkundig kan je een tekening als in Figuur~\ref{fig:specificdisplaylinearcombo} maken, om te zien dat ieder punt in het vlak bereikt kan worden door een geschikte combinatie van de twee richtingen.
 \begin{image}
-    % \centering
+    % In tikz-nodes geen pmatrix gebruiken (breekt de HTML/SVG-build); wel \left(\begin{smallmatrix}...\end{smallmatrix}\right)
     \begin{tikzpicture}[scale=0.7]
 
     \draw[->] (0,0) -- (10,0) node[below right] {oosten};
     \draw[->] (0,0) -- (0,10) node[above left] {noorden};
 
     % specifieke lineaire combinatie
-    \draw[->, thick, orange!70] (0,0) -- (6,2) node[midway, below, sloped, black] {$\color{orange}2\begin{pmatrix} 3 \\ 1 \end{pmatrix}$};
-    \draw[->, thick, purple!70] (0,0) -- (3,6) node[midway, above, sloped, black] {$\color{purple}3\begin{pmatrix} 1 \\ 2 \end{pmatrix}$};
+    \draw[->, thick, orange!70] (0,0) -- (6,2) node[midway, below, sloped, black] {$\color{orange}2\left(\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\right)$};
+    \draw[->, thick, purple!70] (0,0) -- (3,6) node[midway, above, sloped, black] {$\color{purple}3\left(\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}\right)$};
 
     % basisvectoren hoverboard en tapijt
-    \draw[->, thick, red!70] (0,0) -- (3,1) node[midway, below, sloped, black] {$\color{red}\begin{pmatrix} 3 \\ 1 \end{pmatrix}$};
-    \draw[->, thick, blue!70] (0,0) -- (1,2) node[midway, above, sloped, black] {$\color{blue}\begin{pmatrix} 1 \\ 2 \end{pmatrix}$};
+    \draw[->, thick, red!70] (0,0) -- (3,1) node[midway, below, sloped, black] {$\color{red}\left(\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\right)$};
+    \draw[->, thick, blue!70] (0,0) -- (1,2) node[midway, above, sloped, black] {$\color{blue}\left(\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}\right)$};
     
     % Resultant vector
-    \draw[->, ultra thick,] (0,0) -- (9,8) node[midway, above, rotate=45, black] {$2 \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 3 \begin{pmatrix} 1 \\ 2 \end{pmatrix}$};
+    \draw[->, ultra thick,] (0,0) -- (9,8) node[midway, above, rotate=45, black] {$2 \left(\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\right) + 3 \left(\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}\right)$};
     
     % Dashed projection lines
     \draw[dashed, gray, thick] (9,8) -- (6,2);

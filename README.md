@@ -8,6 +8,18 @@ Geïnteresseerd om mee te werken aan deze verzameling materialen? Contacteer ons
 # TODOs
 - [ ] Decide on integrating teacher advice and references in UW articles
 - [ ] merge uitwiskeling.css and Vectorruimten.css (loep specifiek)
-- [ ] preambule integration is turned off currently? difference between preamble.tex and xmPreamble.tex ? Should i include preambule in every document individually?
+- [x] preambule integration: ximera.cls v2.7.8 laadt `xmPreamble.tex` en `xmPrintstyle.sty` automatisch; documenten mogen GEEN `\input{./preamble.tex}`/`\addPrintStyle{.}` meer doen. `preamble.tex`/`printstyle.sty` zijn verouderde kopieën (te verwijderen?). Zie `docs/XIMERA_PROBLEMEN_EN_TRICKS.md`.
 - [ ] only one definition of \pdfOnly{\renewcommand{\xmcursusnaam}{{\textsc{Uitwiskeling}}}} ? global.sty
-- [ ] how to add extra packages? 
+- [x] extra packages toevoegen: in `xmPreamble.tex` (en daarna pdf+html testen), zie `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` punt 8
+- [ ] **Overleaf-integratie met de Uitwiskeling-server onderzoeken** — zou veel
+      gebruiksvriendelijker zijn voor auteurs. Zie de template
+      [ximeraNewOverleafProject](https://github.com/wiobber/ximeraNewOverleafProject)
+      en de proef op https://xerxes.ximera.org/spruce8913-uitwiskelingximeraoverleaf
+      (Overleaf-project: https://www.overleaf.com/project/6977b2aff4cb57fee98a8fbf).
+- [ ] **`didactical-review`-agent uitwerken** (`.claude/agents/didactical-review.md`) —
+      nu een lege placeholder. We voorzien meerdere agents per didactisch perspectief
+      (edtech/leertheorieën); zelf in te vullen vanuit onze didactische visie.
+
+Voor compileren (lokaal, Codespaces of Claude): zie `COMPILING.md`. Voor het omzetten
+van Uitwiskeling-artikels naar Ximera: zie `docs/CONVERSIE.md`. Om een oude bron te
+compileren ter vergelijking met de conversie: zie `TOBECONVERTED/README.md`.
