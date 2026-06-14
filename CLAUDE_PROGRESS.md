@@ -122,7 +122,22 @@ docs/XIMERA_PROBLEMEN_EN_TRICKS.md, .claude/agents/ximera-expert.md,
 .claude/agents/uitwiskeling-converter.md, xmScripts/setup-claude-cloud.sh.
 
 ## Aandachtspunten voor volgende sessie
-- Verse cloud-sessie = kale container: eerst `bash xmScripts/setup-claude-cloud.sh`.
+
+### ⭐ UW4202 zandhopen — verbeteringen (Alexander, 2026-06-14). NIET uitvoeren tot Alexander de extra bestanden levert!
+Status: branch `claude/uw4202-zandhopen-conversie` (PR #4) bouwt GROEN; wacht enkel op
+Alexanders deploy-goedkeuring. De stale-cache-theorie was juist (CI compileerde een oude
+versie; afbeeldingen waren wél geldig en gecommit). Te doen zodra de extra bestanden er zijn:
+1. **Opsplitsen per subsection in aparte Ximera-activiteiten** en bundelen via de xourse
+   zoals UW42/01 Vectorruimten (meerdere `\activitychapter{UW4202/<onderwerp>.tex}` onder
+   één `\part{UW42/02: Zandhopen}`), i.p.v. één groot bestand `simpele_zandhopen.tex`.
+2. **Geen bronnen en geen leerkrachtennota's (`instructorNotes`) in de bestanden** — vervang
+   ze door één expliciete hyperlink (`\href{...}{...}`) naar het Uitwiskeling-artikel.
+   (Beslist: de eerdere "open beslissingen" over bronnen/instructorNotes vervallen hiermee.)
+3. **Alle afbeeldingen moeten erin.** Dubbelcheck welke wél/niet gevonden worden; hernoem
+   zelf waar nodig (geen spaties/hoofdletters/underscores). De ontbrekende lijntekeningen
+   (`.png`, gitignored) komen van Alexander — wacht daarop. Heel belangrijk dat niets ontbreekt.
+
+
 - De zandhopen-bron verwijst naar figuren als `UW4201/img/Lrusthoek` die mogelijk niet
   in het repo zitten (img-map van UW4202 heeft andere namen) — inventariseer vóór de
   conversie welke figuren ontbreken en meld dat aan Alexander.
