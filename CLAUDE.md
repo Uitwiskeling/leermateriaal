@@ -30,3 +30,6 @@ Zie `TOBECONVERTED/README.md`. Conversie verloopt nooit via Word — altijd LaTe
 - Structurele oplossingen, geen quick fixes per bestand.
 - Geen spaties in .tex-bestandsnamen; geen underscores in afbeeldingsnamen.
 - Werken op de afgesproken branch; gegenereerde output (pdf/html/aux/...) niet committen.
+- **Naamgeving per nummer:** een `\part` (groep activiteiten van één Uitwiskeling-nummer)
+  heet `UW<jaargang>/<nr>: <onderwerp>`, bv. `UW42/01: Vectorruimten` — passend bij de
+  mapnaam `UW4201/`. Houd dit consistent voor elk nieuw nummer.
