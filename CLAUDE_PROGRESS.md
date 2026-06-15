@@ -31,6 +31,12 @@
       (verouderde kopieën; xmPreamble/xmPrintstyle zijn de echte; zie tricks-doc #1)
 - [ ] Beslissing Alexander: leerkrachtenadvies → `instructorNotes` of weglaten + verwijzen naar artikel?
 - [ ] Beslissing Alexander: bronnen/referenties integreren of enkel artikellink?
+- [ ] (optioneel) Cloud-setup cachebaar maken: nu draait `setup-claude-code.sh` via de
+      SessionStart-hook (één bron van waarheid, maar ~5-10 min op elke verse, niet-gecachte
+      sessie). Alternatief: de install **inline** in het "Setup script"-veld van de omgeving
+      zetten — dan wordt het filesystem gesnapshot/gecached (instant na de eerste keer) en is
+      het clone-order-proof. Nadeel: dupliceert de scriptlogica (driftrisico) en de install
+      schuurt tegen de ~5-min cache-budgetlimiet. Alleen doen als de opstartvertraging hindert.
 - [ ] (later) uitwiskeling.css en Vectorruimten.css mergen (README-TODO)
 - [ ] (later) inleiding.tex linkt naar ximera.osu.edu en uitwiskeling.be-artikel; nazien
       of de cursus-URL https://leermateriaal.uitwiskeling.be/ klopt na eerste publish
