@@ -33,7 +33,7 @@ compileert met **gewone `pdflatex`** — geen Ximera, docker of luaxake nodig.
 3. Vergelijk: open die PDF naast de Ximera-PDF van je conversie
    (`UW42xx/<activiteit>.pdf`, gemaakt met `xmlatex bake ... --compile pdf`).
    Claude kan beide PDF's rechtstreeks inlezen met de Read-tool (vereist
-   `poppler-utils`; zit in `xmScripts/setup-claude-cloud.sh`).
+   `poppler-utils`; zit in `xmScripts/setup-claude-code.sh`).
 
 ## Wat wordt niet gecommit
 

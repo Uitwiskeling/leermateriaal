@@ -72,7 +72,7 @@ MASTER_FILE="$(basename "$MASTER")"
 log "Masterbestand: $MASTER_DIR/$MASTER_FILE"
 
 # ---- 3. Compileren (2 passes voor TikZ-hoofdingen) -------------------------
-command -v pdflatex >/dev/null 2>&1 || { err "pdflatex niet gevonden. Draai eerst: bash xmScripts/setup-claude-cloud.sh"; exit 1; }
+command -v pdflatex >/dev/null 2>&1 || { err "pdflatex niet gevonden. Draai eerst: bash xmScripts/setup-claude-code.sh"; exit 1; }
 
 run_pdflatex() {
     ( cd "$MASTER_DIR" && pdflatex -interaction=nonstopmode -file-line-error "$MASTER_FILE" ) >/dev/null 2>&1

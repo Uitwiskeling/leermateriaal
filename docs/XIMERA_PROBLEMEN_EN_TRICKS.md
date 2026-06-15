@@ -94,7 +94,7 @@ Uit commentaar in `xmPreamble.tex`:
   als html van een testbestand.
 
 ### 9. Omgevingsverschillen (alleen Claude cloud-omgeving)
-De native toolchain (zie `xmScripts/setup-claude-cloud.sh`) gebruikt Ubuntu's TeX Live
+De native toolchain (zie `xmScripts/setup-claude-code.sh`) gebruikt Ubuntu's TeX Live
 2023 i.p.v. TL2024 uit de officiële container. Al verholpen in het setup-script:
 - LuaXML te oud (geen `luaxml-mod-html.lua`) → recente versie van GitHub in TEXMFHOME.
 - babel 24.1 heeft `\localename` nog als foutmelding-stub ("Find an armchair...")
