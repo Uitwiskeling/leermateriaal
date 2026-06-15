@@ -14,17 +14,22 @@
 #   TeX Live via apt + ximeraLatex (cls/luaxake/xmlatex) via GitHub.
 #
 # Gebruik:
-#   - Eenmalig per sessie/container draaien:  bash xmScripts/setup-claude-cloud.sh
-#   - Of configureer dit als setup-script van de Claude-omgeving (aanbevolen),
-#     zodat het automatisch draait bij de start van elke sessie:
-#     https://code.claude.com/docs/en/claude-code-on-the-web
-#   Duurt ca. 5-10 minuten (TeX Live-installatie); het script is idempotent.
+#   - Eenmalig per sessie/container draaien vanuit de repo-root:
+#       bash xmScripts/setup-claude-cloud.sh
+#     (let op het pad 'xmScripts/' — zonder dat pad krijg je "file not found").
+#   - Of, aanbevolen, als setup-script van de Claude-omgeving instellen, zodat het
+#     automatisch draait bij de start van elke sessie. Zet dan exact dit in het
+#     veld "Setup script" (het draait als root vanuit de repo-root):
+#       bash xmScripts/setup-claude-cloud.sh
+#     Zie https://code.claude.com/docs/en/claude-code-on-the-web
+#   Duurt ca. 5-10 minuten (TeX Live-installatie); het script is idempotent en
+#     bestand tegen kapotte third-party apt-bronnen en korte netwerkhaperingen.
 #
 # Daarna compileren zoals in de container, bv.:
 #   xmlatex bake -s --nodependencies --force --compile pdf UW4201/vectorruimten_definieren.tex
 #   xmlatex bake -s --nodependencies --force --compile html UW4201/vectorruimten_definieren.tex
 #
-set -e
+set -euo pipefail
 
 XIMERA_VERSION=v2.7.8   # houd dit gelijk met XAKE_VERSION in xmScripts/config.txt
 TEXMF_XIMERA=/root/texmf/tex/latex/ximeraLatex
@@ -35,17 +40,59 @@ if [[ $(id -u) -ne 0 ]]; then
     echo "Dit script verwacht root (zoals in de Claude cloud-omgeving)."; exit 1
 fi
 
+# Probeer een commando enkele keren met oplopende wachttijd (tegen netwerkhaperingen).
+retry() {
+    local n=0 max=4 delay=2
+    until "$@"; do
+        n=$((n+1))
+        if [[ $n -ge $max ]]; then
+            log "Commando bleef falen na $max pogingen: $*"
+            return 1
+        fi
+        log "Poging $n/$max mislukt; opnieuw over ${delay}s: $*"
+        sleep "$delay"; delay=$((delay*2))
+    done
+}
+
 # 1. TeX Live + hulpprogramma's (zoals in docker/Dockerfile.full van ximeraLatex)
 if ! command -v pdflatex >/dev/null || ! command -v make4ht >/dev/null; then
     log "TeX Live installeren via apt (duurt enkele minuten)..."
-    apt-get update -q
-    DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
+
+    # De Claude-cloudimage bevat soms third-party PPA's (bv. deadsnakes, ondrej/php)
+    # die 403 Forbidden geven. Onder 'set -e' breekt 'apt-get update' daar volledig op
+    # af, terwijl de Ubuntu-archieven zelf prima bereikbaar zijn. We schakelen daarom
+    # alle niet-Ubuntu apt-bronnen tijdelijk uit en herstellen ze achteraf.
+    disabled_sources=()
+    shopt -s nullglob
+    for f in /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+        case "$f" in
+            */ubuntu.sources) ;;  # officiële Ubuntu-archieven houden we
+            *) mv "$f" "$f.disabled" && disabled_sources+=("$f") ;;
+        esac
+    done
+    shopt -u nullglob
+    restore_sources() {
+        local f
+        for f in "${disabled_sources[@]:-}"; do
+            [[ -e "$f.disabled" ]] && mv "$f.disabled" "$f"
+        done
+    }
+    trap restore_sources EXIT
+    if ((${#disabled_sources[@]})); then
+        log "Niet-Ubuntu apt-bronnen tijdelijk uitgeschakeld: ${disabled_sources[*]}"
+    fi
+
+    retry apt-get update -q
+    DEBIAN_FRONTEND=noninteractive retry apt-get install -y -q \
         texlive-latex-extra texlive-science texlive-lang-european \
         texlive-luatex texlive-fonts-recommended texlive-fonts-extra \
         texlive-extra-utils tex4ht texlive-plain-generic \
         mupdf-tools poppler-utils pdf2svg imagemagick jq git-restore-mtime dos2unix
         # poppler-utils (pdftoppm) laat Claude PDF's als beeld inlezen — handig om
         # oude bron en Ximera-conversie visueel te vergelijken (zie TOBECONVERTED/).
+
+    restore_sources
+    trap - EXIT
 else
     log "TeX Live al aanwezig, sla apt-installatie over."
 fi
@@ -54,7 +101,7 @@ fi
 if [[ ! -d "$TEXMF_XIMERA" ]]; then
     log "ximeraLatex $XIMERA_VERSION clonen..."
     mkdir -p /root/texmf/tex/latex
-    git clone --depth 1 --branch "$XIMERA_VERSION" https://github.com/XimeraProject/ximeraLatex.git "$TEXMF_XIMERA"
+    retry git clone --depth 1 --branch "$XIMERA_VERSION" https://github.com/XimeraProject/ximeraLatex.git "$TEXMF_XIMERA"
 else
     log "ximeraLatex al aanwezig."
 fi
@@ -62,7 +109,8 @@ fi
 # 3. Nieuwere LuaXML: de Ubuntu-TeXLive-versie mist luaxml-mod-html.lua (nodig voor luaxake)
 if ! kpsewhich luaxml-mod-html.lua >/dev/null 2>&1; then
     log "LuaXML (recent) installeren vanaf GitHub..."
-    git clone --depth 1 https://github.com/michal-h21/LuaXML.git /tmp/LuaXML
+    rm -rf /tmp/LuaXML
+    retry git clone --depth 1 https://github.com/michal-h21/LuaXML.git /tmp/LuaXML
     mkdir -p /root/texmf/scripts/luaxml
     cp /tmp/LuaXML/luaxml-*.lua /root/texmf/scripts/luaxml/
 fi
@@ -72,7 +120,8 @@ fi
 #    heeft een nieuwere babel; we halen die van GitHub en zetten ze vooraan in TEXMFHOME.
 if [[ ! -f /root/texmf/tex/generic/babel-latest/babel.sty ]]; then
     log "babel (recent) bouwen vanaf GitHub..."
-    git clone --depth 1 https://github.com/latex3/babel.git /tmp/babel
+    rm -rf /tmp/babel
+    retry git clone --depth 1 https://github.com/latex3/babel.git /tmp/babel
     ( cd /tmp/babel && pdflatex -interaction=batchmode babel.ins >/dev/null 2>&1 || true )
     mkdir -p /root/texmf/tex/generic/babel-latest
     cp /tmp/babel/babel.sty /tmp/babel/babel.def /tmp/babel/switch.def \
