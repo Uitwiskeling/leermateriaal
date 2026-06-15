@@ -15,12 +15,12 @@
 #
 # Gebruik:
 #   - Eenmalig per sessie/container draaien vanuit de repo-root:
-#       bash xmScripts/setup-claude-cloud.sh
+#       bash xmScripts/setup-claude-code.sh
 #     (let op het pad 'xmScripts/' — zonder dat pad krijg je "file not found").
 #   - Of, aanbevolen, als setup-script van de Claude-omgeving instellen, zodat het
 #     automatisch draait bij de start van elke sessie. Zet dan exact dit in het
 #     veld "Setup script" (het draait als root vanuit de repo-root):
-#       bash xmScripts/setup-claude-cloud.sh
+#       bash xmScripts/setup-claude-code.sh
 #     Zie https://code.claude.com/docs/en/claude-code-on-the-web
 #   Duurt ca. 5-10 minuten (TeX Live-installatie); het script is idempotent en
 #     bestand tegen kapotte third-party apt-bronnen en korte netwerkhaperingen.
@@ -34,7 +34,7 @@ set -euo pipefail
 XIMERA_VERSION=v2.7.8   # houd dit gelijk met XAKE_VERSION in xmScripts/config.txt
 TEXMF_XIMERA=/root/texmf/tex/latex/ximeraLatex
 
-log() { echo "=== [setup-claude-cloud] $*"; }
+log() { echo "=== [setup-claude-code] $*"; }
 
 if [[ $(id -u) -ne 0 ]]; then
     echo "Dit script verwacht root (zoals in de Claude cloud-omgeving)."; exit 1

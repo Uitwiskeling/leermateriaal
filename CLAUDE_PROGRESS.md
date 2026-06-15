@@ -15,7 +15,7 @@
   agents in `.claude/agents/` (`ximera-expert`, `uitwiskeling-converter`).
 
 ## TODO
-- [x] Compilatie (pdf + html) werkend krijgen in de Claude cloud-omgeving — `xmScripts/setup-claude-cloud.sh`
+- [x] Compilatie (pdf + html) werkend krijgen in de Claude cloud-omgeving — `xmScripts/setup-claude-code.sh`
 - [x] Compilatie in GitHub Codespaces gedocumenteerd (devcontainer = officiële container, werkt out of the box)
 - [x] Compilatie effectief getest: pdf + html van alle bestanden, logs en pdf's gelezen
 - [x] Structurele bugs gefixt waardoor zelfs de GitHub Action faalde (zie log hieronder)
@@ -64,9 +64,9 @@
 - **GitHub-push werkt nu** (branch `claude/focused-dirac-x12mr3`); de GitHub App kreeg
   schrijfrechten. Commit-auteur = `Claude <noreply@anthropic.com>`.
 - **`.claude/settings.json` aangepast:** SessionStart-hook verwijderd (op verzoek),
-  en de permissies `Bash(bash xmScripts/setup-claude-cloud.sh)` + `git branch` weg.
+  en de permissies `Bash(bash xmScripts/setup-claude-code.sh)` + `git branch` weg.
   De setup-toolchain draai je dus zelf bij een verse cloud-sessie:
-  `bash xmScripts/setup-claude-cloud.sh`.
+  `bash xmScripts/setup-claude-code.sh`.
 - **`ximera-expert` agent uitgebreid** met documentatie-links (osu.edu/kuleuven.be zijn
   in de cloud-omgeving geblokkeerd; github werkt) + "offline essentials" (interactieve
   Ximera-elementen, self-hosting/Overleaf-pointers).
@@ -81,7 +81,7 @@
   compileert de oude bron met gewone `pdflatex` (2 passes). **Getest met UW4203.zip →
   Uitwiskeling.pdf, 23 pagina's, 0 fouten.** Zo vergelijk je origineel vs. Ximera-versie.
   `_work/` en `*.zip` staan in `.gitignore`.
-- **`poppler-utils` toegevoegd** aan `setup-claude-cloud.sh` (pdftoppm; laat Claude PDF's
+- **`poppler-utils` toegevoegd** aan `setup-claude-code.sh` (pdftoppm; laat Claude PDF's
   als beeld inlezen voor de visuele vergelijking).
 - **`didactical-review` agent als placeholder** aangemaakt (`.claude/agents/`); leeg op een
   notitie na dat we meerdere agents per didactisch perspectief voorzien. README-TODO erbij.
@@ -99,7 +99,7 @@
   `/root/texmf/tex/latex/ximeraLatex`, symlinks in /usr/local/bin, `touch /.dockerenv`.
   Twee Ubuntu-TeXLive-achterstanden gefixt: LuaXML (luaxml-mod-html.lua ontbrak) en
   babel (\localename-stub) — beide met recente versies van GitHub in TEXMFHOME.
-- Alles geautomatiseerd in **`xmScripts/setup-claude-cloud.sh`** (idempotent, ±5-10 min).
+- Alles geautomatiseerd in **`xmScripts/setup-claude-code.sh`** (idempotent, ±5-10 min).
 
 **Structurele projectbugs gefixt (dezelfde fouten lieten ook GH Action run #3 falen):**
 1. Dubbel preamble-laden: `\input{./preamble.tex}` + `\addPrintStyle{.}` verwijderd uit
@@ -119,7 +119,7 @@ html zonder fouten; daarna `xmlatex bake` → "No files need compiling".
 
 **Aangemaakt:** CLAUDE.md, COMPILING.md, docs/CONVERSIE.md,
 docs/XIMERA_PROBLEMEN_EN_TRICKS.md, .claude/agents/ximera-expert.md,
-.claude/agents/uitwiskeling-converter.md, xmScripts/setup-claude-cloud.sh.
+.claude/agents/uitwiskeling-converter.md, xmScripts/setup-claude-code.sh.
 
 ## Aandachtspunten voor volgende sessie
 

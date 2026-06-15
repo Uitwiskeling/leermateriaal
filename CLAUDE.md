@@ -7,7 +7,7 @@ Dit repo zet Uitwiskeling-lesmateriaal (LaTeX) om naar Ximera-pagina's (PDF + HT
    (sessies kunnen door usage-limieten afgebroken worden; de volgende sessie moet
    meteen verder kunnen).
 2. `COMPILING.md` — compileren in deze omgeving. In een verse Claude cloud-sessie eerst
-   `bash xmScripts/setup-claude-cloud.sh` draaien (±5-10 min; Docker werkt hier niet).
+   `bash xmScripts/setup-claude-code.sh` draaien (±5-10 min; Docker werkt hier niet).
 3. `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` — bekende problemen; vul aan bij elk nieuw
    opgelost probleem.
 

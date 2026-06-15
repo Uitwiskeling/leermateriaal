@@ -54,7 +54,7 @@ xmlatex bake -s --nodependencies --force --compile pdf  UW42xx/<file>.tex
 xmlatex bake -s --nodependencies --force --compile html UW42xx/<file>.tex
 xmlatex bake   # whole project must stay green
 ```
-If `xmlatex` is missing (fresh Claude cloud session): `bash xmScripts/setup-claude-cloud.sh`.
+If `xmlatex` is missing (fresh Claude cloud session): `bash xmScripts/setup-claude-code.sh`.
 Read the generated PDF with the Read tool and check: exercise numbering, hints/solutions
 present, images shown, no overfull pages. Check the `.html` exists and contains the
 exercises. On build errors you cannot solve with the tricks document, hand the problem
