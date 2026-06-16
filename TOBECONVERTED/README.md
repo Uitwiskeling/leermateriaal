@@ -9,80 +9,82 @@ conversies.
 
 ```
 TOBECONVERTED/
-  compilefiles/              # gedeelde preamble-bestanden — dit is de iteratiedoelwit
-    Uitwiskeling.tex         # mastertemplate (preamble + loep-placeholder __LOEP__)
+  Uitwiskeling.tex           # mastertemplate — compileer dit vanuit TOBECONVERTED/
+  compilefiles/              # gedeelde stijl- en designbestanden
     uitwiskeling-style.sty   # tijdschriftstijl
     img/                     # omslag- en inline-design-afbeeldingen
     imgDesign/               # rubriek-iconen, checkmarks, ...
   originals/                 # minimale bron per nummer (gecommit)
-    UW3501-minim/            # loep.tex + exact de gerefereerde afbeeldingen
+    UW3501-minim/            # UW3501.tex + img/ met alle gerefereerde afbeeldingen
     UW3502-minim/
     ...  (28 mappen, UW3501 t/m UW4104)
   fullfoldersnotcommitted/   # volledige originelen (gitignored)
-  compile-old-source.sh      # compilatiescript
-  _work/                     # tijdelijke werkdirectory's (gitignored, door script aangemaakt)
+  _work/                     # tijdelijke werkdirectory's (gitignored)
 ```
 
 Elke `originals/UWXXYY-minim/` bevat:
-- **één** loep-`.tex` (naam varieert: `loep.tex`, `Lgrafen.tex`, `LOEPpython.tex`, …)
-- de subdirectory's `figurenAuteur/` en/of `tekeningenKurt/` met exact de
-  afbeeldingen waarnaar de loep verwijst
+- **één** `UWXXYY.tex` (de loep-activiteit)
+- `img/` met exact de afbeeldingen waarnaar de loep verwijst
+
+Sommige `img/` mappen hebben subdirectory's (bv. `img/loepMichele/`, `img/LAlgebra/`).
 
 ## Compileren
 
+Compileer vanuit de `TOBECONVERTED/` map:
+
 ```bash
-bash TOBECONVERTED/compile-old-source.sh UW3501        # één nummer
-bash TOBECONVERTED/compile-old-source.sh all           # alle 28 nummers
+cd TOBECONVERTED
+pdflatex Uitwiskeling.tex                          # compileert \uwid (standaard UW3501)
+pdflatex -e "\def\uwid{UW3502}" Uitwiskeling.tex   # ander nummer
 ```
 
-Het script:
-1. zoekt automatisch het loep-`.tex`-bestand in `originals/UWXXYY-minim/`
-2. maakt `_work/UWXXYY/` aan en kopieert preamble + bronbestanden daarin
-3. genereert een `Uitwiskeling.tex` met de juiste `\input{}`
-4. draait `pdflatex` 2× (TikZ-headers hebben twee passes nodig)
-5. meldt het pad van de PDF
+Twee passes nodig voor correcte TikZ-headers:
+
+```bash
+pdflatex Uitwiskeling.tex && pdflatex Uitwiskeling.tex
+```
 
 ## Preamble itereren
 
-Het doel: **één `compilefiles/Uitwiskeling.tex`** die alle 28 nummers foutloos
-compileert. Werkwijze:
+Het doel: **één `Uitwiskeling.tex`** die alle 28 nummers foutloos compileert.  
+Werkwijze:
 
-1. Compileer een nummer: `bash TOBECONVERTED/compile-old-source.sh UW3501`
-2. Lees de log bij fouten: `_work/UW3501/Uitwiskeling.log`
-3. Voeg ontbrekende packages of commando's toe aan `compilefiles/Uitwiskeling.tex`
-4. Herhaal tot alle 28 nummers slagen — **pas nooit de loep-`.tex`-bestanden aan**
+1. Compileer een nummer (zie boven)
+2. Lees de log bij fouten: `Uitwiskeling.log`
+3. Voeg ontbrekende packages of commando's toe aan `Uitwiskeling.tex`
+4. Herhaal tot alle 28 nummers slagen — **pas nooit de `originals/`-bestanden aan**
 
 ## Compilatiestatus
 
-| Nummer  | Loep-bestand           | Status |
-|---------|------------------------|--------|
-| UW3501  | loep.tex               | ⬜ TBD |
-| UW3502  | loep3502.tex           | ⬜ TBD |
-| UW3503  | loep.tex               | ⬜ TBD |
-| UW3504  | loep.tex               | ⬜ TBD |
-| UW3601  | Leerstegraadsfuncties.tex | ⬜ TBD |
-| UW3602  | Lgrafen.tex            | ⬜ TBD |
-| UW3603  | Ldimensies.tex         | ⬜ TBD |
-| UW3604  | 3604L.tex              | ⬜ TBD |
-| UW3701  | 3701L.tex              | ⬜ TBD |
-| UW3702  | loep.tex               | ⬜ TBD |
-| UW3703  | loep.tex               | ⬜ TBD |
-| UW3704  | Llinprog.tex           | ⬜ TBD |
-| UW3801  | onderdeloep.tex        | ⬜ TBD |
-| UW3802  | L3802krommen.tex       | ⬜ TBD |
-| UW3803  | L3803.tex              | ⬜ TBD |
-| UW3804  | Lgroepen.tex           | ⬜ TBD |
-| UW3901  | onderdeloep.tex        | ⬜ TBD |
-| UW3902  | LStatistiek.tex        | ⬜ TBD |
-| UW3903  | L3903.tex              | ⬜ TBD |
-| UW3904  | onderdeloep.tex        | ⬜ TBD |
-| UW4001  | onderdeloep.tex        | ⬜ TBD |
-| UW4002  | loep.tex               | ⬜ TBD |
-| UW4003  | LAlgebra.tex           | ⬜ TBD |
-| UW4004  | onderdeloep.tex        | ⬜ TBD |
-| UW4101  | onderdeloep.tex        | ⬜ TBD |
-| UW4102  | LOEPpython.tex         | ⬜ TBD |
-| UW4103  | LOEPSpeltheorie.tex    | ⬜ TBD |
-| UW4104  | LOEPvariabelenrol.tex  | ⬜ TBD |
+| Nummer  | Tex-bestand   | Status |
+|---------|---------------|--------|
+| UW3501  | UW3501.tex    | ⬜ TBD |
+| UW3502  | UW3502.tex    | ⬜ TBD |
+| UW3503  | UW3503.tex    | ⬜ TBD |
+| UW3504  | UW3504.tex    | ⬜ TBD |
+| UW3601  | UW3601.tex    | ⬜ TBD |
+| UW3602  | UW3602.tex    | ⬜ TBD |
+| UW3603  | UW3603.tex    | ⬜ TBD |
+| UW3604  | UW3604.tex    | ⬜ TBD |
+| UW3701  | UW3701.tex    | ⬜ TBD |
+| UW3702  | UW3702.tex    | ⬜ TBD |
+| UW3703  | UW3703.tex    | ⬜ TBD |
+| UW3704  | UW3704.tex    | ⬜ TBD |
+| UW3801  | UW3801.tex    | ⬜ TBD |
+| UW3802  | UW3802.tex    | ⬜ TBD |
+| UW3803  | UW3803.tex    | ⬜ TBD |
+| UW3804  | UW3804.tex    | ⬜ TBD |
+| UW3901  | UW3901.tex    | ⬜ TBD |
+| UW3902  | UW3902.tex    | ⬜ TBD |
+| UW3903  | UW3903.tex    | ⬜ TBD |
+| UW3904  | UW3904.tex    | ⬜ TBD |
+| UW4001  | UW4001.tex    | ⬜ TBD |
+| UW4002  | UW4002.tex    | ⬜ TBD |
+| UW4003  | UW4003.tex    | ⬜ TBD |
+| UW4004  | UW4004.tex    | ⬜ TBD |
+| UW4101  | UW4101.tex    | ⬜ TBD |
+| UW4102  | UW4102.tex    | ⬜ TBD |
+| UW4103  | UW4103.tex    | ⬜ TBD |
+| UW4104  | UW4104.tex    | ⬜ TBD |
 
 Werk de status bij zodra een nummer compileert: ✅ OK / ❌ Fout (met korte notitie).

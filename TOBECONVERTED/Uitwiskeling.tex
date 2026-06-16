@@ -1,0 +1,50 @@
+%% Mastertemplate voor referentie-compilatie van Uitwiskeling-loep-activiteiten.
+%%
+%% Compileren vanuit TOBECONVERTED/:
+%%   pdflatex Uitwiskeling.tex
+%%
+%% Wissel van nummer door \uwid hieronder aan te passen, of override via -e:
+%%   pdflatex -e "\def\uwid{UW3502}" Uitwiskeling.tex
+%%
+%% Preamble itereren: voeg packages toe totdat alle 28 nummers compileren.
+%% Pas NOOIT de originals/UWXXYY-minim/UWXXYY.tex bestanden zelf aan.
+
+\providecommand{\uwid}{UW3501}
+
+\documentclass[twoside,10pt,openany]{book}
+
+\usepackage{etoolbox}
+\newtoggle{printversion}
+\toggletrue{printversion}
+
+%% Afbeeldingspaden: eerst de loep-map, daarna de gedeelde designbestanden
+\usepackage{graphicx}
+\graphicspath{%
+  {originals/\uwid-minim/img/}%
+  {compilefiles/img/}%
+  {compilefiles/imgDesign/}%
+}
+
+%% === PACKAGES & COMMANDO'S — voeg hier toe bij compile-fouten ===============
+\usepackage{compilefiles/uitwiskeling-style}
+\usepackage{paracol}
+%% ============================================================================
+
+\newcommand*{\uitgavenr}{XX/YY}
+\newcommand*{\uitgaveseizoen}{Uitwiskeling}
+
+\hypersetup{
+	pdfauthor={Uitwiskeling vzw},%
+	pdftitle={Uitwiskeling \uitgavenr}%
+}
+
+\begin{document}
+
+\pagestyle{uitwiskeling}
+
+\rubriek{loep}{Onder de loep}
+\input{originals/\uwid-minim/\uwid}\clearpage
+
+\einderubrieken
+
+\end{document}

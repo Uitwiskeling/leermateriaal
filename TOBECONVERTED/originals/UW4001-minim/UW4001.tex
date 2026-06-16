@@ -1,0 +1,808 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                           ONDER DE LOEP ARTIKEL                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%OPGELET PACKAGE NODIG!
+\artikelfoto{Wiskunde en verkiezingen}{}{Filip Moons}{img/verkiezingen.jpg}
+
+
+\startcontents[inhoudloep]	% om inhoud voor het loep artikel te beginnen
+
+\begin{multicols}{2}
+	
+	\inhoudstafelloep			% om inhoudstafel voor het loep artikel te tonen
+	
+	%% Gebruik \section{titel} en \subsection{titel} om genummerde tussentitels te maken
+
+\section{Inleiding}
+2024 wordt hét verkiezingsjaar in België: op 9 juni trekken we met z'n allen naar de stembus voor de regionale, federale en Europese verkiezingen; op 13 oktober verkiezen we nieuwe gemeente- en provincieraden (de Antwerpenaren kiezen ook nog districtsraden). Voor velen onder jullie zullen er ook leerlingen mogen gaan stemmen: niet alleen de zesdejaars die meerderjarig worden, er zal ook stemrecht zijn vanaf 16 jaar voor de Europese verkiezingen.
+
+Redenen genoeg dus om uit te pakken met een loep die de wiskunde achter deze verkiezingen beschouwt. Hoe worden onze stemmen nu eigenlijk omgezet in zetels? Wist je dat hiervoor verschillende systemen bestaan? En wist je dat Victor D'Hondt, een Gentse jurist en wiskundige, wereldberoemd werd met zijn algoritme om stemmen om te zetten in parlementszetels? Overal ter wereld doen democratieën een beroep op zijn systeem. Hoewel er meerdere systemen zijn om stemmen om te zetten in zetels, zullen we zien dat elk systeem een aantal tegenstrijdigheden kent. We bekijken van naderbij de stelling van Balinski-Young die zwart op wit bewijst dat geen enkel evenredig kiesstelsel vrij van paradoxen is. Eens de zetels verdeeld zijn, stelt zich uiteraard nog de vraag wie die zetels gaat bemannen in het parlement: daarover gaat het voorlaatste deel van deze loep. Als afsluiter bekijken we de gemeenteraadsverkiezingen en de methode Imperiali, een merkwaardig maar vooral onevenredig zetelverdelingssysteem.
+
+Het mooie achter al deze systemen is dat ze relatief eenvoudig aan te brengen zijn. Zelfs in de eerste graad zou je een wiskundeles kunnen besteden aan de verkiezingen, een lesje op het kruispunt tussen burgerschap en wiskunde. In zo'n lesje zijn makkelijk doelstellingen aan te vinken uit de eindtermen burgerschap of uit het gemeenschappelijk funderend leerplan (GFL, Katholiek Onderwijs). Toch kun je veel verder gaan en beginnen redeneren en bewijzen met de algoritmes en de paradoxen die ontstaan. Daarom is deze loep een beetje anders opgevat dan de doorsnee loep: alle theorie wordt gebracht als doorlopende tekst; in de paarse kaders staan vaak vragen om leerlingen aan het denken te zetten. Zo kun je zelf de stukjes selecteren die je haalbaar acht voor jouw leerlingen om een les over de verkiezingen op te bouwen.
+
+
+\section{Zetels evenredig verdelen}
+Eén van de beginselen van de democratie is dat wij als burgers medezeggenschap hebben over hoe Europa, ons land, onze regio, onze provincie en onze gemeente bestuurd worden. Daarbij houden we niet zoals de oude Grieken volksvergaderingen waarin iedereen kan meediscussiëren, maar kunnen wij mensen verkiezen die in onze plaats besturen, zoals parlements- of gemeenteraadsleden.
+Om hen te verkiezen dienen de politieke partijen kandidatenlijsten in elke kieskring in. Vervolgens kiezen we een partij en gaan we akkoord met de volgorde van die kandidatenlijst (de lijststem) of kiezen we één of meerdere kandidaten op die lijst (voorkeursstemmen). Wat we ook doen: we geven één stem aan die partij. Al die stemmen per partij worden opgeteld, wat een kiesuitslag oplevert. Die moet vervolgens omgezet worden in zetels, liefst op een \emph{evenredige manier}: het aandeel van de verworven zetels moet zo goed mogelijk het stemmenaandeel van een partij weerspiegelen. Dat heet evenredige vertegenwoordiging. Zo worden over alle Belgische provincies (en Brussel) 150 kamerzetels verkozen. Het aantal zetels dat een partij haalt, bepaalt haar politieke macht. Wetten kunnen vervolgens worden aangenomen wanneer een meerderheid (minstens 75+1 kamerleden) hiermee akkoord gaat. Partijen die samen opgeteld meer dan 75 kamerleden hebben, kunnen een regeringsmeerderheid vormen: de kamerleden geven dan het vertrouwen aan een groep ministers om de uitvoerende macht op zich te nemen. De overige partijen -- die samen geen meerderheid hebben -- vormen de oppositie. 
+
+Dit stuk van de loep focust uitsluitend op de \emph{zetelverdeling}: hoe zetten we een kiesuitslag op een eerlijke manier om in een zetelverdeling? We hebben het daarbij nog niet over wie op die zetels gaat zitten. 
+
+De methoden besproken in dit deel kunnen politiek gezien op twee manieren gebruikt worden. Eerst om het parlement voorafgaand aan de verkiezingen in te delen in kieskringen op basis van hun bevolkingsaantal. Voor elke kieskring wordt op basis van hun bevolkingsaantal bepaald hoeveel parlementszetels er te verkiezen zijn (zo verkiest provincie Antwerpen als grootste provincie 33 parlementsleden van de 124 voor het Vlaams Parlement). Verdeling van zetels over kieskringen is de oorsprong van de meeste methoden. Toen de Amerikaanse grondwet stelde dat het aantal afgevaardigden per staat in het Huis van Afgevaardigden verdeeld moest worden volgens bevolkingsaantallen, zonder erbij te vertellen hoe dat dan moest gebeuren, gaf dat aan het einde van de 18de eeuw aanleiding tot het vinden van tal van methoden met elk hun eigen voor- en nadelen. 
+
+Ten tweede kunnen deze methoden gebruikt worden om de verkiezingsresultaten binnen een kieskring om te zetten in een zetelverdeling (zo haalde N-VA 12 van de 33 `Antwerpse' zetels in het Vlaams Parlement met een kiesuitslag van 31,8\% in provincie Antwerpen in 2019).  
+
+Hoewel wij in deze loep voortdurend in de context van zetelverdelingen zullen redeneren, zijn de onderstaande methoden ook geschikt voor alle andere mogelijke probleemstellingen waarbij een aantal objecten in gehelen dient te worden verdeeld proportioneel aan een numeriek criterium. Denk aan het bepalen van het aantal examentoezichten per leerkracht: dat zou je met de onderstaande methoden bijvoorbeeld kunnen doen door het totaal aantal toezichten proportioneel aan ieders aanstellingspercentage te verdelen. 
+
+Daarnaast zullen we in de rest van de loep steeds werken met kiesuitslagen uitgedrukt in aantal stemmen. Vermits kiesuitslagen uitgedrukt in  aantal stemmen perfect evenredig zijn met uitslagen uitgedrukt in (onafgeronde!) percentages, kun je elke methode ook voeden met de kiesuitslag uitgedrukt in percentages en verkrijg je steeds hetzelfde resultaat.
+
+De eerste lesactiviteit laat al meteen zien dat zetels verdelen op basis van stemmenaantal na verkiezingen geen eenvoudige aangelegenheid is.
+\end{multicols}
+\begin{lesactiviteit}{Verkiezingen in Fantasia}
+In Fantasia zijn verkiezingen gehouden. Er zijn 8000 stemmen uitgebracht en er zijn 5 zetels in het parlement te verdelen. De kiesuitslag is als volgt:
+
+\begin{tabel}
+		\begin{tabular}{C{5cm} C{3cm} } % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Partij} & \tableheader{Uitslag} \\ 
+			\hlinethick
+			\includegraphics[height=30px]{img/giant.png}  & 3000 stemmen \\
+			\includegraphics[height=30px]{img/big.png} & 2220 stemmen \\
+			\includegraphics[height=30px]{img/middle.png}  & 1730 stemmen \\
+   		\includegraphics[height=30px]{img/small.png}  & 1050 stemmen \\
+			\hlinethick
+		\end{tabular}
+		\label{tab:kiesuitslag}
+\end{tabel}
+
+\textbf{Hoe zou jij deze 5 zetels verdelen? Maak zo'n verdeling en verantwoord je keuze.}
+
+\textit{Het doel van deze vraag is om de aandacht van leerlingen te vestigen op het wiskundig probleem dat parlementsverkiezingen met zich meebrengen: je moet een kiesuitslag vertalen naar een geheel aantal zetels. Het gaat dus voornamelijk om wat er `na de komma' komt. Geef leerlingen enkele minuten bedenktijd en neem zeker wat tijd om verschillende oplossingsmethodes van leerlingen te overlopen. Soms komen leerlingen zelf onbewust op een bepaalde zetelverdelingsmethode die we straks behandelen.
+}\\
+
+\textit{Antwoorden die je kunt verwachten zijn onder meer leerlingen die$\ldots$:}
+\begin{vraagenantwoord}
+    
+ \antwoord{Alle 5 zetels aan Giant toekennen, daarbij een `winner-takes-it-all' benadering hanteren die kenmerkend is voor meerderheidsstelsels.\\}
+ 
+ \antwoord{2 zetels aan Giant toekennen en 1 zetel aan elk van de andere partijen. Deze leerlingen hebben waarschijnlijk de kiesuitslag omgezet in percentages (Giant: 37,5\%; Big: 27,8\%; The Middle: 21,6\%; Small: 13,1\%) en vervolgens in verhouding 5 zetels verdeeld en wiskundig afgerond (Giant: 1,88 zetels; Big: 1,39 zetels; The Middle: 1,08 zetels; Small: 0,66 zetels). Sommige andere leerlingen hebben mogelijk niet gerekend, maar verkregen deze zetelverdeling door een zetel uit te delen aan elke partij en de overblijvende zetel toe te kennen aan Giant als winnaar van de verkiezingen.\\}
+
+\antwoord{2 zetels aan Giant toekennen, 2 zetels aan Big, 1 zetel aan The Middle. Small haalt geen zetels. Deze leerlingen hebben mogelijk hetzelfde gedaan als hierboven, maar vonden mogelijks het verschil tussen Big en Small te groot om op het gelijke aantal van 1 zetel uit te komen (Big haalt meer dan dubbel zoveel stemmen dan Small).}
+\end{vraagenantwoord}
+
+\textit{Schrijf de zetelverdelingen van leerlingen op het bord en turf het aantal keer dat ze voorkwamen in de klas. Belangrijk is om niet te oordelen over de antwoorden van leerlingen: we zullen later in deze loep zien dat geen enkel kiessysteem volledig `rechtvaardig' is. We kunnen zelfs bewijzen dat elk systeem beperkingen heeft. Hoe democratisch een systeem is, hangt bovendien van vele andere factoren af dan louter van het kiessysteem (rechtsstaat, scheiding der machten, persvrijheid, recht op vereniging, politieke participatie$\ldots$).}
+\end{lesactiviteit}
+\begin{multicols}{2}
+Wat opvalt uit de voorgaande lesactiviteit, is dat kiesuitslagen zich doorgaans niet zonder meer laten herleiden tot zetelverdelingen.\\
+We beschouwen nu de meest bekende zetelverdelingssystemen. 
+\begin{figure*} \begin{tabel}
+		\resizebox{\textwidth}{!}{\begin{tabular}{C{3cm}rrrrrrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+   			 \cellcolor{\rubriekkleur}& \multicolumn{7}{c}{\tableheader{Prijs uitgedrukt in stemmen per zetel}} \\  			
+			\multirow{-2}{*}{\cellcolor{\rubriekkleur}\sffamily\bfseries\color{white} Partij} & \tableheader{/1600} & \tableheader{/800} & \tableheader{/1200} & \tableheader{/1000} & \tableheader{/1100} & \tableheader{/{\color{orange}1051}} & \tableheader{/{\color{cyan}1110}} \\ 
+			\hlinethick
+			\cellcolor{white}\begin{tabular}[x]{@{}c@{}}\cellcolor{white}\includegraphics[height=13px]{img/giant.png}\\\cellcolor{white}3000 stemmen\end{tabular}   
+                            & \cellcolor{\rubriekkleur!10} 1,88 $\to$ \textbf{1} 
+                            & \cellcolor{white} 3,75 $\to$ \textbf{3} 
+                            & \cellcolor{\rubriekkleur!10}2,5 $\to$ \textbf{2} 
+                            & \cellcolor{white} 3 $\to$ \textbf{3} 
+                            & \cellcolor{\rubriekkleur!10} 2,72 $\to$ \textbf{2} 
+                            & \cellcolor{white}  2,85 $\to$ \textbf{2} 
+                            & \cellcolor{\rubriekkleur!10} 2,66 $\to$ \textbf{2} \\
+
+                \hline
+			\cellcolor{white}\begin{tabular}[x]{@{}c@{}}\cellcolor{white}\includegraphics[height=13px]{img/big.png}\\\cellcolor{white} 2220 stemmen\end{tabular} 
+                            & \cellcolor{\rubriekkleur!10} 1,39 $\to$ \textbf{1}  
+                            & \cellcolor{white}  2,78 $\to$ \textbf{2} 
+                            & \cellcolor{\rubriekkleur!10}1,85 $\to$ \textbf{1} 
+                            & \cellcolor{white} 2,22 $\to$ \textbf{2} 
+                            & \cellcolor{\rubriekkleur!10} 2,02 $\to$ \textbf{2} 
+                            &\cellcolor{white} 2,11 $\to$ \textbf{2} 
+                         & \cellcolor{\rubriekkleur!10} 2 $\to$ \textbf{2} \\
+
+\hline
+			\cellcolor{white}\begin{tabular}[x]{@{}c@{}}\cellcolor{white}\includegraphics[height=13px]{img/middle.png}\\\cellcolor{white} 1730 stemmen\end{tabular}  
+                                    & \cellcolor{\rubriekkleur!10} 1,08 $\to$ \textbf{1} 
+                                    & \cellcolor{white} 2,16 $\to$ \textbf{2} 
+                                    & \cellcolor{\rubriekkleur!10}1,44 $\to$ \textbf{1} 
+                                     &  \cellcolor{white} 1,73 $\to$ \textbf{1} 
+                                    &  \cellcolor{\rubriekkleur!10} 1,57 $\to$ \textbf{1} 
+                                    &\cellcolor{white} 1,64 $\to$ \textbf{1} 
+                                  & \cellcolor{\rubriekkleur!10} 1,56 $\to$ \textbf{1} \\
+
+   \hline
+   		\cellcolor{white}\begin{tabular}[x]{@{}c@{}}\cellcolor{white}\includegraphics[height=13px]{img/small.png}\\\cellcolor{white}1050 stemmen\end{tabular}  
+                                & \cellcolor{\rubriekkleur!10} 0,66 $\to$ \textbf{0} 
+                                & \cellcolor{white} 1,31 $\to$ \textbf{1} 
+                                &\cellcolor{\rubriekkleur!10} 0,88 $\to$ \textbf{0} 
+                                 &  \cellcolor{white} 1,05 $\to$ \textbf{1}
+                                &  \cellcolor{\rubriekkleur!10} 0,95 $\to$ \textbf{0} 
+                                & \cellcolor{white} 0,99 $\to$ \textbf{0} 
+                                & \cellcolor{\rubriekkleur!10} 0,93 $\to$ \textbf{0} \\
+                                
+     				\hlinethick
+
+     \cellcolor{white} \textbf{Zetels verdeeld} 
+                        &\cellcolor{\rubriekkleur!10} \textbf{3} 
+                        & \cellcolor{white}  \textbf{8} 
+                        &\cellcolor{\rubriekkleur!10}   \textbf{4} 
+                         & \cellcolor{white} \textbf{7}
+                        & \cellcolor{\rubriekkleur!10}  \textbf{5} 
+                        &\cellcolor{white}   \textbf{5} 
+                        & \cellcolor{\rubriekkleur!10}  \textbf{5}\\
+
+			\hlinethick
+		\end{tabular}}
+		\caption{De methode van Jefferson toegepast op Fantasia in verschillende prijssettingen}\label{tab:jefferson}
+\end{tabel}
+\end{figure*}
+
+
+
+\subsection{Delersmethoden uitgelegd als balansmethoden}
+De eerste familie van zetelverdelingssystemen zijn de delersmethoden, die we hier uitleggen als balansmethoden. We bespreken de drie bekendste: Jefferson, Webster en Adams.
+\subsubsection{Methode van Jefferson}
+Stel: jij bent diegene die op het einde van de verkiezingsdag verantwoordelijk is om de stemmen om te zetten in zetels. Een didactisch bijzonder handige analogie is om het stemmenaantal van een partij te zien als het geldbedrag dat die partij ter beschikking heeft om zetels mee aan te schaffen. Dat levert voor de doorsnee leerling een veel intuïtiever vocabularium op dan te spreken in termen van verhoudingen. Jij `verkoopt' dus elke zetel aan een partij. Elke zetel wordt aan dezelfde prijs verkocht en elke partij koopt zoveel zetels als ze kan betalen. Jouw job komt dus neer op het vastleggen van de prijs per zetel zo dat:
+\begin{itemize}
+    \item er geen zetels onverkocht achterblijven,
+    \item er niet meer zetels verkocht worden dan er beschikbaar zijn.
+\end{itemize}
+Keren we terug naar de lesactiviteit, wat zou nu de prijs per zetel kunnen zijn in Fantasia? Een eerlijke prijszetting zou kunnen zijn om het totaal aantal stemmen (8000) te delen door het aantal beschikbare zetels (5). Dit noemen we de standaardprijs:
+\begin{align*}
+    \text{Standaardprijs}  &= \frac{\text{aantal uitgebrachte stemmen}}{\text{beschikbare zetels}}\\
+    &= \frac{8000 \text{ stemmen}}{5 \text{ zetels}}\\
+    &= 1600 \text{ stemmen/zetel}
+\end{align*}
+Als we elke zetel verkopen aan 1600 stemmen, dan levert dat de zetelverdeling op in de tweede kolom van \autoref{tab:jefferson} op de volgende bladzijde. Het stemmenaantal (3000) van Giant delen door de standaardprijs (1600) levert 1,88 zetels. Vermits partijen enkel zetels kunnen aanschaffen die ze ook effectief kunnen betalen, rond je dus naar beneden af: Giant kan 1 zetel betalen. Analoog voor de andere partijen. Small heeft aan deze prijs met 1050 stemmen niet genoeg geld voor een zetel en blijft dus onverkozen achter. 
+
+Met de standaardprijs zien we dat er maar 3 zetels verdeeld geraken. Deze drie zetels noemen we \emph{volle zetels}: de standaardprijs is immers de `eerlijke' prijs per zetel. Intuïtief verwachten we dat het aantal keer dat een partij die prijs kan betalen,  overeenkomt met het minimum aantal zetels dat een partij binnenhaalt (we zullen dit later de quotaregel noemen, zie verder). De overgebleven twee zetels noemen we \emph{restzetels}.
+
+Merk overigens op dat de leerlingen die tijdens de lesactiviteit met percentages aan de slag gingen, dezelfde decimale getallen uitkwamen voor de zetelaantallen (1,88; 1,39; 1,08; 0,66) als bij deling door de standaardprijs.  De standaardprijs zorgt er dus voor dat ofwel:
+\begin{itemize}
+    \item alle beschikbare zetels verdeeld geraken: in het onwaarschijnlijke scenario dat de kiesuitslag perfect valt om te zetten in zetels, m.a.w. de stemmenaantallen per partij delen door de standaardprijs levert uitsluitend gehele getallen op,
+    \item er minder zetels dan het beschikbare aantal verdeeld geraken: enkel de volle zetels worden verdeeld.
+\end{itemize}
+
+De standaardprijs is dus te hoog. Om de \emph{restzetels} verdeeld te krijgen, moeten we de prijs verlagen. Laten we bijvoorbeeld eens de helft van de standaardprijs proberen: 800 stemmen/zetel. De resulterende zetelverdeling vind je in kolom 3 van \autoref{tab:jefferson}. De prijs is nu te laag: we verdelen maar liefst 8 zetels, meer dan het beschikbare aantal. Een goede prijs ligt dus ergens tussen de 800 stemmen/zetel en 1600 stemmen/zetel. Laten we daarom het gemiddelde proberen, namelijk 1200 stemmen/zetel (kolom 4 in \autoref{tab:jefferson}). Dit is opnieuw te hoog, er raken maar 4 zetels verdeeld. Het moet dus een prijs zijn tussen 800 en 1200 stemmen/zetel: 1000 stemmen/zetel. Opnieuw te laag. 1100 stemmen/zetel lijkt perfect: alle 5 zetels geraken ingevuld. De twee restzetels gaan naar Giant en Big. Small raakt niet verkozen in het parlement van Fantasia. 
+
+We kunnen dit ook grafisch voorstellen, zie \autoref{jefferson0}. Het staafdiagram illustreert het aantal stemmen dat elke partij in Fantasia haalt. Elke prijs tussen {\color{orange}1050} en  {\color{cyan}1110} stemmen/zetel (waartussen 1100 stemmen/zetel zit) past tweemaal in het stemmenaantal van Giant (duidelijk geen driemaal), tweemaal in het stemmenaantal van Big, éénmaal in het stemmenaantal van The Middle en niet in het stemmenaantal van Small. Een gelijkaardig GeoGebra-applet kun je vinden op onze website.
+\afbeelding{img/grafiek3.png}{Aantal keer dat prijzen in het interval ]{\color{orange}1050}, {\color{cyan}1110}] passen in het stemmenaantal per partij in Fantasia}{jefferson0}
+De prijs om 5 zetels mee te verdelen, is dus geen uniek getal, maar levert wel telkens dezelfde zetelverdeling op. Het prijsinterval  ]{\color{orange}1050},{\color{cyan}1110}] komt overeen met de regel: `2 zetels toekennen aan Big en geen aan Small.' Inderdaad,  {\color{orange}1051} stemmen houdt Small net van een zetel af, {\color{cyan}1110}  stemmen is exact genoeg om Big van twee zetels te voorzien. We zullen later zien hoe we die prijsintervallen systematisch kunnen bepalen, zonder alle mogelijkheden te hoeven proberen. Hoewel de prijssetting dus niet uniek is, zullen alle prijzen $d$ die $n$ zetels verdelen, altijd dezelfde zetelverdeling opleveren. Je kan dit bewijs uit het ongerijmde vinden als bijlage bij deze loep op de website van Uitwiskeling.
+
+\subsubsection{Geschiedenis en gebruik} 
+
+Deze `balansmethode' is in de literatuur bekend als de methode van Jefferson, genoemd naar de derde president van de Verenigde Staten. De methode werd van 1792 tot 1842 gebruikt om de zetels per staat te bepalen in het Huis van Afgevaardigden. De methode werd redelijk toevallig uitgevonden: de Amerikaanse grondwet voorzag dat er voor elke afgevaardigde van een staat minstens $30~000$ inwoners moesten zijn. 
+\afbeelding[4.1cm]{img/jefferson.jpg}{Thomas Jefferson (1743-1826)}{jefferson}
+Na de eerste volkstelling stelde Jefferson dan ook voor om gewoon de bevolkingsaantallen per staat te delen door $30~000$ en dat resultaat naar beneden af te ronden, om zo tot een geheel aantal afgevaardigden per staat te komen. Een andere afronding zou immers niet garanderen dat elke afgevaardigde $30~000$ inwoners zou vertegenwoordigen. Met zijn voorstel zouden er zo 112 afgevaardigden in het Huis van Afgevaardigden kunnen verkozen worden in 1782.
+
+Na erg veel commotie tussen Noordelijke en Zuidelijke staten, Democraten en Republikeinen en zelfs een presidentieel veto van president Washington haalde het aangepaste voorstel van de Senaat het pleit, dat het minimum aantal inwoners (= de `prijs') verhoogde tot $33~000$ inwoners/afgevaardigde. Het leverde een Huis op van 105 afgevaardigden. Merk op dat het aantal afgevaardigden dus niet op voorhand vastlag. Pas later ontwikkelde --  onder meer door de almaar uitdijende Amerikaanse bevolking en eeuwige discussies over te hanteren prijs en aantal afgevaardigden -- zich het idee dat om zetels evenredig te verdelen, het aantal zetels op voorhand moet vastliggen. Je kunt immers niets proportioneel verdelen als je niet op voorhand vastlegt wat je verdeelt. In 1842 werd de methode afgevoerd voor het Amerikaanse Huis van Afgevaardigden: hoewel ze erg intuïtief is om zetelverdelingen mee te bepalen, neigt ze de voorkeur te geven aan grotere staten (partijen). Dat zien we goed in het voorbeeld van Fantasia: wellicht waren er toch een aantal leerlingen die Small een zetel gunnen ten koste van een extra zetel voor Big tijdens de lesactiviteit. 
+
+Het is wiskundig niet zo moeilijk om in te zien waarom Jefferson een lichte vertekening geeft richting de grotere partijen: de methode werkt door de standaardprijs te verlagen totdat de afronding naar beneden overeenkomt met het opgegeven aantal zetels. Neem er \autoref{tab:jefferson} bij en vergelijk kolom 1 (prijs: 1600 stemmen/zetel) en kolom 2 (prijs: 800 stemmen/zetel). Door het halveren van de prijs, heeft Giant een verdubbeling van 1,88 naar 3,76 en passeert hierbij twee gehele getallen (en dus twee zetels extra). Small heeft een verdubbeling van 0,66 naar 1,32, maar passeert hierbij slechts één geheel getal. Hoewel volledig proportioneel, passeren grotere partijen dus makkelijker meer gehele getallen dan kleinere partijen als de prijs verlaagd wordt. Ook grafisch kun je dat in een dynamische figuur van \autoref{jefferson0} zien gebeuren (check onze website): als je de prijs van een zetel laat  zakken, dan zakt de 3-zetel-lijn drie keer zo snel.
+Hoewel we het zetelverdelingssysteem voor alle parlementsverkiezingen in België niet de methode van Jefferson noemen, maar de methode D'Hondt en ook de berekenwijze anders is, komen beide methoden op hetzelfde neer (zie verder).
+\end{multicols} 
+\afbeelding[14cm]{img/UWjanuari24(Trump).jpg}{}{}
+\begin{multicols}{2}
+\subsubsection{Methode van Webster}
+De methode van Webster is identiek aan de methode van Jefferson met één cruciaal verschil: je rondt het aantal zetels dat partijen kunnen betalen \textit{wiskundig} af en niet naar beneden zoals bij Jefferson. Je zoekt dus een prijs, deelt elk partijresultaat door die prijs en rondt vervolgens het aantal zetels wiskundig af. De zoektocht stopt wanneer je een prijs gevonden hebt die exact het aantal beschikbare zetels verdeelt. Voor Webster kan je zoektocht starten bij de standaardprijs: allicht zijn er enkele zetels te veel (standaardprijs te laag) of te weinig (standaardprijs te hoog) verdeeld.\\
+In het voorbeeld van Fantasia, uitgewerkt in \autoref{tab:webster}, komen we er meteen met de standaardprijs (1600 stemmen/zetel). Mogelijk deden enkele leerlingen dat al intuïtief tijdens de lesactiviteit als ze met de verhoudingen aan de slag gingen. Ook hier is de prijs niet uniek: elke prijs tussen 1480 en 2000 stemmen/zetel levert deze zetelverdeling op. Het is meteen duidelijk dat deze methode de vertekening naar grote partijen niet vertoont: Small gaat, in vergelijking met Jefferson, met een restzetel lopen ten koste van Big. 
+
+De methode van Webster is de enige delersmethode die geen inherente vertekening heeft richting grote of kleine partijen. Intuïtief kan dat verklaard worden doordat bij het delen van een stemmenaantal door een prijs, het decimaal deel van het verkregen quotiënt even vaak boven, als onder 0,5 kan liggen. Dat is zo voor elke partij, ongeacht het aantal stemmen. Vermits Webster decimale delen boven 0,5 naar boven afrondt en decimale delen onder 0,5 naar beneden, zullen zowel kleine als grote partijen gemiddeld genomen evenveel keer bevoordeeld dan wel benadeeld zijn.
+\begin{tabel}
+\begin{tabular}{m{2.2cm}C{1.6cm}C{1.6cm}C{1.6cm}} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Partij} &  \tableheader{Jefferson: /1110} & \tableheader{Webster: /1600} & \tableheader{Adams: /2220}  \\ 
+			\hlinethick
+			\begin{tabular}[x]{@{}c@{}}\includegraphics[height=13px]{img/giant.png}\\3000 stemmen\end{tabular}  & $\lfloor2,66\rfloor =$ \textbf{2} & $[1,88] =$ \textbf{2} & $\lceil 1,35 \rceil = $ \textbf{2}\\
+			\begin{tabular}[x]{@{}c@{}}\includegraphics[height=13px]{img/big.png}\\2220 stemmen\end{tabular} & $\lfloor2\rfloor =$ \textbf{2} & $[1,39] =$ \textbf{1} & $\lceil 1 \rceil =  $ \textbf{1}\\
+			\begin{tabular}[x]{@{}c@{}}\includegraphics[height=13px]{img/middle.png}\\1730 stemmen\end{tabular} & $\lfloor1,56\rfloor =$ \textbf{1} & $[1,08] =$ \textbf{1} & $\lceil 0,78 \rceil =  $ \textbf{1}\\
+   		\begin{tabular}[x]{@{}c@{}}\includegraphics[height=13px]{img/small.png}\\1050 stemmen\end{tabular} & $\lfloor0,93\rfloor =$\textbf{0} & $[0,66] =$\textbf{1} & $\lceil 0,47 \rceil =  $ \textbf{1} \\
+     			\rowcolor{\rubriekkleur!50} \begin{tabular}[x]{@{}c@{}}\textbf{Zetels}\end{tabular} &  5 &  5 &  5 \\
+
+			\hlinethick
+		\end{tabular}
+		\caption{Zetelverdeling volgens de methode Jefferson, Webster \& Adams}\label{tab:webster}
+\end{tabel}
+\subsubsection{Methode van Adams}
+De methode van Adams voel je wellicht al komen: je rondt het aantal zetels naar boven af. Het uitgewerkte voorbeeld voor Fantasia vind je eveneens in \autoref{tab:webster}. Hoewel Adams en Webster dezelfde zetelverdeling opleveren voor Fantasia, heeft de methode van Adams een vertekening naar kleine partijen. Het is zelfs een redelijk vreemde snuiter in dat opzicht: van zodra een partij minstens één stem haalt, kent de methode van Adams die partij al een zetel toe. Dat geeft bijgevolg problemen als er meer partijen hebben meegedaan aan de verkiezingen dan er zetels zijn.
+De methode van Adams zal ook regelmatig partijen niet al hun volle zetels toekennen. Dat zie je intuïtief al in het voorbeeld van Fantasia, waar de prijs die we nodig hebben om 5 zetels te verdelen tussen 2220 en 3000 ligt, altijd hoger of gelijk aan de standaardprijs. Om iedereen minstens zijn volle zetels te geven hoort die prijs, zoals bij Jefferson, lager te zijn. 
+
+
+
+
+
+\subsection{Methode van grootste overschotten}
+Een andere familie van zetelverdelingssystemen zijn de zogenoemde `methoden van grootste overschotten'. De bekendste methode is de methode van Hamilton: deel het stemmenaantal van een partij door de standaardprijs. Het aantal gehelen voor de komma zijn de \textit{volle zetels}, die je meteen toekent. Vervolgens rangschik je de partijen op basis van hun overgebleven decimaal deel (= de rest, het `overschot' wat na de komma overblijft), waarna de restzetels in deze volgorde worden toegekend.
+\begin{tabel}
+		\begin{tabular}{m{2.3cm}C{1.4cm}C{1.cm}C{1.cm}C{1.cm} } % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Partij} & \tableheader{/1600} & \tableheader{Volle zetels} & \tableheader{Rest-zetels} & \tableheader{Totaal} \\ 
+			\hlinethick
+			\includegraphics[height=13px]{img/giant.png}
+            3000 stemmen  & 1,875 & \textbf{1} & \textbf{1}  &   \textbf{2} \\
+			\begin{tabular}[x]{@{}c@{}}\includegraphics[height=13px]{img/big.png}\\2220 stemmen\end{tabular} & 1,388 & \textbf{1} & \textbf{0} & \textbf{1}\\
+			\includegraphics[height=13px]{img/middle.png}  1730 stemmen & 1,081 & \textbf{1} & \textbf{0} & \textbf{1}  \\
+   		\includegraphics[height=13px]{img/small.png}  1050 stemmen & 0,656 & \textbf{0} & \textbf{1} & \textbf{1}\\
+     			\rowcolor{\rubriekkleur!50} \textbf{Totaal} &  & \textbf{3} & \textbf{2} & \textbf{5} \\
+
+			\hlinethick
+		\end{tabular}
+		\caption{Zetelverdeling volgens de methode van de grootste overschotten}\label{tab:hare}
+\end{tabel}
+Voor Fantasia vind je de uitwerking van deze methode in \autoref{tab:hare}. In dit voorbeeld zien we dat er andermaal 3 volle zetels zijn toegekend. Vervolgens rijft Giant de eerste restzetel binnen met de grootste rest van 0,875 (wat overeenkomt met $0,875 \cdot 1600 = 1400$ stemmen op overschot). Vervolgens is Small aan de beurt voor de tweede restzetel met een overschot van 0,656 (wat overeenkomt met $1050$ stemmen op overschot).
+
+Methoden van grootste overschotten zullen, net zoals de methode Jefferson, altijd partijen minstens hun volle zetels toekennen. Dat elke partij in deze methode maximum één restzetel kan binnenhalen, is doorgaans in het voordeel van kleine partijen: grotere partijen kunnen zo immers maar 1 restzetel binnen halen. Toch geeft het ook aanleiding tot gekke paradoxen (later meer). Als we in het vervolg over dé methode van grootste overschotten spreken, bedoelen we de methode Hamilton.
+
+
+\end{multicols}
+
+
+\begin{lesactiviteit}{Verkiesbare zetels verdelen over kieskringen}
+In België worden de verkiezingen voor het Federaal Parlement (Kamer van Volksvertegenwoordigers) gehouden per kieskring. Die bestaan uit de tien Belgische provincies en het Brussels Hoofdstedelijk Gewest. Dat betekent dat partijen een aparte kandidatenlijst indienen per kieskring. Zo kunnen bijvoorbeeld mensen uit de provincie Vlaams-Brabant niet op premier Alexander De Croo stemmen, die als lijsttrekker voor de Kamer alleen opkomt in Oost-Vlaanderen. Voor de verkiezingen van het Vlaams Parlement gelden dezelfde kieskringen in Vlaanderen: de 5 Vlaamse provincies en Brussel, terwijl de Europese verkiezingen plaatsvinden per taalrol (van de 22 te verkiezen Europarlementsleden uit België in 2024 zullen er 13 Nederlandstalig zijn, 8 Franstalig en 1 Duitstalig). 
+
+\begin{multicols}{2}
+We focussen nu op het Vlaams Parlement. Dat halfrond telt 124 leden. In de wet is een vast aantal van 6 verkozenen voorzien voor het Brussels Hoofdstedelijk Gewest. De overige 118 verkiesbare zetels worden evenredig verdeeld volgens de bevolkingsaantallen per provincie. Die verdeling wordt elke 10 jaar vastgelegd. Dat gebeurde voor het laatst eind 2022 en hiervoor wordt de methode van grootste overschotten gebruikt. Het aantal inwoners per provincie van het Vlaams Gewest in 2022 vind je in de tabel hiernaast.  
+\vfill
+\columnbreak\begin{tabel}
+		\begin{tabular}{m{2.8cm}r{2.8cm}} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick 
+			\tableheader{Provincie} & \tableheader{Inwoners}\\ 
+			\hlinethick
+			Antwerpen & 1 895 773 \\
+                Oost-Vlaanderen & 1 551 112\\
+                West-Vlaanderen & 1 213 374\\
+                Vlaams-Brabant & 1 179 384\\
+                Limburg & 890 232\\
+			\hlinethick 
+        			\rowcolor{\rubriekkleur!50} \textbf{Totaal} & \textbf{6 729 875}\\
+			\hlinethick 
+		\end{tabular}
+\end{tabel}
+
+\end{multicols}
+\begin{vraagenantwoord}
+\vraag{Wat is de standaardprijs per zetel?}
+\antwoord{$6~729~875$ inwoners / $118$ zetels = $57~032,8$ inwoners/zetel, of afgerond $57~033$ inwoners/zetel.}
+\vraag{Gebruik de methode van grootste overschotten om te bepalen hoeveel zetels er in elke kieskring te verdelen zijn voor het Vlaams Parlement in 2024 (en 2029).}
+\antwoord{Het antwoord is uitgewerkt in de onderstaande tabel, bij deling van de inwonersaantallen door \emph{57 0330} verdelen we \emph{116} zetels. De twee restzetels gaan naar Vlaams Brabant (overschot = $0,68$) en Limburg (overschot = $0,61$).}
+\emph{In vergelijking met de voorbije tien jaar en bijgevolg met de vorige twee Vlaams Parlementsverkiezingen ($2014$ en $2019$), verliest West-Vlaanderen $1$ Vlaams parlementslid aan Vlaams-Brabant. Vlaams-Brabant kon die extra zetel afsnoepen van West-Vlaanderen omdat $0,68 > 0,27$. Het aantal inwoners dat met dit verschil overeenkomt is $(0,68-0,27)\cdot 57~033= 23~384$ inwoners.}
+\begin{tabel}
+		\begin{tabular}{lrrrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Provincie} &\tableheader{/57 033} &\tableheader{Volle zetels}  &\tableheader{Restzetels} & \tableheader{Totaal} \\ 
+			\hlinethick
+			Antwerpen & 33,24 & 33 & 0 & \textbf{33} \\
+            Oost-Vlaanderen& 27,20  & 27 & 0 & \textbf{27}\\
+            West-Vlaanderen  & 21,27  & 21 & 0 & \textbf{21}\\
+            Vlaams-Brabant & 20,68  & 20 & 1 & \textbf{21}\\
+            Limburg & 15,61  & 15 & 1 & \textbf{16}\\ \hlinethick
+        	\rowcolor{\rubriekkleur!50} \textbf{Totaal} & \textbf{118} & \textbf{116} & \textbf{2} & \textbf{118}\\
+			\hlinethick
+		\end{tabular}
+\end{tabel}
+\vraag{Wat was het overschot uitgedrukt in aantal inwoners waarmee Vlaams-Brabant zijn extra parlementszetel kon binnenhalen?}
+\antwoord{Dat kun je op twee manieren berekenen, ofwel neem je $0,68$ van de standaardprijs $= 57~033\cdot 0,68 = 38~ 782$ inwoners (de berekening met de niet-afgeronde rest van Vlaams-Brabant levert $38~724$ inwoners). Je kunt ook $20$ keer de standaardprijs aftrekken van het inwonersaantal van Vlaams-Brabant $= 1~179~ 384 - 20\cdot 57~033 =  38~724$ inwoners.}
+\end{vraagenantwoord}
+\end{lesactiviteit}
+
+
+
+\begin{lesactiviteit}{Verkiezingen voor het Vlaams Parlement in 2019 (1)}
+\begin{multicols}{2}
+ We weten nu dat we in België voor parlementsverkiezingen in kieskringen stemmen. In elke kieskring is er op de verkiezingsdag een vooraf vastgesteld aantal zetels te verdelen. Bovendien geldt in België voor parlementsverkiezingen een kiesdrempel: een kandidatenlijst moet in een kieskring minstens $5\%$ van de stemmen halen om te mogen meedingen naar een zetel. Blanco of ongeldige stemmen spelen geen rol in de zetelverdeling. In praktijk verdeel je dus enkel zetels onder partijen die minstens 5\% halen. Alle overige, blanco of ongeldige stemmen spelen niet mee. Alle parlementsverkiezingen in Vlaanderen hebben dezelfde spelregels.
+ 
+ Laten we nu zo'n kiesuitslag eens omzetten in zetels! Provincie Antwerpen heeft als meest bevolkte Vlaamse provincie 33 zetels in het Vlaams Parlement. De kiesuitslag in deze kieskring in 2019 is weergegeven in de tabel. Beantwoord met deze kiesuitslag de onderstaande vragen. 
+ 
+\textit{De kiesuitslagen van de andere provincies, samen met de antwoorden op (gelijkaardige) onderstaande vragen vind je op onze website.
+} \columnbreak \vfill \begin{tabel}
+\begin{tabular}{lrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+\tableheader{Partij} & \tableheader{Stemmen} & \tableheader{Percentage}\\
+N-VA               & 361 403 & 31,8\% \\
+Vlaams Belang      & 209 738 & 18,5\% \\
+CD\&V               & 129 843 & 11,4\% \\
+Groen              & 126 988 & 11,2\% \\
+Open Vld           & 116 020  & 10,2\% \\
+sp.a               & 90 113  & 7,9\%  \\
+PVDA               & 75 833  & 6,7\%  \\
+DierAnimal         & 9 414   & 0,8\%  \\
+Piratenpartij      & 4 987   & 0,4\%  \\
+PV\&S               & 2 813   & 0,2\%  \\
+Genoeg vr iedereen & 2 650    & 0,2\%  \\
+D-SA               & 2 533   & 0,2\%  \\
+Burgerlijst        & 2 033   & 0,2\%  \\
+BE ONE             & 1 563   & 0,1\%  \\ \hline
+\textbf{Geldige stemmen} & 1 135 931 & 96,1\% \\
+\textbf{Blanco/ongeldig}  & 45 871 & 3,9\% \\
+\hlinethick
+\end{tabular}
+\end{tabel}
+\end{multicols}
+\vspace{1cm}
+\begin{vraagenantwoord}
+\vraag{Wat is de standaardprijs per zetel?}
+\antwoord{Alle stemmen voor partijen die minder dan $5$\% halen en  blanco/ongeldige stemmen spelen geen rol in de zetelverdeling. De standaardprijs is dus de som van alle geldige stemmen op partijen die boven de $5$\% scoren (N-VA t.e.m. PVDA), gedeeld door de $33$ beschikbare zetels. Dat is $1~109~938/33 = 33~634,48$ stemmen/zetel.}
+\vraag{Hoeveel volle zetels kun je met de standaardprijs verdelen?}
+\antwoord{Je kunt $29$ volle zetels verdelen (N-VA: $10$, Vlaams Belang: $6$, CD\&V: $3$, Groen: $3$, Open Vld: $3$, sp.a: $2$ en PVDA: $2$). Er blijven nog $4$ restzetels te verdelen.}
+\vraag{Maak de zetelverdeling volgens de methode Jefferson. Het antwoord zal overeenkomen met de officiële zetelverdeling.  Welke prijs uitgedrukt in stemmen/zetel heb je moeten aanrekenen?}
+\antwoord{Om de $33$ zetels te verdelen is een prijs tussen {\color{orange}$30~037,7$} en {\color{cyan}$30~116,9$} stemmen/zetel nodig. Je verkrijgt dan: \textbf{N-VA: $12$}, Vlaams Belang: $6$, \textbf{CD\&V: $4$}, \textbf{Groen: $4$}, Open Vld: $3$, sp.a: $2$ en PVDA: $2$. Van de $4$ restzetels gingen er dus $2$ naar N-VA en telkens $1$ naar CD\&V en Groen. Het prijsinterval $]${\color{orange}$30~037,7$}; {\color{cyan}$30~116,9$}$]$ komt overeen met de regel `$12$ zetels voor N-VA en geen $3$ (maar $2$) zetels voor sp.a': {\color{orange}$30~037,7$} gunt N-VA exact $12$ zetels, {\color{cyan}$30~116,9$} houdt sp.a net van een derde zetel af.}
+\vraag{Maak de zetelverdeling volgens de methode van Webster. Welke prijs uitgedrukt in stemmen/zetel heb je moeten aanrekenen?}
+\antwoord{Om de $33$ zetels te verdelen via de methode van Webster is een prijs tussen $33~148,6$ en $34~419,3$ stemmen/zetel nodig. Je verkrijgt dan: \textbf{N-VA: $11$}, Vlaams Belang: $6$, \textbf{CD\&V: $4$}, \textbf{Groen: $4$}, Open Vld: $3$, \textbf{sp.a: $3$} en PVDA: $2$. Merk op dat de kleine partij sp.a hier profijt uit haalt.}
+\vraag{Maak de zetelverdeling volgens de methode van Adams. Welke prijs uitgedrukt in stemmen/zetel heb je moeten aanrekenen?}
+\antwoord{Om de $33$ zetels te verdelen met Adams is een prijs tussen $37 ~916,5$ en $38~673,2$ stemmen/zetel nodig. Je verkrijgt dan: N-VA: $10$, Vlaams Belang: $6$, \textbf{CD\&V: $4$}, \textbf{Groen: $4$}, \textbf{Open Vld: $4$}, \textbf{sp.a: $3$} en PVDA: $2$. Merk op dat zowel Open Vld als sp.a hier voordeel mee doen als kleine partijen.}
+\vraag{Wat wordt de zetelverdeling volgens de methode van grootste overschotten (methode van Hamilton)?}
+\antwoord{\textbf{N-VA: $11$}, Vlaams Belang: $6$, \textbf{CD\&V: $4$}, \textbf{Groen: $4$}, Open Vld: $3$, \textbf{sp.a: $3$} en PVDA: $2$. De eerste restzetel ging naar CD\&V (rest = $0,86$), de tweede naar Groen (rest = $0,78$), de derde naar N-VA (rest = $0,75$) en de vierde naar sp.a (rest = $0,68$). De methode van Webster komt met deze uitslag overeen, wat niet altijd zo is.}
+\vraag{Vergelijk nu de zetelverdeling volgens de methode van Jefferson, Webster, Adams en van grootste overschotten. Welk systeem heeft jouw voorkeur? Waarom? Probeer bij je argumentatie uitsluitend argumenten te geven die gaan over de representativiteit van het parlement en niet over de politieke standpunten van partijen.}
+\antwoord{Om de discussie te voeren, is het belangrijk om voor elke partij het procentuele aandeel in de stemmen eens te vergelijken met het procentuele aandeel in de toegekende zetels. Om deze discussie helder te voeren, verwijderen we de blanco, ongeldige stemmen en de stemmen op partijen onder de kiesdrempel vallen. Deze stemmen dragen niet bij aan de zetelverdeling en zijn zogenaamde `verloren' stemmen. Verloren stemmen zijn altijd gunstig voor verkozen partijen omdat deze partijen hierdoor automatisch een iets groter aandeel kunnen krijgen in zetels dan hun werkelijk kiespercentage. Daarom herberekenen we het stemmenaandeel per verkozen partij exclusief de verloren stemmen:}
+\begin{tabel}
+\resizebox{\textwidth}{!}{\begin{tabular}{lccccccc}\hlinethick
+\tableheader{\%}                                                         & \tableheader{N-VA} & \tableheader{Vlaams Belang} & \tableheader{CD\&V} & \tableheader{Groen} & \tableheader{Open Vld} & \tableheader{sp.a} & \tableheader{PVDA} \\
+\textbf{Stemmen (incl. verloren)}                                                    & 31,8 & 18,5          & 11,4  & 11,2  & 10,2     & 7,9  & 6,7  \\
+\textbf{Stemmen (excl. verloren)}                                                    & 32,6 & 18,9          & 11,7  & 11,4  & 10,5     & 8,1  & 6,8  \\ \hline
+\textbf{Zetels Jefferson}& 36,4 & 18,2          & 12,1  & 12,1  & 9,1      & 6,1  & 6,1  \\
+\textbf{Zetels Webster}                                            & 33,3 & 18,2          & 12,1  & 12,1  & 9,1      & 9,1  & 6,1  \\
+\textbf{Zetels Hamilton}                                           & 33,3 & 18,2          & 12,1  & 12,1  & 9,1      & 9,1  & 6,1 \\ 
+\textbf{Zetels Adams}                                              & 30,3 & 18,2          & 12,1  & 12,1  & 12,1     & 9,1  & 6,1  \\ \hlinethick
+\end{tabular}}
+\end{tabel}
+\textit{Er vallen een aantal zaken op:
+\begin{itemize}
+    \item Voor sommige partijen zijn er geen verschillen in hun verkregen zetelaandeel: Vlaams Belang, CD&V, Groen en PVDA verkrijgen in alle methoden hetzelfde aantal zetels. Buiten PVDA, zijn het allen partijen die noch groot, noch klein zijn.
+    \item De methode van Jefferson is het meest in het voordeel van de grootste partij, NV-A, die met $32,6\%$ van de stemmen, $36,4\%$ van de zetels haalt en het meest in het nadeel van sp.a die als kleine partij met $8,1\%$ van de stemmen, $6,1\%$ van de zetels haalt.
+    \item De methode van Webster is het meest representatief (de gemiddelde kwadratische afstand tussen partijen hun stemmenaandeel en zetelaandeel is het kleinst van alle methoden). De methode van grootste overschotten geeft in dit geval hetzelfde resultaat.
+    \item De methode van Adams speelt in het voordeel van de kleinere partijen Open Vld en sp.a, die beide een groter zetelaandeel (respectievelijk $12,1\%$ en $9,1\%$) krijgen dan hun stemmenaandeel (respectievelijk $10,5\%$ en $8,1\%$). Dat is vooral in het nadeel van N-VA als grootste partij, die met zijn zetelaandeel ($30,3\%$) onder zijn stemmenaandeel blijft ($32,6\%$).
+\end{itemize}
+}
+
+
+\textit{We sommen nu een aantal voor- en nadelen op van elke methode.}
+
+\textit{\textbf{Methode van Jefferson}
+\begin{itemize}
+    \item[+] Bevoordeelt grote partijen.  Het is op zich niet verkeerd om bij `twijfel' -- die inherent is aan het probleem van het omzetten van kiesuitslagen in een geheel aantal zetels -- voor de winnaars van de verkiezingen te kiezen.
+    \item[+] Bevoordeelt grote partijen.  Dat verhoogt de politieke stabiliteit: door verkiezingswinnaars in de zetelverdeling lichtjes te bevoordelen, maken ze ook een grotere kans om in de meerderheid (regering) te geraken. 
+    \item[+] Bevoordeelt grote partijen. Dat gaat politieke versplintering tegen: het is niet voordelig om als splintergroep van een partij op te komen en ook politieke kartels (waarbij partijen samen naar de kiezer gaan) worden aangemoedigd.
+    \item[-] Het is minder representatief. Hierdoor komt een minder divers spectrum van meningen aanbod.
+    \item[-] Het is minder representatief. Het Belgisch kiessysteem is al erg gunstig voor grotere partijen: niet alleen de kiesdrempel, maar ook de opdeling in kieskringen is ten voordele van grote partijen. In sommige kieskringen is het aantal beschikbare zetels zodanig laag, dat het haast onmogelijk is om er als kleine partij een verkozene te halen, zoals bv. de provincie Luxemburg voor de Kamer van Volksvertegenwoordigers waar amper 4 zetels te verkiezen zijn.
+\end{itemize}
+}
+
+\textit{\textbf{Methode van Webster (in dit geval gelijk aan de methode van Hamilton)}
+\begin{itemize}
+    \item[+] Zeer representatief. Het verschil tussen de werkelijke kiesuitslag en het aandeel zetels is in geen enkele methode kleiner. Je kunt bewijzen dat de methode van Webster de kwadratische afstand tussen stemmenaandeel en zetelaandeel minimaliseert. 
+    \item[+] Zeer representatief. Doordat in België al een kiesdrempel wordt opgelegd én gestemd wordt per kieskring, kan men argumenteren dat er niet nog extra voordelen moeten zijn voor grotere partijen in de zetelverdeling.
+    \item[+] Zeer representatief. Dit laat toe om een grotere diversiteit in meningen aan bod te laten komen in het parlement.
+    \item[-] Het niet-bevoordelen van grotere partijen kan coalitievorming bemoeilijken.
+    \item[-] De methode van Webster gaat politieke versplintering niet tegen. Er is geen inherent nadeel om als een splintergroep op te komen.
+\end{itemize}}
+
+\textit{\textbf{Methode van Adams}
+\begin{itemize}
+    \item[+] Bevoordeelt kleine partijen. Dit bevordert een diversiteit van meningen in het parlement.
+    \item[-] Bevoordeelt kleine partijen.  Het bevoordelen van kleine partijen kan coalitievorming bemoeilijken want het beperkt de winnaar van de verkiezingen in hun mogelijkheid om een regering op de been te brengen. Dit zie je goed in deze uitslag: hoewel N-VA en Vlaams Belang meer dan 50\% van de stemmen halen in provincie Antwerpen, halen ze met 16 van de 33 zetels geen meerderheid in aantal zetels volgens de methode van Adams.
+    \item[-] Bevoordeelt kleine partijen. De methode van Adams moedigt politieke versplintering aan. Het is net voordelig om als kleine splintergroep, apart op te komen.
+\end{itemize}
+ }
+\end{vraagenantwoord}
+\end{lesactiviteit}
+\begin{multicols}{2}
+\subsection{Delersmethode uitgelegd als methode van grootste quotiënten}
+\subsubsection{De methode D'Hondt: uitgelegd als bieding}
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{img/dhont6.pdf}
+    \caption{De methode D'Hondt toegepast op het voorbeeld van Fantasia en geïllustreerd als bieding in meerdere rondes}
+    \label{fig:hondt}
+\end{figure*}
+Bij de methode van Jefferson kwam het er op aan om de standaardprijs te verlagen totdat het gewenste aantal zetels verdeeld is. Maar kunnen we zo'n mogelijke prijs op een systematische manier vinden zonder te hoeven gokken? Dat kan! 
+
+Je kunt de zoektocht het best beschrijven als de organisatie van een bieding: in elke ronde wordt een volgende zetel toegekend aan de hoogst biedende partij. Er zijn exact evenveel rondes als te verdelen zetels. In de eerste ronde kan de grootste partij zijn volledig stemmenaantal inzetten om de eerste zetel te kopen. In de tweede ronde  dingen alle partijen opnieuw mee naar de tweede zetel, maar de grootste partij - die net haar eerste zetel binnenhaalde - kan nu maar de helft van haar stemmenaantal bieden. Dat zit zo: mocht die partij twee zetels binnenhalen, dan was de prijs per zetel effectief hun stemmenaantal gedeeld door twee. In elke ronde kunnen partijen dus bieden met hun stemmenaantal gedeeld door het aantal binnengehaalde zetels + 1.
+Laten we zo'n bieding eens organiseren in Fantasia. Die gaat als volgt (zie \autoref{fig:hondt}): 
+\definecolor{myblue}{RGB}{9,0,255}
+\begin{enumerate}
+    \item In de eerste ronde willen alle partijen hun volledig stemmenaantal inzetten om de eerste zetel binnen te halen. Mochten ze immers maar 1 zetel binnenhalen, dan kunnen ze die met al hun stemmen betalen. Giant kan voor de eerste zetel als winnaar van de verkiezingen zijn volle 3000 stemmen neertellen en haalt die zetel binnen.
+    \item In de twee ronde hebben Big, The Middle en Small nog steeds hun volledig stemmenkapitaal over om hun eerste zetel binnen te halen. Giant, die al een zetel binnenhaalde, komt met een kapitaal van 1500 stemmen: mochten ze deze tweede zetel binnenhalen en de bieding zou stoppen, dan hebben ze immers 3000/2 = 1500 stemmen per zetel betaald. Dat is te weinig. Big haalt de tweede zetel met hun volledig stemmingkapitaal (2220).
+    \item In de derde ronde hebben The Middle en Small nog steeds hun volledig stemmenkapitaal over om hun eerste zetel binnen te halen. Giant blijft op 1500 stemmen/zetel omdat het een tweede zetel wil binnenhalen, ook Big dingt mee voor nog een tweede zetel en komt nu met een inzet van 2220/2 = 1110 stemmen/zetel, de prijs die ze per zetel zouden betalen mochten ze die binnenhalen. Beide partijen hebben een te lage inzet voor de derde zetel: The Middle haalt de derde zetel binnen met haar volledig stemmenkapitaal (1730).
+    \item In de vierde ronde dingt ook The Middle met de helft van zijn stemmenaantal mee voor een tweede zetel. De vierde zetel gaat naar Giant met een prijs van 1500 stemmen/zetel.
+    \item In de vijfde en laatste ronde wil Giant uiteraard ook nog meedingen voor een derde zetel. De prijs die ze zouden betalen indien ze drie zetels zouden binnenhalen, is 3000 stemmen/3 zetels = 1000 stemmen/zetel. Zij verschijnen dus met een bod van 1000 stemmen/zetel aan de start van deze vijfde ronde. Dat is te weinig: Big gaat lopen met de vijfde en laatste zetel en betaalt er {\color{cyan}1110} stemmen/zetel voor.    
+\end{enumerate}
+In deze bieding vallen een aantal fenomenen op:
+
+\begin{itemize}
+    \item De prijs voor elke volgende zetel gaat naar omlaag, waarbij zetels vanaf ronde 4 onder de standaardprijs van 1600 stemmen/zetel worden verkocht. We hebben dus vanaf de 4de zetel te maken met het verdelen van restzetels, de drie voorgaande zetels werden boven de standaardprijs verkocht. Het zijn volle zetels.
+
+    \item Je kan de methode verderzetten om een 6de zetel te verdelen: deze zou naar Small gaan aan {\color{orange}1050} stemmen/zetel. Dat kan niet meteen met de balansmethoden of de methode van grootste overschotten: met deze methoden zul je de prijs eerst moeten bijsturen om 6 zetels te verdelen.
+
+    \item De 5de en laatste zetel wordt verkocht aan {\color{cyan}1110} stemmen/zetel. Dit noemen we de {\color{cyan}\emph{kiesdeler}}. Het is de hoogste prijs die voor de laatste zetel kan geboden worden. Die hoogste prijs representeert bijgevolg het minimum aantal stemmen dat nodig is om 1 zetel binnen te halen: minimaal {\color{cyan}1110} stemmen of geen zetel. Om die ook binnen te halen, moet je wel altijd naar boven afronden of één stem bijtellen (anders kom je uit op een ex aequo). Zo zie je dat Small 61 stemmen ($= 1110-1050+1$) te kort komt om Big in de laatste ronde van zijn tweede zetel af te houden en die zelf binnen te halen. Voor partijen die zetels hebben verworven, ligt zo'n berekening een tikkeltje moeilijker want dan moet je terugrekenen. Had Giant bijvoorbeeld nog een derde zetel willen binnenhalen dan kwam het in de 5de ronde 110 stemmen ($=1110-1000$) te kort, dus Giant zou voor een 3de zetel $110\cdot3+1 = 331$ stemmen extra moeten gehaald hebben. Je kan ook Giant's stemmenaantal vergelijken met het drievoud van de kiesdeler: $3\cdot1110-3000+1 = 331$.
+\end{itemize}
+Hebben we nu een prijs gevonden waarmee we de methode van Jefferson kunnen berekenen? Jazeker! Het prijsinterval van daarnet ]{\color{orange}1050}, {\color{cyan}1110}] voor het verdelen van 5 zetels in Fantasia met de methode Jefferson, verschijnt door net boven {\color{orange}de prijs van de de (niet-verdeelde) 6de zetel} te blijven en onder of gelijk aan {\color{cyan}de prijs van de 5e zetel (de kiesdeler)}. Inderdaad: kleiner of gelijk aan {\color{orange}1050} en Small gaat nog met een extra zetel lopen (waardoor je minstens 6 zetels), hoger dan {\color{cyan}1110} en je hebt minder dan 5 zetels verdeeld omdat Big dan geen tweede zetel meer kan betalen. Door de prijs van de $n$-de zetel en (niet-verdeelde) ($n+1$)-de zetel te bekijken, krijg je ook de regel waaraan de prijzen voor het verdelen van de $n$ zetels moeten voldoen. In dit geval: `2 zetels voor Big en geen voor Small'. Je zou kunnen stellen dat de methode D'Hondt een manier is om de prijs te vinden waarmee je met Jefferson de zetels kunt verdelen. We kunnen intuïtief de volgende stelling aannemen:
+\begin{kader}{Stelling}{} De methode Jefferson en de methode D'Hondt leveren altijd dezelfde zetelverdeling op voor iedere kiesuitslag en ieder beschikbaar aantal zetels.\end{kader}
+Het bewijs per inductie op het aantal parlementszetels vind je als bijlage bij deze loep op de website van Uitwiskeling.
+
+Conclusie: of je systematisch de standaardprijs verlaagt tot alle zitjes (en ook niet teveel) verkocht geraken of een bieding per zetel organiseert: het komt op hetzelfde neer. In de literatuur wordt het onderscheid tussen beide methoden vaak niet gemaakt. 
+
+\subsubsection{De methode D'Hondt: uitgelegd via delerreeksen}
+De uitleg van de methode D'Hondt als bieding is didactisch interessant, omdat die inzicht geeft in wat er in elke ronde gebeurt en een idee geeft waarom D'Hondt een evenredig zetelverdelingssysteem is. Wiskundig gezien bestaat er echter een veel kortere weg om de methode D'Hondt toe te passen. Het is deze manier die je dan ook in de literatuur tegenkomt en ook weleens aangeduid wordt als een \textit{methode van grootste quotiënten}. Stel dat er $n$ beschikbare zetels te verdelen zijn. Deel het stemmenaantal van elke partij achtereenvolgens door 1,2,3,$\ldots, n$. De quotiënten die deze delingen opleveren, worden van groot naar klein gesorteerd. De grootste $n$ quotiënten leveren een zetel op.
+
+We passen dit opnieuw toe op het voorbeeld van Fantasia: 
+
+\begin{tabel}
+		\begin{tabular}{crrrrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Deler} & \tableheader{Giant} & \tableheader{Big} & \tableheader{Middle} & \tableheader{Small} \\ 
+			\hlinethick
+			1&\textbf{3000} (1) & \textbf{2220} (2)  & \textbf{1730} (3) & {\color{orange}1050}  \\
+2& \textbf{1500} (4) & \textbf{{\color{cyan}1110}} (5)  & 865   & 525 \\
+3&1000 & 740   & 576,7 & 350 \\
+4&750  & 555 & 432,5   & 262,5 \\
+5&600  & 444   & 346   & 210 \\
+			\hlinethick
+		\end{tabular}
+		\caption{De methode D'Hondt toegepast op Fantasie via grootste quotiënten}\label{tab:dhondt2}
+\end{tabel}
+Je ziet dat als je de grootste 5 quotiënten van groot naar klein sorteert (tussen haakjes in \autoref{tab:dhondt2}), je dezelfde zetelverdeling krijgt. Uiteraard worden de zetels in dezelfde volgorde en aan dezelfde prijs verdeeld als tijdens de bieding. Het {\color{cyan}5de} en {\color{orange}6de} hoogste quotiënt levert het prijsinterval op waarmee Jefferson dezelfde verdeling van 5 zetels geeft.
+
+Hoewel Jefferson en D'Hondt dezelfde zetelverdeling opleveren, heeft de berekeningswijze van D'Hondt wel enkele voordelen: doordat je geen prijs moet gokken, kun je met één eenvoudig algoritme de zetelverdeling maken. Dat was vooral handig in telbureaus in het pre-computertijdperk. Daarnaast geeft D'Hondt, in tegenstelling tot Jefferson, ook meteen de volgorde aan waarin de zetels verdeeld worden. Dat wordt politiek bijvoorbeeld  gebruikt om de ministerposten in een regering te verdelen: het aantal stemmen van elke meerderheidspartij wordt gebruikt om te bepalen op hoeveel ministerposten elke partij recht heeft met D'Hondt en in deze volgorde kiest elke partij zijn bevoegdheden (bv. minister-president, minister van onderwijs,...). 
+
+\subsubsection{Geschiedenis en gebruik}
+$\;$\\
+Victor D'Hondt was een Gentse jurist en wiskundige (1841-1901). In 1872 was hij politicus voor de Katholieke Partij. 
+\afbeelding[3.3cm]{img/victordhondt.jpg}{Victor D'Hondt (1841-1901)}{dhont}
+Parlementsverkiezingen in België werden toen via het meerderheidstelsel verdeeld in arrondissementen: een partij die de meeste stemmen haalde in een arrondissement, won alle zetels van dit arrondissement (zoals de leerlingen die 5 zetels aan Giant gaven in Fantasia). In het arrondissement Gent ten tijde van Victor D'Hondt legden de katholieken het systematisch af tegen de liberalen. Dat meerderheidsstelsel vond hij onrechtvaardig en hij begon dan ook campagne te voeren voor evenredige vertegenwoordiging. Vanaf 1878 begon hij pamfletachtige boeken te publiceren over manieren om zetels proportioneel te verdelen. In 1882 publiceerde hij het erg lezenswaardige boekje `Système pratique et raisonné de représentation proportionnelle' waarin hij aan de hand van het rekenen met verhoudingen uitlegt hoe zo'n rechtvaardige zetelverdeling er volgens hem uitziet. In dat boekje beschrijft hij -- op een gelijkaardige manier als in deze loep -- de methode van Jefferson, bij wie hij wellicht de mosterd heeft gehaald. Hij beschrijft ook hoe de Belgische verkiezingen er praktisch moeten uitzien als men deze methode wil gebruiken. 
+
+De methode D'Hondt zoals we die vandaag kennen met z'n delerreeks $1,2,\ldots,n$ en het in volgorde plaatsen van de grootste $n$ quotiënten verschijnt voor het eerst in zijn publicatie \textit{Exposé du système pratique de représentation proportionnelle} uit 1885, waarin hij doorheeft dat de methode Jefferson op deze manier verkort kan worden uitgevoerd. Beide boeken zijn ingescand door en beschikbaar op Google Boeken. Ze zijn erg toegankelijk geschreven, ook voor leerlingen die een mondje Frans begrijpen. 
+
+In 1885 wordt D'Hondt benoemd als hoogleraar burgerlijk recht aan de Universiteit Gent. Vijf jaar later zal hij zich ook door iets anders laten opmerken: in 1890 was hij één van de eerste professoren die college in het Nederlands gaf.
+
+Door zijn volgehouden campagne voor een evenredig kiesstelsel, werden in 1900 voor het eerst Belgische parlementsverkiezingen gehouden met zijn systeem. Het waren de allereerste verkiezingen in Europa met evenredige vertegenwoordiging. Na deze eerste Belgische verkiezingen kreeg de methode D'Hondt wereldwijd navolging. Landen van Argentinië tot Turkije begonnen het te gebruiken om verkiezingsuitslagen om te zetten in zetels. De methode D'Hondt is tot op de dag van vandaag met grote voorsprong 's wereld meest gebruikte systeem om kiesuitslagen om te zetten in parlementszetels en is daardoor een belangrijk, maar haast vergeten Belgisch exportproduct. Een kleine randopmerking wel: hoewel de Belgische parlementsverkiezingen in 1900 de eerste waren met evenredige vertegenwoordiging, zijn het geen verkiezingen zoals vandaag: het algemeen meervoudig mannenstemrecht was nog van kracht. Dat betekende dat alleen mannen vanaf 25 jaar konden stemmen en dat bepaalde groepen (eigenaars van onroerende goederen, houders van een diploma hoger onderwijs,...) meer dan één stem hadden. Het algemeen enkelvoudig stemrecht voor mannen werd pas van kracht na de Eerste Wereldoorlog in 1918, dat elke man één stem gaf. Voor het vrouwenstemrecht was het wachten tot 1948.
+
+Een jaar na de verkiezingen van 1900 zal Victor D'Hondt op 59-jarige leeftijd overlijden. In België gebruiken we de methode D'Hondt voor alle verkiezingen behalve de gemeenteraadsverkiezingen (zie verder).
+\end{multicols}
+
+\begin{lesactiviteit}{Verkiezingen voor het Vlaams Parlement in 2019 (2)}
+We keren nog eens terug naar de vorige lesactiviteit met de kiesuitslag van provincie Antwerpen voor het Vlaams Parlement in 2019, nu met onze kennis van de methode D'Hondt.
+\begin{vraagenantwoord}
+    \vraag{Bereken de zetelverdeling in het Vlaams Parlement voor provincie Antwerpen in 2019.}
+\antwoord{Hiervoor moeten we de methode D'Hondt toepassen, die dezelfde verdeling geeft als de methode Jefferson: \textbf{N-VA: $12$}, Vlaams Belang: $6$, \textbf{CD\&V: $4$}, \textbf{Groen: $4$}, Open Vld: $3$, sp.a: $2$ en PVDA: $2$.}
+\vraag{In welke volgorde werden de restzetels verdeeld? Welke partij heeft net een zetel gemist, m.a.w.: wie zou de 34ste zetel binnenhalen als die er was?}
+\antwoord{Hiervoor is het interessant om de methode D'Hondt als methode van grootste quotiënten toe te passen, zoals in de volgende tabel. De methode D'Hondt geeft immers prima aan in welke volgorde elke zetel is toegekend (= de rondes bij de bieding). Vanaf zetel $30$ duikt de prijs per zetel onder de standaardprijs van $33~ 634,48$ stemmen/zetel. Dat is dus de eerste restzetel. Hij ging naar N-VA, de tweede restzetel (nr. $31$) ging naar CD\&V, de derde (nr. $32$) naar Groen en de vierde en laatste restzetel (nr. $33$) opnieuw naar N-VA. Het $34$e grootste quotiënt was van sp.a ($30~037,7$) die op de valreep een restzetel miste. Waren er $34$ zetels te verdelen geweest, dan haalde sp.a die bijkomende zetel binnen.}
+\\
+\noindent\textit{Voor de volgende vragen veronderstellen we dat de leerlingen onderstaande tabel voor zich hebben.}
+\begin{tabel}	\resizebox{\textwidth}{!}{\begin{tabular}{llllllll}
+\hlinethick
+\tableheader{} & \tableheader{N-VA}            	 & \tableheader{Vlaams Belang}   		& \tableheader{CD\&V}   				& \tableheader{Groen}   			& \tableheader{Open Vld} 			& \tableheader{sp.a} 			& \tableheader{PVDA} \\
+1 & \textbf{361 403,0} (1) 	& \textbf{209 738,0} (2) 	& \textbf{129 843,0} (4) & \textbf{126 988,0} (5) & \textbf{116 020,0} (7) & \textbf{90 113,0}  (10) & \textbf{75 833,0} (11) \\
+2 & \textbf{180 701,5} (3) 	& \textbf{104 869,0} (8) 	& \textbf{64 921,5} (14) & \textbf{63 494,0}  (15) & \textbf{58 010,0}  (17) & \textbf{45056,5} (21) & \textbf{37 916,5} (27)\\
+3 & \textbf{120 467,7} (6) 	& \textbf{69 912,7}  (13) 	& \textbf{43 281,0} (22) & \textbf{42 329,3}  (23) & \textbf{38 673,3}  (26) & {\color{orange}30 037,7}          & 25 277,7          \\
+4     & \textbf{90 350,8} (9)	& \textbf{52 434,5} (18) & \textbf{32 460,8} (31) &\textbf{31 747,0} (32) & 29 005,0  &       &      \\
+5     & \textbf{72 280,6} (12)	& \textbf{41 947,6} (24) & 25 968,6      &    25 397,6
+     &          &       &      \\
+6     & \textbf{60 233,8} (16) & \textbf{34 956,3} (29) 	&         &         &          &       &      \\
+7     & \textbf{51 629,0} (19) & 29 962,6          &         &         &          &       &      \\
+8     & \textbf{45 175,4} (20) &                  &         &         &          &       &      \\
+9     & \textbf{40 155,9} (25) &                  &         &         &          &       &      \\
+10    & \textbf{36 140,3} (28) &                  &         &         &          &       &      \\
+11    & \textbf{32 854,8} (30) &                  &         &         &          &       &      \\
+12    & \textbf{{\color{cyan}30 116,9}} (33) &                  &         &         &          &       &      \\
+13    & 27 800,2          &                  &         &         &          &       &    \\ \hlinethick
+\end{tabular}}
+\end{tabel}	
+\vraag{Hoeveel stemmen kwam sp.a tekort voor een derde zetel?}
+\antwoord{Hiervoor kun je ofwel trial-and-error proberen, ofwel kijk je naar de kiesdeler: $30~116,9$ stemmen/zetel is de prijs waarmee de laatste zetel (33) aan N-VA is toebedeeld. Voor een derde zetel kon sp.a $30~ 037,7$ stemmen/zetel neerleggen dus kwam het in die laatste ronde $30~ 116,9-30~037,7 = 79,2$ stemmen/zetel te kort. Om in die ronde meer te hebben dan $79,2$ stemmen moet sp.a over $79,2\cdot 3 = 237,6$ stemmen geraken. Om de laatste zetel als sp.a te verwerven, moesten ze minstens  $238$ stemmen extra halen, wat ten koste zou gaan van een zetel voor N-VA.\\ Sommige lezers merken misschien op dat die $238$ stemmen wel ergens vandaan moeten komen en wellicht stemmenverlies betekenen voor andere partijen: dat klopt, dit antwoord gaat uit van de hypothetische situatie dat de stemmenaantallen van de andere partijen constant blijven. Daarnaast zullen er ook verschuivingen zijn in de volgorde waarin de zetels worden toegekend, maar voor de aantallen maakt dat niet uit. Ook de volgende twee vragen gaan van deze hypothese uit. }
+\vraag{Hoeveel stemmen had N-VA minstens extra moeten halen om 13 in plaats van 12 zetels binnen te halen?}
+\antwoord{Een mogelijkheid is om via trial-and-error stemmen bij de N-VA te tellen en te kijken bij welk minimum aantal extra stemmen er $13$ zetels gehaald worden. Toch kan het ook rechtstreeks vanuit de bovenstaande tabel: N-VA heeft de $33$ste en laatste zetel al binnengehaald. Je kunt voor deze vraag dus niet rekenen met de kiesdeler, want die prijs kan N-VA al betalen. Om het minimum aantal stemmen te bepalen dat N-VA nodig heeft voor een $13$e zetel, moeten we daarom kijken op wie de N-VA die $13$e zetel het goedkoopst mogelijk zou moeten veroveren met die extra stemmen. Dat blijkt Groen te zijn: de voorlaatste zetel (nr. $32$) werd aan Groen verdeeld aan een prijs van $31 747,0$ stemmen/zetel. Met hun huidig stemmenaantal heeft N-VA voor een $13$de zetel $27~800,2$ stemmen/zetel veil. Dat zullen er dus $31~747,0 - 27~800,2 = 3~946,8$ stemmen/zetel meer moeten zijn. Terugrekenen en naar boven afronden levert: $3~946,8\cdot13 = 51~308,4$ stemmen. De N-VA zou dus minstens $51~309$ extra stemmen nodig hebben voor nog een extra zetel, waarbij Groen een zetel zou verliezen. Merk op dat dit een veel hoger stemmenaantal is dan de kiesdeler, maar dat is logisch omdat N-VA al twee restzetels had verworven en dus al wat `boven zijn stand' leeft in de werkelijke zetelverdeling. Om dan nóg een extra zetel te veroveren, heb je dus veel meer stemmen nodig dan de kiesdeler.}
+
+\vraag{Hoeveel stemmen kwam DierAnimal te kort voor een zetel?}
+\antwoord{Het is verleidelijk om nu vanuit de kiesdeler te vertrekken: $30~116,9-9~414 = 20~702,9$ en naar boven af te ronden: $20~703$ stemmen kwam DierAnimal tekort voor één zetel. Dat klopt echter niet door de kiesdrempel. Om de kiesdrempel te halen, moet DierAnimal op z'n minst $5$\% van de geldige stemmen halen: $0,05\cdot1~135~931 = 56~797$ stemmen is het minimum aantal stemmen om mee te mogen doen aan de zetelverdeling. DierAnimal kwam dus $56~797-9~414 = 47~383$ stemmen te kort voor één zetel. Dat is genoeg voor een zetel, want het ligt ruimschoots boven de kiesdeler.}
+
+\vraag{Bekijk nog eens de kiesuitslag van de provincie Antwerpen uit de vorige lesactiviteit. Zelfs mocht België geen kiesdrempel kennen, zou de zetelverdeling gelijk zijn gebleven. Een ervaren oog kan dit `op het zicht' zien. Weet jij waarom?}
+\antwoord{Ook als er geen wettelijk vastgelegde kiesdrempel is, kent een parlementsverkiezing altijd een `natuurlijke' kiesdrempel die iets kleiner is dan 1 gedeeld door het aantal beschikbare zetels. In provincie Antwerpen ligt die natuurlijke kiesdrempel dus iets lager dan $1/33 \approx 3\%$. Zelfs zonder kiesdrempel, zouden partijen dus toch in de buurt van de $3$\% van de stemmen moeten komen om minstens $1$ zetel binnen te halen. Dat deed geen enkele partij in deze provincie die de wettelijke kiesdrempel van $5$\% niet haalde. De exacte natuurlijke kiesdrempel hangt van de uiteindelijke kiesuitslag af. Je kunt hem het best benaderen door de kiesdeler te delen door het aantal geldige stemmen, voor provincie Antwerpen voor het Vlaams Parlement in 2019: $30~116/1~135~931 = 2,65\%$. }
+\end{vraagenantwoord}
+\end{lesactiviteit}
+
+\begin{multicols}{2}
+\subsubsection{Methode Sainte-Laguë}
+We weten dat de methode D'Hondt een andere berekeningswijze is voor de methode Jefferson. Maar kunnen alle balansmethoden (Jefferson, Webster, Adams) omgezet worden in methoden van grootste quotiënten? Dat kan!
+
+Om met de methode Jefferson 1 zetel te halen, moet een partij bij deling van zijn stemmenaandeel door de uiteindelijke prijs een quotiënt in het interval $[1,2[$ geven, voor 2 zetels een quotiënt in het interval $[2,3[,\ldots,$ voor $n$ een quotiënt in het interval $[n,n+1[$. Je ziet dat de beginpunten van elk interval overeenkomen met de delerreeks van D'Hondt: 1,2,$\ldots,n$.
+
+Met dezelfde redenering kun je een delerreeks voor de methode van Webster maken. Om met Webster 1 zetel te halen moet een partij bij deling door een prijs een quotiënt in het interval $[0,5;1,5[$ bekomen, voor 2 zetels: $[1,5;2,5[$, voor $n$-zetels: $[n-0,5;n+0,5[$. We verkrijgen bijgevolg de delerreeks: $0,5; 1,5; 2,5;$\ldots$;n-0,5$. Uiteraard leveren veelvouden van delerreeksen dezelfde zetelverdeling op, dus deze delerreeks is equivalent aan zijn verdubbeling: $1, 3, 5,\ldots, 2n-1$. We noemen dit de methode van Sainte-Laguë, die dus hetzelfde resultaat geeft als de methode van Webster en soms ook weleens de `methode van de oneven getallen' wordt genoemd. 
+
+André Saint-Laguë was een Franse wiskundige die deze methode (delen door 1,3,5,... en vervolgens aan de $n$ grootste quotiënten een zetel toekennen) uitvond in 1910. Het is daarbij zeker dat hij niet op de hoogte was van de methode van Webster (uit 1832), die in Europa onbekend bleef tot na de Tweede Wereldoorlog. Sainte-Laguë vond  de vertekening van de methode D'Hondt te groot. Hij betoogde dat een kiessysteem waarvan stemgerechtigden weten dat het een grotere partij bevoordeelt (door hen gemakkelijker restzetels toe te kennen en dus meer macht), \textit{strategisch stemmen} in de hand werkt: mensen zijn wellicht wat minder geneigd om op kleinere partijen te gaan stemmen. Hij toonde ook wiskundig aan dat zijn methode geen systematische vertekening heeft naar grote of kleine partijen. Hij bewees dat zijn methode 
+de kwadratische afstand minimaliseert tussen het stemmenaandeel en het zetelaandeel van een partij. De methode van Sainte-Laguë is wereldwijd iets minder populair dan de methode D'Hondt, maar wordt onder meer in enkele Scandinavische landen gebruikt om kiesuitslagen om te zetten in parlementszetels.
+\afbeelding[3.1cm]{img/saintelague.jpg}{André Saint-Laguë (1882-1950)}{saintlag}
+
+Kun je ook een delerreeks maken voor de methode Adams? Dat kan, al is het startgetal nogal vreemd. Om één zetel binnen te halen met Adams, moet een partij bij deling door een prijs een quotiënt geven van $]0,1]$, voor een tweede zetel $]1,2]$,... Je verkrijgt zo de delerreeks $0,00+, 1, 2, 3,\ldots$. Het eerste getal in de delerreeks mag oneindig dicht bij nul zitten, maar het volstaat dat de factor $0,00+$ voldoende dicht bij 0 ligt om ervoor te zorgen dat het quotiënt bij de kleinste partij (met stemmen) groter is dan het stemmenaantal van de grootste partij.
+
+
+\subsection{Nadenken over evenredigheid: paradoxen en de stelling van Balinski-Young}
+We hebben nu twee grote families van zetelverdelingssystemen gezien: enerzijds de delersmethoden (Jefferson/D'Hondt, Webster/Sainte-Laguë, Adams), anderzijds de methode van grootste overschotten. We hebben het al over volle zetels gehad, in de lesactiviteit hebben we al eens gereflecteerd over de vertekeningen die de verschillende methoden opleveren in de context van de Vlaamse parlementsverkiezingen in de provincie Antwerpen. Toch bleven we redelijk vaag over het begrip evenredigheid. In dit deel van de loep zullen we zien dat evenredigheid een best subtiel, filosofisch fenomeen is, dat door de verschillende methoden anders wordt benaderd. Daarnaast zullen we met de stelling van Balinski-Young zien dat we keuzes zullen moeten maken: niet alles wat we intuïtief zouden willen van een evenredig systeem, kan tegelijkertijd voldaan zijn.
+
+Eén basisvereiste voor een evenredig zetelverdelingssysteem is alvast: als een kiesuitslag zich perfect laat vertalen in gehele zetels (m.a.w. een deling door de standaardprijs levert alleen gehele getallen op), dan moet een evenredig zetelverdelingssysteem deze uitslag ook opleveren. Daarnaast verwachten we ook dat het verschil tussen het stemmenaandeel van een partij en het aandeel zetels kleiner en kleiner wordt naarmate het aantal beschikbare zetels groter en groter wordt. Alle tot nu toe geziene methoden voldoen aan deze vereisten.
+
+\subsubsection{Quotaregel}
+We vermeldden al het begrip volle zetels en intuïtief zouden we verwachten dat een evenredig systeem elke partij minstens zijn volle zetels toekent. Anderzijds zou je ook verwachten dat een partij maximaal één restzetel kan binnenhalen. Meer dan één restzetel levert immers een vertekening van het zetelaandeel ten opzichte van het stemmenaandeel op. Dit noemen we de quotaregel: wanneer we het stemmenaantal van een partij delen door de standaardprijs, dan moet het aantal zetels dat die partij haalt de gehele afronding naar beneden of naar boven van dat getal zijn. Bijvoorbeeld: als een partij volgens deze deling 8,46 van de 10 beschikbare zetels verdient, dan zegt de quotaregel dat die partij ofwel 8 ofwel 9 zetels kan halen, maar niet minder of meer. Toegepast op Fantasia zijn de minima en maxima voor elke partij volgens de quotaregel weergegeven in \autoref{fanquota}.
+
+\begin{tabel}
+		\begin{tabular}{C{2.3cm}C{1.5cm}C{1.cm}C{1.cm}C{1.cm} } % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Partij} & \tableheader{/1600} & \tableheader{Min. zetels} & \tableheader{Max. zetels} \\ 
+			\hlinethick
+			\includegraphics[height=13px]{img/giant.png}
+            3000 stemmen  & 1,88 & 1 & 2 \\
+			\begin{tabular}[x]{@{}c@{}}\includegraphics[height=13px]{img/big.png}\\2220 stemmen\end{tabular} & 1,388 & 1 & 2\\
+			\includegraphics[height=13px]{img/middle.png}  1730 stemmen & 1,08 & 1 & 2  \\
+   		\includegraphics[height=13px]{img/small.png}  1050 stemmen & 0,66 & 0 & 1\\
+
+			\hlinethick
+		\end{tabular}
+		\caption{De quotaregel toegepast op Fantasia}\label{fanquota}
+\end{tabel}
+
+In de vorige lesactiviteiten zagen we al een overtreding van de quotaregel: wanneer we het aantal stemmen voor N-VA in de provincie Antwerpen voor de Vlaamse verkiezingen in 2019 delen door de standaardprijs, verkrijgen we dat N-VA 10,75 zetels van de 33 beschikbare zetels verdient. De quotaregel stelt nu dat N-VA ofwel 10 of 11 zetels kan behalen. Met de Jefferson/D'Hondt-methode haalt N-VA echter 12 zetels. De methode Jefferson/D'Hondt houdt zich in het algemeen dus niet aan de quotaregel. Ze zal die echter enkel aan de maximumkant schenden: grotere partijen kunnen desgevellend meer dan één restzetel binnenhalen, maar alle partijen halen wel altijd minstens hun volle zetels binnen. Dat komt omdat de uiteindelijke prijs bij de methode van Jefferson/D'Hondt kleiner of gelijk is aan de standaardprijs. Bij zo'n lagere prijs dan de standaardprijs kunnen alle partijen zeker hun volle zetels betalen. De methode van Adams schendt de quotaregel ook, maar aan de minimumkant: neem bv. een verkiezing van 3 zetels met één partij A die 100 stemmen haalt en twee partijen B en C die elk 1 stem halen. De methode van Adams zal elke partij 1 zetel toekennen, terwijl de quotaregel voorschrijft dat partij A minstens 2 zetels moet halen. De methode van Adams garandeert dus niet dat partijen hun volle zetels binnenhalen. Ook dit kun je zien aan het algoritme zelf: Adams rondt naar boven af. Om een prijs te vinden die alle zetels verdeelt, zal de prijs dus hoger of gelijk zijn aan de standaardprijs. Een hogere prijs dan de standaardprijs garandeert niet dat iedereen zijn volle zetels nog kan betalen.
+
+Methoden van grootste overschotten zijn zo ontworpen dat ze de quotaregel ten alle tijden respecteren: ze kennen elke partij eerst hun volle zetels toe (de gehele afronding naar beneden) en verdelen vervolgens maximaal 1 restzetel per partij, dus maximaal zijn gehele afronding naar boven.
+
+Hoe zit het met de methode van Webster/Sainte-Laguë? We weten al dat deze delersmethode geen inherente vertekening heeft naar grote dan wel kleine partijen. Toch schendt ze ook af en toe de quotaregel, zoals het fictieve voorbeeld in \autoref{fictief} laat zien. Hier schendt Webster de quotaregel door partij D niet al zijn volle zetels toe te kennen. Webster kan zowel aan de minimumkant als de maximumkant de quotaregel schenden, wat opnieuw voortkomt uit de methode: de prijs bij Webster kan zowel hoger als lager uitvallen dan de de standaardprijs. 
+
+\begin{tabel}
+		\begin{tabular}{crrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Partij} & \tableheader{Bevolking} &  \tableheader{Quota} & \tableheader{Zetels Webster} \\ 
+			\hlinethick
+A & 70 653 & 1,552 & 2 \\
+B & 117 404 & 2,579 & 3 \\
+C & 210 923 & 4,633 & 5 \\
+D & 1 194 456 & 26,236 & 25   \\ \hlinethick
+   \rowcolor{\rubriekkleur!50} \textbf{Totaal} & \textbf{1 593 436} &   \textbf{35} & \textbf{35} \\
+
+   
+
+			\hlinethick
+		\end{tabular}
+		\caption{Voorbeeld waarin Webster/Sainte-Laguë niet binnen de quota blijft}\label{fictief}
+\end{tabel}
+
+Toch is er een groot verschil in hoe vaak delersmethoden in de praktijk de quotaregel schenden: op basis van simulaties met historische data van het Huis van Afgevaardigden, blijkt dat Jefferson/D'Hondt en Adams bijna altijd de quotaregel schenden. Webster/Sainte-Laguë daarentegen doet dat met een kans die lager ligt dan 0,001\%. Conclusie: geen enkele delersmethode houdt zich aan de quotaregel, maar Webster wel heel vaak.
+
+\subsubsection{Alabamaparadox}
+In 1880 merkte C.W. Seaton van het Amerikaanse censusbureau iets bizars op. Toen hij op basis van de volkstelling van 1880 de beschikbare zetels in het Huis van Afgevaardigden over de staten wou verdelen, merkte hij op dat Alabama 8 zetels zou krijgen wanneer het Huis 299 afgevaardigden zou tellen, maar slechts 7 in een Huis van 300 afgevaardigden. 
+
+De Alabamaparadox is dan ook het fenomeen dat kieskringen een zetel verliezen als het aantal beschikbare zetels in het parlement naar omhoog gaat. 
+\begin{tabel}
+		\resizebox{\textwidth}{!}{\begin{tabular}{C{0.9cm}C{1.5cm}C{1.cm}C{1.cm}C{1.cm}C{1.cm} } % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick 
+   			\tableheader{} & \tableheader{} & \multicolumn{2}{c}{\tableheader{10 zetels}} &  \multicolumn{2}{c}{\tableheader{11 zetels}} \\ 
+
+			\tableheader{Staat} & \tableheader{Bevolking} & \tableheader{Quota} & \tableheader{Zetels} &  \tableheader{Quota} & \tableheader{Zetels} \\ 
+			\hlinethick
+			A & 6 000 & 4,3 & 4 & 4,7 & 5\\
+   		  B & 6 000 & 4,3 & 4 & 4,7 & 5\\
+			C & 2 000 & 1,4 & \textbf{2} & 1,6 & \textbf{1}\\ \hline
+   \rowcolor{\rubriekkleur!50} \textbf{Totaal} & \textbf{14 000} & 10  & \textbf{10} &  11 & \textbf{11} \\
+
+\hlinethick
+		\end{tabular}}
+		\caption{De Alabamaparadox bij de methode van grootste overschotten}\label{tab:alabama}
+\end{tabel}
+\end{multicols} 
+\vspace{-3mm}
+\afbeelding[11cm]{img/UWjanuari24(zetelweg).jpg}{}{}
+\vspace{-15mm}
+\begin{multicols}{2}
+Een eenvoudig voorbeeld is uitgewerkt in \autoref{tab:alabama}: er worden onder 3 staten met respectievelijk 6000, 6000 en 2000 inwoners 10 zetels verdeeld via de methode van de grootste overschotten. Dat levert een zetelverdeling op van 4, 4 en 2. Indien er nu 11 i.p.v. 10 zetels zouden verdeeld worden krijgen we een zetelverdeling van 5, 5 en 1. Ondanks dat er meer zetels te verdelen zijn, moet staat C een zetel inleveren!
+
+Uit het voorbeeld weten we dat de methode van grootste overschotten kan leiden tot de Alabamaparadox. Delersmethoden zijn vrij van de Alabamaparadox: als het totaal aantal zetels stijgt terwijl het inwonersaantal gelijk blijft, zal de prijs dalen (ongeacht Jefferson, Websters, Adams). Maar een prijsdaling betekent dat kieskringen al hun zetels voor de stijging nog steeds kunnen betalen, en mogelijk zelfs zetels kunnen bijkopen. Ook wanneer je delersmethoden als methoden van grootste quotiënten ziet, is dit duidelijk: uiteindelijk komt elke delersmethode erop neer om bij $n$ beschikbare zetels, de $n$ grootste quotiënten een zetel toe te wijzen. Door $n+1$ zetels te verdelen, ga je de $n+1$ grootste quotiënten een zetel toewijzen, maar dat verandert uiteraard de volgorde van de $n$ eerste quotiënten niet.
+
+Voor het opdelen van een parlement in kieskringen is de Alabamaparadox meestal onaanvaardbaar. Denk bijvoorbeeld aan het Europees parlement, waarbij geen enkel land zou akkoord gaan dat het een verkiesbare zetel zou moeten opgeven in de volgende Europese verkiezingen als het totaal aantal Europarlementariërs stijgt (en er geen landen zijn toegetreden). 
+
+\subsubsection{Populatieparadox}
+Wanneer we een parlement in kieskringen verdelen, dan verwachten we dat bij relatieve wijzigingen in bevolkingsaantallen, ook het aantal verkiesbare zetels op dezelfde wijze mee evolueert (bij een constant aaantal zetels). Als staat A relatief sterker groeit dan staat B, dan is het een absurd idee dat A verkiesbare zetels zou moeten afstaan aan B.  
+
+Een fictief voorbeeld is uitgewerkt in \autoref{tab:populatie}. In de staten A, B en C wonen in totaal 1000 mensen. Het parlement heeft 10 zetels. Bij een eerste volkstelling telt staat A 554 inwoners, staat B 290 inwoners en staat C 156 inwoners. Dat levert met de methode van grootste overschotten respectievelijk 5, 3 en 2 verkiesbare zetels op in het parlement. Na enige tijd zijn sommige mensen verhuisd: in totaal hebben de drie staten samen nog steeds 1000 inwoners, maar staat A steeg naar 566 inwoners (een procentuele stijging van 2,2\%), staat B daalde naar 270 inwoners (een procentuele daling van 6,9\%) en staat C groeide aan tot 164 inwoners (een procentuele stijging van 5,1\%). Staat C was relatief gezien de staat die het snelst groeide. Gebruiken we de nieuwe bevolkingscijfers om de verkiesbare 10 zetels te verdelen, dan verliest staat C echter een zetel aan staat A met de methode van grootste overschotten!
+\begin{tabel}\resizebox{\textwidth}{!}{\begin{tabular}{lrrrrl } % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick 
+   		\tableheader{Staat} & \tableheader{Bev. (I)} & \tableheader{Zetels (I)} & \tableheader{Bev. (II)} &  \tableheader{Zetels (II)} & \tableheader{\%} \\ 
+   A & 554 & 5 & 566 & 6 & +2,2\%\\
+B & 290 & 3 & 270 & 3 & -6,9\% \\
+C & 156 & 2 & 164 & 1 & +5,1\%\\
+\hline
+   \rowcolor{\rubriekkleur!50} \textbf{Totaal} & \textbf{1000} &  \textbf{10} & \textbf{1000} & \textbf{10} & \textbf{0\%} \\
+
+\hlinethick
+		\end{tabular}}
+		\caption{De populatieparadox bij de methode van grootste overschrotten}\label{tab:populatie}
+\end{tabel}
+
+Opnieuw is uit het voorbeeld duidelijk dat methoden van grootste overschotten de populatieparadox kunnen vertonen. Opnieuw zijn delersmethoden vrij van deze paradox, wat we nu bewijzen.
+Stel dat een staat A \textit{relatief} sterker gegroeid is dan een staat B. Noem de oude bevolkingsaantallen van staat A en staat B, $p_A^o$ en $p_B^o$ en de nieuwe bevolkingsaantallen $p_A^n$ en $p_B^n$. We weten dus dat $\frac{p_A^n}{p_A^o} > \frac{p_B^n}{p_B^o}$. Stel dat staat B met zijn nieuw bevolkingsaantal $p_B^n$ een zetel bijwint. Dat betekent dat het quotiënt van $p_B^n$ en de nieuwe prijs $d^n$ na afronding (afhankelijk van de gebruikte methode), groter geworden is. Dat kan alleen maar als ook dat quotiënt zelf groter geworden is, met andere worden: $\frac{p_B^n}{d^n} > \frac{p_B^o}{d^o}$ (met $d^o$ de oude prijs) . We kunnen nu ook aantonen dat ook het nieuwe quotiënt $\frac{p_A^n}{d^n}$ van staat A groter zal zijn dan het oude quotiënt $\frac{p_A^o}{d^o}$:
+\begin{equation*}
+    &\frac{p_A^n}{p_A^o} > \frac{p_B^n}{p_B^o}\\
+    \Leftrightarrow &\frac{p_A^n}{p_A^o\cdot d^n } > \frac{p_B^n}{p_B^o \cdot d^n}\\
+        \Leftrightarrow &\frac{p_A^n}{d^n } > \frac{p_B^n \cdot p_A^o}{d^n \cdot p_B^o}
+\end{equation*}
+Nu geldt:
+\begin{align*}
+\frac{p_A^n}{d^n } &> \frac{p_B^n \cdot p_A^o}{d^n \cdot p_B^o}\\
+ & > \frac{p_B^o \cdot p_A^o}{d^o \cdot p_B^o}\\
+ &= \frac{p_A^o}{d^o}\\
+\end{align*}
+Vermits $\frac{p_A^n}{d^n} > \frac{p_A^o}{d^o}$, kan staat A geen zetel hebben verloren, gezien zijn quotiënt ook gestegen is ten opzichte van het quotiënt met zijn oude bevolkingsaantal. Inderdaad, na het afronden met de gehanteerde methode van de gebruikte delersmethode, levert dat ofwel hetzelfde aantal zetels op als met het oude bevolkingsaantal, ofwel extra zetels, maar hoe dan ook geen zetelverlies.
+
+
+\subsubsection{De stelling van Balinksi-Young}
+We hebben nu enkele extra verlangens gezien voor een evenredig kiesstelsel: de quotaregel naleven en vrij zijn van de beschreven paradoxen. Toch kunnen al die verlangens niet tegelijkertijd voldaan zijn: zo is het onmogelijk om een zetelverdelingssysteem te ontwikkelen dat vrij is van de populatieparadox en altijd de quotaregel respecteert. Hoe dat komt? De kern van het probleem is dat het voor alle partijen forceren van de quotaregel heel anders uitpakt voor kleine dan voor grote partijen. Voor een partij met quota tussen 1 en 2 zetels, betekent 1 zetel extra een veel grotere shift in hun aandeel zetels dan voor een partij met quota tussen 40 en 41 zetels. Zeker voor het verdelen van verkiesbare zetels over kieskringen, is het voldoen aan de quotaregel niet helemaal compatibel met het principe van evenredigheid, omdat dit het speelveld van kleine kieskringen enorm beperkt, terwijl net daar de invloed van een extra zetel het grootst is.
+
+Kijk nog eens naar \autoref{fictief}: stel dat de quotaregel hier toch gerespecteerd dient te worden en staat D dus 26 zetels krijgt. Van welke staat je die 26ste zetel voor D ook haalt, het induceert de populatieparadox. Stel bv. dat je in het voorbeeld van \autoref{fictief} de 26ste zetel voor staat D, weghaalt van staat B, die nu 2 zetels heeft. Nu verhuizen er een aantal mensen van staten B en D naar de overige twee staten, zoals in \autoref{fanquota2}. Zowel Webster als de methode van grootste overschotten zullen met deze nieuwe bevolkingsaantallen nu 3 zetels aan B toekennen en 25 zetels aan D, maar dat is de populatiaparadox: hoewel D relatief gezien groter is dan B (relatief minder groter bevolkingsuitstroom: -3\% t.o.v. -2,8\%), moet D toch een zetel afstaan aan B. Net doordat Webster uitzonderlijk de quotaregel schendt, is het vrij van de populatieparadox. Gelijkaardige voorbeelden zoals \autoref{fanquota2} kunnen geconstrueerd worden om te tonen dat de populatieparadox zich voordoet, ongeacht of je de 26ste zetel voor staat D, weghaalt van staat A, B of C. 
+
+\begin{tabel}
+		\begin{tabular}{crrrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Staat} & \tableheader{Bev. (II)} & \tableheader{\%} & \tableheader{Quota} & \tableheader{Zetels} \\ 
+			\hlinethick
+A & 86 228 & +22\% & 1,894 & 2 \\
+B & 113 908 & -3\% &  2,502 & 3 \\
+C & 232 778 & +10\%& 5,113 & 5 \\
+D & 1 160 522 & -2,8\% & 25,491 & 25   \\ \hlinethick
+   \rowcolor{\rubriekkleur!50} \textbf{Totaal} & \textbf{1 593 436} &  0\% & \textbf{35} & \textbf{35} \\
+
+   
+
+			\hlinethick
+		\end{tabular}
+		\caption{De quotaregel respecteren leidt tot de populatieparadox}\label{fanquota2}
+\end{tabel}
+
+Balinksi en Young ontwikkelden ooit een methode die de quoatregel respecteert en vrij is van de Alabamapardox, maar niet van de overige twee paradoxen. We zitten dus met een dilemma: er is geen perfect zetelverdelingssysteem.
+Ofwel geven we de quotaregel op ofwel aanvaarden we sommige paradoxen:  dit is de stelling van Balinksi-Young.
+\end{multicols} 
+\vspace{-5mm}
+\afbeelding[12.cm]{img/UWjanuari24(zetelbij).jpg}{}{}
+\vspace{-15mm}
+\begin{multicols}{2}
+\begin{kader}{Stelling}{Balinski-Young}
+Er bestaat geen enkel zetelverdelingssyteem die gelijktijdig:
+\begin{itemize}
+    \item de quotaregel respecteert,
+ \item vrij is van de Alabama-paradox,
+  \item vrij is van de populatieparadox.
+\end{itemize}
+\end{kader}
+We weten dat van de behandelde methoden in deze loep:
+\begin{itemize}
+    \item De delersmethoden (Jefferson/D'Hondt, Webster/Sainte-Laguë, Adams) allen vrij zijn van de twee paradoxen, maar de quotaregel niet altijd respecteren.
+    \item De methode van grootste overschotten de quotaregel respecteert, maar alle paradoxen kan vertonen.
+\end{itemize}
+Kunnen we op basis van deze stelling nu zeggen welk compromis we het best sluiten? Een beetje wel: het feit dat de methode van grootste overschotten alle paradoxen vertoont, komt omdat die met de overgebleven rest werkt. Maar dat is een idee dat weinig te maken heeft met evenredigheid, omdat resten geen rekening houden met de relatieve grootte van partijen. Delersmethoden genieten dus altijd de voorkeur. Daarvan zijn er twee uitermate geschikt. Is het doel om parlementszetels te verdelen over kieskringen, dan heeft Webster/Sainte-Laguë de beste eigenschappen: het heeft geen vertekening naar grote dan wel kleine kieskringen en zal meestal de quotaregel respecteren. Is het doel om een kiesuitslag om te zetten in parlementszetels, dan komen zowel Webster/Sainte-Laguë als Jefferson/D'Hondt in beeld. Daarbij is Jefferson/D'Hondt iets gunstiger voor grotere partijen. In de context van verkiezingen is dat laatste niet zo heel verkeerd: de methode geeft de winnaars van de verkiezingen mogelijk een kleine voorsprong en het garandeert dat partijen al hun volle zetels binnenhalen. Partijen die de helft van de stemmen halen, krijgen zo ook altijd minstens de helft van de zetels, wat het vormen van een meerderheid altijd mogelijk maakt met de helft van de stemmen.
+
+\section{Welke politici geraken verkozen in de parlementen?}
+We hebben nu bepaald hoeveel zetels elke partij in elke kieskring haalt. Maar welke politici mogen nu zetelen in het parlement? Daarvoor wordt een systeem gebruikt dat op zich weinig te maken heeft met wiskunde: het is vooral een Belgisch compromis tussen democratie en particratie, waarbij partijen graag stevige invloed uitoefenen op wie er voor hen verkozen geraakt. Vermits het wel een relevante vraag is die leerlingen zeker zullen stellen en de loep onvolledig lijkt zonder deze informatie, gaan we erop in.
+
+Voor parlementsverkiezingen (zowel voor de Vlaamse, Federale als Europese verkiezingen) heb je voor elke verkiezing altijd de keuze. Zo kan je een lijststem (of kopstem) uitbrengen, dat is een stem voor de partij.  Hierbij ga je akkoord met de volgorde van de verkiesbare kandidaten op de lijst van die partij (zie optie 1 in \autoref{kieslijst}).
+\end{multicols}
+\afbeelding[10cm]{img/kieslijst.jpg}{Verschillende mogelijkheden om geldig te stemmen (Bron: \textit{Gazet van Antwerpen, 22 mei 2014)}.}{kieslijst}
+\begin{multicols}{2}
+Daarnaast kun je ook één of meerdere voorkeursstemmen geven. Als je een voorkeursstem geeft, kies je voor een specifieke persoon. Indien een politicus die laag op de lijst stond veel voorkeursstemmen kreeg, is het mogelijk dat die een zetel krijgt in de plaats van een politicus die hoger op de lijst stond. Op de dag van de verkiezingen kan je één kop- of lijststem uitbrengen of zoveel voorkeursstemmen als je wil, zolang je die geeft aan politici uit dezelfde partij. 
+
+Merk op dat je in België voor elke lijst eigenlijk twee deellijsten heb: eentje voor effectieve kandidaten, eentje voor opvolgers. De verkozen effectieve kandidaten mogen meteen zetelen. Als een effectieve kandidaat het mandaat niet opneemt of tijdens de legislatuur verzaakt aan het mandaat (bv. door minister te worden, familiale omstandigheden,$\ldots$), dan komen de opvolgers in het vizier.
+
+Om nu te bepalen wie verkozen geraakt, moet eerst het verkiesbaarheidscijfer van de partij worden berekend. Het verkiesbaarheidscijfer is het minimum aantal stemmen dat een kandidaat moet behalen om een zetel toegewezen te krijgen. 
+$$\text{Verkiesbaarheidscijfer =} \frac{\text{stemmen voor partij}}{\text{aantal zetels +1}}$$
+
+We nemen als voorbeeld het invullen van de zetels voor sp.a in kieskring Antwerpen voor het Vlaams Parlement in 2019. De sp.a haalde er twee zetels (zie lesactiviteiten) en de top 5 van kandidaten volgens voorkeursstemmen is weergegeven in \autoref{tab:spa}. 
+\begin{tabel}
+\begin{tabular}{rlr}
+\hlinethick
+\tableheader{Nr.} & \tableheader{Effectieven}    & \begin{tabular}[c]{@{}l@{}} \tableheader{Voorkeurs-}\\  \tableheader{stemmen}\end{tabular} \\
+1      & Caroline Genez & 24 630           \\
+4      & Maya Detiège   & 9 174            \\
+33     & Jinnih Beels   & 7 843            \\
+2      & Hannes Anaf    & 6 488             \\
+3      & Karim Bachar   & 5 737           \\
+\hlinethick
+ & \textbf{Totaal sp.a} & 90 113	\\
+  & \begin{tabular}[c]{@{}l@{}}\textbf{Lijststemmen}\\ \textbf{effectieven}\end{tabular} & 39 078\\
+  \hlinethick
+\end{tabular}
+\caption{Top 5 van effectieve kandidaten op de sp.a-lijst voor het Vlaams Parlement in 2019 in kieskring Antwerpen.}
+\label{tab:spa}
+\end{tabel}
+We krijgen een verkiesbaarheidscijfer van $90~113/(2+1)=30~038$. Geen enkele effectieve kandidaat haalt dit verkiesbaarheidscijfer, waardoor de lijststemmen in beeld komen. Voor de effectieve kandidaten zijn de lijststemmen, stemmen waarbij:
+\begin{enumerate}
+    \item alleen bovenaan de lijst is gestemd (optie 1 in \autoref{kieslijst}),
+    \item tegelijk bovenaan de lijst en uitsluitend voor kandidaat-opvolgers is gestemd (optie 3 in \autoref{kieslijst}),
+    \item uitsluitend voor kandidaat-opvolgers is gestemd (optie 4 in \autoref{kieslijst}).
+\end{enumerate}
+Voor de sp.a waren er $39~078$  dergelijke lijststemmen. De helft van dit aantal ($19~539$) wordt gebruikt om de stemmen van de kandidaten -- in volgorde van de lijst -- aan te vullen tot het verkiesbaarheidscijfer, wat we doen in \autoref{aanvullen}.
+
+\begin{tabel}
+\resizebox{\textwidth}{!}{\begin{tabular}{rllr}
+\hlinethick
+\tableheader{Nr.} & \tableheader{Effectieven}    & \begin{tabular}[c]{@{}l@{}} \tableheader{Voorkeursstemmen}\\  \tableheader{+ aanvulling}\end{tabular} & \begin{tabular}[c]{@{}l@{}} \tableheader{Rest}\\  \tableheader{vd pot}\end{tabular}   \\
+1      & \textbf{Caroline Genez} & \begin{tabular}[c]{@{}l@{}}24 630 + 5408\\ \textbf{= 30 038}\end{tabular}  &  14 131      \\
+2      &\textbf{Hannes Anaf}   & \begin{tabular}[c]{@{}l@{}}6 488  + 14 131\\ \textbf{= 20 619}\end{tabular}   & 0          \\
+4      & Maya Detiège   & 9 174      & 0     \\
+33     & Jinnih Beels   & 7 843       & 0      \\
+3      & Karim Bachar   & 5 737     & 0      \\
+\hlinethick
+\end{tabular}}
+\caption{De voorkeursstemmen worden in volgorde van de kandidatenlijst aangevuld met de halve pot lijststemmen tot het verkiesbaarheidscijfer}
+\label{aanvullen}
+\end{tabel}
+We zien dat uit het potje van de lijsstemmen de eerste twee kandidaten profijt halen: Caroline Gennez `haalt' het verkiesbaarheidscijfer en is als eerste effectieve verkozen, Hannes Anaf (tweede plaats) haalt het verkiesbaarheidscijfer niet, maar haalt na toevoeging van de lijsstemmen meer `stemmen' dan de populairdere kandidaten Maya Detiège en Jinnih Beels. Ondanks dat zij meer voorkeursstemmen hadden dan Hannes Anaf, geraken zij niet verkozen, bovendien is het halve potje lijsstemmen ook op na de eerste twee kandidaten. 
+
+Dit toont aan dat partijen dus een grote invloed hebben op hun verkozenen door hun plek op de lijst, wat niet door iedereen als erg democratisch wordt beschouwd.  Om het toch enigszins mogelijk te maken om als populaire kandidaat op een lagere plaats verkozen te geraken, wordt maar de helft van de lijststemmen gebruikt om het stemmenaantal van de eerste kandidaten aan te vullen, maar de discussie om de lijststemmen in zijn geheel af te schaffen, laait regelmatig op. Een gelijkaardig mechanisme wordt gebruikt voor het bepalen van de rangorde van de opvolgerslijst. Met de opvolgerslijst kunnen partijen nieuwe gezichten lanceren, maar ook dit mechanisme is niet onbesproken. Je zou ook één lijst kunnen maken en bij het afhaken van een verkozene, de zetel doorgeven aan de volgende kandidaat.
+
+\section{Gemeenteraadsverkiezingen: de methode Imperiali}
+\subsection{Zetels onevenredig verdelen}
+Het aantal gemeenteraadsleden hangt af van het inwonersaantal: een gemeente met minder dan 1000 inwoners heeft recht op 7 raadsleden (bv. Herstappe), een gemeente met meer dan 300 000 inwoners op 55 raadsleden (bv. Antwerpen). Onafhankelijk van het inwonersaantal, is het aantal raadsleden altijd oneven: dat maakt het handiger om bij stemmingen over punten knopen door te hakken. 
+
+Tot vorige eeuw was België een lappendeken van allerlei bijzonder kleine gemeenten. Teneinde werkbare coalities op de been te kunnen brengen in zulke kleine gemeenteraden, was men op zoek naar een kiessysteem dat grotere partijen -- in die tijd regelmatig de Katholieke partij -- zou bevoordelen. 
+\afbeelding[4.4cm]{img/imperiali.jpeg}{Pierre Imperiali (1874-1940)}{imperiali}
+
+De markies en senator Pierre Imperiali, wellicht niet helemaal toevallig van de Katholieke Partij, stelde in 1921 voor om de delerreeks van D'Hondt aan te passen naar 1; 1,5; 2; 2,5;... voor de gemeenteraadsverkiezingen (opnieuw leveren veelvouden van een delerreeks dezelfde zetelverdeling op, in de praktijk wordt vaak 2; 3; 4; 5;... gebruikt). De methode Imperiali was geboren. Het valt intuïtief met de biedmethode in te zien dat Imperiali erg voordelig is voor grote partijen: voor een tweede zetel kun je nog 2/3 van je stemmenaantal inzetten, voor een derde zetel nog de helft van je stemmenaantal. We passen deze delerreeks even toe op Fantasia in \autoref{imperiali}.
+\begin{tabel}
+		\begin{tabular}{crrrrr} % tekstbreedte=15cm, elke tabelkolom = breedte + 2x2mm marge (2x want marge links & rechts)
+			\hlinethick
+			\tableheader{Deler} & \tableheader{Giant} & \tableheader{Big} & \tableheader{Middle} & \tableheader{Small} \\ 
+			\hlinethick
+1   & \textbf{3000} (1)	& \textbf{2220} (2)	& \textbf{1730}	 (4)       &1050\\
+1,5 & \textbf{2000}	(3) & 1480	&1153.3       & 700\\
+2   & \textbf{1500}	(5) & 1110	&865          &525\\
+2,5 & 1200	& 888	&692	  &420\\
+3   & 1000	& 740	&576,7	&350 \\
+			\hlinethick
+		\end{tabular}
+		\caption{De methode Imperiali toegepast op Fantasia}\label{imperiali}
+\end{tabel}
+We zien dat Giant 3 zetels binnenhaalt en Big en The Middle telkens één. Met 37,5\% van de stemmen haalt Giant 60\% van de zetels binnen, een absolute meerderheid. Ook aan de tabel zelf zie je dat grote partijen in elke nieuwe ronde erg veel stemmen overhouden om nog extra zetels binnen te halen. 
+
+De methode Imperiali is geen evenredig kiessysteem: zelfs in het geval dat een kiesuitslag zich voor elke partij laat vertalen in een geheel aantal zetels bij deling door de standaardprijs, zal Imperiali deze kiesuitslag niet noodzakelijk genereren. Imperiali bevoordeelt disproportioneel grotere partijen, en moedigt zo politieke blokvorming (bv. verschillende partijen die samen als kartel opkomen) aan. 
+
+\subsection{Effecten op lokale besturen}
+Tot vandaag zijn de effecten van het gebruik van de methode Imperiali op gemeenteraden groot. Op de website van Uitwiskeling vind je een Excelbestand waarin we de resultaten van de laatste Vlaamse gemeenteraadsverkiezingen van 2018 per gemeente omzetten in zetels via Imperiali, D'Hondt en Sainte-Laguë. Van de 7373 gemeenteraadszetels die Vlaanderen rijk is, veranderen 373 van partij bij gebruik van de evenredige D'Hondt methode: dat is iets meer dan 1 op de 20 gemeenteraadszetels. Gebruiken we Sainte-Laguë, dat helemaal geen systematische vertekening heeft richting grote of kleine partijen, dan verschuiven er maar liefst 598 zetels naar andere partijen: iets meer dan 8\% van alle raadsleden.
+
+De meest extreme vertekening in 2018 deed zich voor in Mechelen: daar haalde Vld-Groen-M+, een kartel tussen liberalen, groenen en onafhankelijken onder leiding van Bart Somers, 47,7\% van de stemmen. Met de methode Imperiali haalde deze lijst maar liefst 25 van de 43 zetels, dat zijn 58,1\% van de zetels én een absolute meerderheid: de lijst haalt op zichzelf een meerderheid van het aantal gemeenteraadsleden en hoefde dus niet op zoek naar coalitiepartners om te besturen. Was in Mechelen in 2018 de methode D'Hondt gebruikt, dan haalde het kartel 21 van de 43 zetels (= 48,8\%) en geen absolute meerderheid.
+
+Na de gemeenteraadsverkiezingen van 2018 waren er in Vlaanderen 109 absolute meerderheden op een totaal van 300 gemeenten. 30 van die 109 gemeenten (27,5\%) zouden hun absolute meerderheid verliezen bij het gebruik van het evenredigere kiessysteem D'Hondt.
+
+\subsection{Veranderingen in 2024}
+De aankomende gemeenteraadsverkiezingen zullen een beetje anders verlopen dan vroeger. Zo wordt de opkomstplicht afgeschaft: niemand is verplicht om te gaan stemmen voor de gemeenteraad. Daarnaast verdwijnt de lijststem: enkel het aantal voorkeursstemmen per kandidaat bepaalt wie verkozen wordt in de gemeenterraad, dat is dus een heel ander systeem dan het systeem uitgelegd in deel 3. Wanneer een gemeenteraadslid aan zijn mandaat verzaakt (om professionele of persoonlijke redenen, maar ook bijvoorbeeld door het verhuizen naar een andere gemeente), wordt het gemeenteraadslid opgevolgd door de volgende populairste kandidaat. De kandidaat met de meeste voorkeurstemmen van de grootste lijst heeft twee weken het exclusief recht om een coalitie te vormen. Ook zal de kandidaat met de meeste voorkeurstemmen van de grootste partij binnen de meerderheidscoalitie burgemeester worden. Het kan dus niet meer dat de kleinste coalitiepartner de burgemeester levert. De methode Imperiali om de kiesuitslag om te zetten in gemeenteraadszetels, bleef in dit decreet `Versterking lokale democratie' van minister Bart Somers uit 2021, wel behouden. Dat uitgerekend Bart Somers als Maneblusser de methode Imperiali behield, is allicht niet helemaal toevallig.
+\end{multicols}
+
+
+\begin{lesactiviteit}{Verkiezingen in jouw gemeente}
+Surf naar \href{https://vlaanderenkiest.be/verkiezingen2018/}{vlaanderenkiest.be/verkiezingen2018/} en zoek de verkiezingsuitslag van jouw gemeente na de laatste gemeenteraadsverkiezingen van 2018.
+\begin{vraagenantwoord}
+    \vraag{Bereken de officiële zetelverdeling van jouw gemeenteraad door de methode Imperiali toe te passen op de kiesuitslag.}
+    \antwoord{Jouw antwoord moet overeenkomen met de zetelverdeling weergegeven op \href{https://vlaanderenkiest.be/verkiezingen2018/}{vlaanderenkiest.be}.}
+    \vraag{Welke coalitie was er de voorbije jaren aan de macht in jouw gemeente? Was het een comfortabele meerderheid (m.a.w.: was het aantal gemeenteraadsleden dat tot de meerderheid behoort veel groter dan de helft)? Waren er alternatieve coalities mogelijk?}
+    \antwoord{Het huidige gemeentebestuur kun je vinden op de officiële website van jouw gemeente.}
+     \vraag{Was jouw burgemeester ook de populairste kandidaat binnen de meerderheid?}
+    \antwoord{De naam van jouw burgemeester kun je vinden op de officiële website van jouw gemeente. Je kunt dan kijken of het ook de kandidaat was met de meeste voorkeurstemmen over alle partijen van de meerderheid heen. Indien niet, kun je nagaan wie burgemeester had moeten worden indien de nieuwe regels van $2024$ al van kracht waren in $2018$.}
+    \vraag{Bereken de zetelverdeling van jouw gemeenteraad met de methode D'Hondt. Welke partijen zouden hier zetels mee winnen/verliezen? Welke gevolgen heeft dat voor de huidige meerderheid?}
+    \antwoord{De antwoorden kun je nagaan door het bestand \emph{'VergelijkingUitslagGemeente2018.xlsx`} te downloaden. Je vindt het als bijlage bij deze loep op de website van Uitwiskeling.}
+
+\end{vraagenantwoord}
+
+\end{lesactiviteit}
+\vspace{3cm}
+ \begin{bronnen}
+\item Balinski, M. L., & Young, H. P. (2001). Fair Representation: Meeting the Ideal of One Man, One Vote. Brookings Institution Press.
+\item Gazet van Antwerpen. (22 mei 2024). Jouw stem telt: cursus 'verkiezingen' in negen vragen.
+\item D'Hondt, V. (1882). Système pratique et raisonné de représentation proportionnelle. Bruxelles, Librairie C. Muquardt. 
+
+\item Sainte Laguë, A. (1910). La représentation proportionnelle et la méthode des moindres carrés. \textit{Annales scientifiques de l’É.N.S. 3e
+série}, tome 27, p. 529-542
+
+\item Smith, Warren. D. (2007). Apportionment and rounding schemes. Rangevoting.org.
+
+\item Somers, B. (2 december 2022). Nota aan de Vlaamse Regering, betreffende het ontwerp van besluit van de Vlaamse Regering tot vaststelling van het aantal zetels van het Vlaams Parlement dat aan elke kieskring toekomt. VR 2022 0212 DOC.1295/1.
+
+\item Vlaanderen Kiest 2024, \url{https://www.vlaanderen.be/vlaanderen-kiest}
+\item Wilson, H. The D'Hondt Method Explained. UCL.
+
+
+
+ \end{bronnen}
+
+
+
