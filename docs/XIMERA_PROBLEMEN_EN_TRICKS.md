@@ -85,6 +85,25 @@ zelf delimiters zetten.
 Commit `3f681e6`: Ximera kent geen floats in HTML; gebruik de `image`-omgeving
 (uit printstyle: `\begin{image}[breedte] ... \end{image}`), niet `figure`/`\centering`.
 
+### 7b. `\includegraphics` in een submap: zoekpad voor standalone én xourse
+**Symptoom:** een activiteit in `UW42xx/` met `\includegraphics{...}` compileert standalone
+maar de xourse-build (`activiteitenvolgensnummer.tex`) geeft `File '...' not found`, of
+omgekeerd.
+**Oorzaak:** de **werkmap verschilt**. Standalone compileert `xmlatex` ín de activiteitsmap
+(cwd `UW42xx/`); de xourse compileert vanuit de repo-root (cwd `.`). Een vast pad als
+`UW4202/img/foto.jpg` klopt dus maar in één van beide.
+**Oplossing (toegepast 2026-06-16):** gebruik **kale bestandsnamen**
+(`\includegraphics{foto.jpg}`) en **voeg** de eigen img-map toe aan het grafische zoekpad —
+zonder de defaults van `ximera.cls` te overschrijven (die bevatten `xmPictures/`, nodig voor
+de printstyle-achtergrond `imgDesign/paginanrbg_grijs.png`; een kale `\graphicspath{...}`
+breekt die!):
+```latex
+\makeatletter
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+```
+`img/` dekt de standalone-cwd, `UW4202/img/` de xourse-cwd. Verifieer altijd **beide** builds.
+
 ### 8. Pakketten die de HTML-structuur breken
 Uit commentaar in `xmPreamble.tex`:
 - `animate`: **breekt de HTML-structuur** — niet gebruiken.

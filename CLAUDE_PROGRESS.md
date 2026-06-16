@@ -23,10 +23,13 @@
 - [x] Agent `uitwiskeling-converter` aangemaakt
 - [x] `docs/CONVERSIE.md` geschreven
 - [x] `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` geschreven (uit git history + sessiebevindingen)
-- [x] **UW4202 `simpele_zandhopen` geconverteerd** (sessie 3, 2026-06-13). 33 exercises,
-      9 hints, 33 oplossingen, 1 instructorNotes, 23 image-omgevingen. Zie log hieronder.
-      Nog te doen: standalone pdf+html compileren ter verificatie (toolchain niet aanwezig
-      in deze sessie), en opnemen in de xourse `activiteitenvolgensnummer.tex`.
+- [x] **UW4202 zandhopen geconverteerd én opgesplitst** (sessie 3 + 4). Het monolithische
+      `simpele_zandhopen.tex` is opgesplitst in 10 losse Ximera-activiteiten + 1 inleidingsfile
+      (`zandhopen_inleiding.tex`, met artikellink, leerdoelen, doelpubliek, voorbereiding).
+      Alle 11 opgenomen in de xourse `activiteitenvolgensnummer.tex` onder `\part{UW42/02: Zandhopen}`.
+      Bronnenlijst verwijderd. **Gecompileerd: alle 11 standalone (pdf+html) én de xourse
+      (pdf+html), 0 ontbrekende beelden.**
+      Nog te doen: ontbrekende lijntekeningen (`.png`, zie `% TODO`-comments) aanleveren.
 - [ ] GitHub Action opnieuw laten draaien na merge en controleren dat hij groen wordt
 - [ ] Beslissing Alexander: `preamble.tex` en `printstyle.sty` verwijderen?
       (verouderde kopieën; xmPreamble/xmPrintstyle zijn de echte; zie tricks-doc #1)
@@ -43,6 +46,20 @@
       of de cursus-URL https://leermateriaal.uitwiskeling.be/ klopt na eerste publish
 
 ## Wat is er gedaan (log, nieuwste bovenaan)
+
+### 2026-06-16 (sessie 4) — zandhopen opsplitsen + compileren
+- **`UW4202/simpele_zandhopen.tex` opgesplitst** in 10 losse activiteiten
+  (`ronde_ondergrond`, `vierkant`, `rechthoekig_grondvlak`, `driehoekig_grondvlak`,
+  `trapezia`, `convexe_veelhoeken`, `schijf_met_gat`, `cirkelsegment`,
+  `nietconvexe_veelhoek`, `ellips`) + inleidingsfile `zandhopen_inleiding.tex`
+  (artikellink, leerdoelen, doelpubliek, voorbereiding). Monolithisch bestand verwijderd.
+- **Xourse** `activiteitenvolgensnummer.tex`: `\part{UW42/02: Zandhopen}` toegevoegd met
+  artikellink en alle 11 `\activitychapter`-regels.
+- **Bronnenlijst verwijderd** (op verzoek).
+- **Beeldpaden gefixt** (dual-cwd): kale bestandsnamen + `\g@addto@macro\Ginput@path`
+  i.p.v. een vast `UW4202/img/`-pad (zie tricks-doc #7b).
+- **Volledig gecompileerd:** alle 11 activiteiten standalone pdf+html, én de xourse
+  pdf+html — 0 ontbrekende beelden, 0 fouten.
 
 ### 2026-06-13 (sessie 3) — conversie zandhopen
 - **`UW4202/simpele_zandhopen.tex` geconverteerd** van Uitwiskeling-formaat (`%`-comments)

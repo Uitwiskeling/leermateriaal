@@ -1,0 +1,55 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Zand op een niet-convexe veelhoek}{}
+
+\begin{exercise}
+    Teken de kamlijnen die je verwacht als je op deze figuur zand zou gieten.
+    \begin{image}[7cm]
+        \includegraphics[width=7cm,keepaspectratio]{zand26.jpg}
+    \end{image}
+    \begin{hint}
+        Je eerste poging bestaat wellicht uit rechte lijnstukken (bissectrices). Verifieer
+        met zand: in de binnenbocht klopt er iets niet. De zandhoop komt daar hoger dan je
+        verwacht.
+    \end{hint}
+    \begin{oplossing}
+        Veel leerlingen tekenen eerst enkel rechte lijnstukken.
+        \begin{image}[12cm]
+            \includegraphics[width=6cm,keepaspectratio]{zand27.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{zand30.jpg}
+        \end{image}
+        Wie dit met zand verifieert, ziet dat de kamlijn niet alleen uit rechte lijnstukken
+        bestaat: in zijaanzicht komt de zandhoop in de bocht wat hoger.
+        \begin{image}[12cm]
+            \includegraphics[width=5cm,keepaspectratio]{zand28.jpg}
+            \quad
+            \includegraphics[width=5cm,keepaspectratio]{zand29.jpg}
+        \end{image}
+        De stukken van de kamlijn kunnen niet allemaal rechtlijnig zijn. De punten tussen
+        \(K\) en \(M\) (\(M\) zelf niet meegerekend) liggen dichter bij rand \(d\) dan bij
+        punt \(F\). Het lijnstuk \([KM]\) moet vervangen worden door de punten die even ver
+        van \(F\) als van rand \(d\) liggen: een stuk \emph{parabool} met brandpunt \(F\) en
+        richtlijn \(d\). Analoog wordt \([KL]\) een stuk parabool met brandpunt \(F\) en
+        richtlijn \(e\). Het lijnstuk \([KF]\) moet weggelaten worden: dit is geen kamlijn.
+        Zandkorrels boven \([KF]\) twijfelen niet en rollen naar \(F\), het dichtste
+        randpunt.
+        \begin{image}[12cm]
+            \includegraphics[width=6cm,keepaspectratio]{zand31.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{zand32.jpg}
+        \end{image}
+        Met hoogtelijnen zie je dat de zandhoop bij het snijpunt van de twee paraboolstukken
+        inderdaad iets hoger ligt dan de rechte kamlijnen.
+    \end{oplossing}
+\end{exercise}
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Convexe grondvlakken: trapezia}{}
+
+\begin{instructorNotes}
+    Dit stuk is in de bron niet volledig als lesactiviteit uitgeschreven, maar het is wel
+    de bedoeling om dit op een onderzoekende manier aan te brengen, zoals in de vorige
+    paragrafen. Dit kan in groepjes of via een onderwijsleergesprek, omdat het wat
+    moeilijker wordt. Het interessante van deze situatie is niet zozeer het eindresultaat,
+    maar vooral de zoektocht ernaartoe.
+\end{instructorNotes}
+
+We bekijken enkele trapezia. Een trapezium is een vierhoek met twee evenwijdige zijden.
+We vertrekken van een driehoek: teken de bissectrices en de ingeschreven cirkel. Doe dit
+in viervoud. Knip nu van drie van die driehoeken een stuk af volgens een lijn evenwijdig
+met de basis: boven de ingeschreven cirkel (situatie 2), rakend aan de ingeschreven cirkel
+(situatie 3) en dwars door de ingeschreven cirkel (situatie 4). Teken ten slotte ook de
+bissectrices van de twee nieuw verschenen hoeken van elk trapezium.
+
+% TODO (afbeelding ontbreekt): \afbeelding[15cm]{Ltrapezia.png} (een driehoek en drie
+% soorten trapezia). Lijntekening niet aanwezig in img/.
+
+Voor je het experiment uitvoert, kun je proberen te voorspellen welke zandhoop en welk
+bovenaanzicht je zult krijgen. Het loont echt de moeite om dit zelf verder uit te zoeken.
+Als je zand giet op de volledige driehoek (situatie 1), krijg je uiteraard een piramide.
+We bekijken situatie 2 en 4 in detail; situatie 3 laten we aan de lezer.
+
+\textbf{Situatie 2.} In de tweede situatie zijn de bissectrices niet concurrent. Er zijn
+twee snijpunten van telkens twee bissectrices, de punten \(O\) en \(O'\). Ze liggen op de
+bissectrice van de afgesneden hoek van de driehoek en zijn de projecties van \(S\) en
+\(S'\), de eindpunten van de kamlijn.
+
+In de 3D-tekening zien we twee rechthoekige driehoeken \(HSO\) en \(H'S'O'\) die dezelfde
+rusthoek hebben en dus gelijkvormig zijn. We zien dat \(|OS| = |OH|\cdot \tan\theta\) en
+\(|O'S'| = |O'H'|\cdot \tan\theta\), maar \(|OH| > |O'H'|\), dus \(|OS| > |O'S'|\). Het
+lijnstuk \([SS']\) loopt dus niet horizontaal. In het bovenaanzicht zie je dit aan het feit
+dat \(O'\) dichter bij de rand ligt dan \(O\). Verifieer het met het experiment. Sterker
+nog:
+\[
+    |OS| - |O'S'| = (|OH| - |O'H'|)\cdot \tan\theta .
+\]
+Als we de kniplijn helemaal zouden opschuiven tot in het hoekpunt, dan zou \(|O'H'| = 0\)
+worden, dus de helling van \([SS']\) zou dezelfde zijn als die van \([SA]\). Als we
+\([SS']\) verlengen, zou die door de top \(A\) van de afgeknipte driehoek lopen.
+
+\begin{image}[7cm]
+    \includegraphics[width=7cm,keepaspectratio]{lsituatie2.jpg}
+\end{image}
+Situatie 2: het afgeknipte trapezium met de kamlijn.
+
+% TODO (afbeeldingen ontbreken): in de bron stonden hier de lijntekeningen
+% Ltrap2.png (projectie situatie 2) en Ltrap23D.png (3D-versie). Niet aanwezig in img/.
+
+\textbf{Situatie 4.} Hier hebben we ook de vier bissectrices van de hoeken van het
+trapezium getekend. Nu snijdt telkens \'e\'en van de oude bissectrices met \'e\'en van de
+nieuwe bissectrices. Dit geeft weer twee punten \(O\) en \(O'\). Het lijnstuk \([OO']\) dat
+deze punten verbindt, is evenwijdig met de twee evenwijdige zijden van het trapezium.
+\(O\) en \(O'\) zijn de projecties op het grondvlak van de toppen \(S\) en \(S'\).
+
+In de 3D-voorstelling zijn er weer twee driehoeken \(HSO\) en \(H'S'O'\) die dezelfde
+rusthoek met het grondvlak hebben. We vinden \(|OS| = |OH|\cdot \tan\theta\) en
+\(|O'S'| = |O'H'|\cdot \tan\theta\), maar nu is \(|OH| = |O'H'|\) en dus \(|OS| = |O'S'|\).
+Bijgevolg is \([SS'] \parallel [HH'] \parallel [KK']\): de kamlijn is evenwijdig met de
+evenwijdige zijden van het trapezium. Verifieer weer met het experiment.
+
+\begin{image}[7cm]
+    \includegraphics[width=7cm,keepaspectratio]{lsituatie4.jpg}
+\end{image}
+Situatie 4: de kamlijn is evenwijdig met de evenwijdige zijden van het trapezium.
+
+% TODO (afbeeldingen ontbreken): in de bron stonden hier Ltrap4.png (projectie situatie 4)
+% en Ltrap43D.png (3D-tekening). Niet aanwezig in img/.
+
+\end{document}

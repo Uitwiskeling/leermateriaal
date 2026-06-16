@@ -1,0 +1,124 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Zand op een schijf met een gat in}{}
+
+Het grondvlak waarop we zand willen gieten, is een cirkelschijf met een gaatje in. Je ziet
+hieronder twee cirkelschijven: \'e\'en met een gat in het midden, \'e\'en met een
+gedecentreerd gat. Het gat is klein en in de redeneringen behandelen we het als een punt.
+In werkelijkheid mag het gat ook niet \emph{te} klein zijn, want de zandkorrels moeten
+erdoor kunnen.
+
+\begin{image}[12cm]
+    \includegraphics[width=5.5cm,keepaspectratio]{zand07.jpg}
+    \quad
+    \includegraphics[width=5.5cm,keepaspectratio]{zand08.jpg}
+\end{image}
+Links een centraal gat, rechts een gedecentreerd gat.
+
+\begin{exercise}
+    Teken op deze bovenaanzichten telkens de kamlijn, giet dan zand op het kartonnen
+    exemplaar om dit te verifi\"eren, en verklaar ten slotte de vorm van de kamlijn.
+    Begin met het \textbf{centrale} gat.
+    \begin{hint}
+        De kamlijn bestaat uit de punten die even ver liggen van het gat als van de rand
+        van de schijf. Welke kromme krijg je bij een centraal gat?
+    \end{hint}
+    \begin{oplossing}
+        Bij het centrale gat is het bovenaanzicht van de kamlijn een concentrische cirkel
+        met als straal de helft van de straal van de gegeven schijf. Deze cirkel bestaat
+        immers uit de punten op gelijke afstand tot het gat en de rand. In 3D heb je in het
+        midden van de kegel een kegelvormige uitsparing met dezelfde rusthoek: de zandhoop
+        is een kegel waaruit een tweede, omgekeerde kegel met dezelfde rusthoek is
+        weggehaald. Die tweede kegel bepaalt de uitsparing.
+        \begin{image}[12cm]
+            \includegraphics[width=4cm,keepaspectratio]{zand09.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{zand10.jpg}
+        \end{image}
+        Links het boven- en vooraanzicht, rechts de kegel met de omgekeerde kegel die de
+        uitsparing bepaalt.
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Bekijk nu het \textbf{gedecentreerde} gat. Welke kromme is de kamlijn hier in
+    bovenaanzicht? Bewijs je vermoeden.
+    \begin{hint}
+        Een punt \(P\) van de kamlijn ligt even ver van het gat \(G\) als van de rand van
+        de schijf. Meet de afstand tot de rand loodrecht, dus langs een straal. Wat kun je
+        zeggen over \(|PM| + |PG|\), met \(M\) het middelpunt van de schijf?
+    \end{hint}
+    \begin{oplossing}
+        De kamlijn is in bovenaanzicht een \emph{ellips}. Als het gat dicht bij het
+        middelpunt ligt, lijkt het op het eerste gezicht een cirkel, maar laten we
+        redeneren. Een willekeurig punt \(P\) van de kamlijn ligt even ver van het gat \(G\)
+        als van de rand van de schijf. Die afstand \(|PQ|\) tot de rand wordt loodrecht op
+        die rand gemeten, dus langs een straal. Bijgevolg is
+        \[
+            |PM| + |PG| = |PM| + |PQ| = |MQ| = r ,
+        \]
+        waarbij \(r\) de straal van de cirkel is. De som \(|PM| + |PG|\) is dus constant, en
+        de punten \(P\) van de kamlijn vormen een ellips met als brandpunten \(G\) en \(M\).
+        \begin{image}[4cm]
+            \includegraphics[width=4cm,keepaspectratio]{zand11.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Je kunt, bij het gedecentreerde gat, ook redeneren met hoogtelijnen. Je ziet hier de
+    cirkelschijf met het gat, en concentrische cirkels rond het middelpunt en rond het gat.
+    Construeer met deze figuur de kamlijn en leg uit.
+    \begin{image}[4cm]
+        \includegraphics[width=4cm,keepaspectratio]{zand12.jpg}
+    \end{image}
+    \begin{oplossing}
+        Je kunt in het vlak redeneren: de punten van de kamlijn liggen op gelijke afstand
+        van het gat als van de rand. Bijvoorbeeld 5 eenheden van het gat en 5 eenheden van
+        de rand, waarbij een eenheid de afstand tussen twee concentrische cirkels is. Dit
+        geeft de punten \(P\) en \(P'\). Analoog voor andere aantallen eenheden.
+
+        Je kunt ook in 3D redeneren: de cirkels zijn hoogtelijnen, en je snijdt de cirkels
+        die even hoog zijn. De cirkels rond het gat beginnen in het gat met hoogte nul
+        (zoals de kegel op zijn top); de cirkels rond het middelpunt beginnen aan de rand
+        met hoogte nul (zoals de gewone kegel).
+        \begin{image}[4cm]
+            \includegraphics[width=4cm,keepaspectratio]{zand13.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Het gat was tot nu toe heel klein en we behandelden het als een punt. Wat verandert er
+    als het (gedecentreerde) gat een grotere cirkel(schijf) is?
+    \begin{oplossing}
+        Het bovenaanzicht van de kamlijn is opnieuw een ellips. De brandpunten zijn het
+        middelpunt \(M\) van de grote cirkel en het middelpunt \(G\) van het gat. De som van
+        de afstanden tot deze twee punten is weer constant, maar deze constante is nu niet
+        de straal van de cirkel, wel de som van de straal van de cirkel en die van het gat.
+
+        Een punt \(P\) van de kamlijn ligt even ver van de rand van de grote cirkel als van
+        de rand van het ronde gat: \(|PQ| = |PH|\). De som van de afstanden van \(P\) tot
+        \(M\) en \(G\) is bijgevolg
+        \[
+            |PM| + |PG| = |PM| + |PH| + |HG| = |PM| + |PQ| + |HG| = |MQ| + |HG| = r + s ,
+        \]
+        waarbij \(r\) de straal van de grote cirkel is en \(s\) de straal van het gat. Deze
+        som is constant, dus \(P\) beschrijft een ellips.
+        \begin{image}[12cm]
+            \includegraphics[width=4cm,keepaspectratio]{zand14.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{zand15.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\end{document}

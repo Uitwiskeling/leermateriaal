@@ -1,0 +1,75 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Een hoop zand op een driehoekig grondvlak}{}
+
+\begin{exercise}
+    Neem als volgend grondvlak een willekeurige driehoek. Schets eerst wat je verwacht als
+    bovenaanzicht, en teken ook de vermoedelijke hoogtelijnen. Giet dan zoveel mogelijk
+    zand op de omhoog geplaatste driehoek. Komt het experiment overeen met je schets? Is de
+    rusthoek ook hier weer gelijk aan die in de vorige experimenten?
+    \begin{oplossing}
+        Je krijgt een piramide, zoals je in de foto's hieronder ziet. Die vorm hangt enkel
+        af van het grondvlak en niet van waar je begint met zand te gieten. De rusthoek is
+        weer dezelfde.
+        \begin{image}[12cm]
+            \includegraphics[width=6cm,keepaspectratio]{lzandopdriehoek.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{lsituatie2.jpg}
+        \end{image}
+        Een zandhoop op een driehoekig grondvlak: een piramide met de hoogtelijnen erop.
+    \end{oplossing}
+\end{exercise}
+
+% Opmerking voor de leerkracht: in de bron stond hiernaast ook een lijntekening van de
+% hoogtelijnen op de driehoek (Lhoogtelijnendriehoek.png), niet aanwezig in img/.
+
+\begin{exercise}
+    Als je ook hier de hoekpunten van de hoogtelijnen verbindt, zie je speciale lijnen
+    verschijnen op het bovenaanzicht. Welke lijnen zijn dit?
+    \begin{oplossing}
+        Het zijn de bissectrices van de hoeken gevormd door twee opeenvolgende zijden van
+        de driehoek.
+    \end{oplossing}
+\end{exercise}
+
+% TODO (afbeelding ontbreekt): \afbeelding[6cm]{Ldriehoekkortsteweg.png}.
+
+\begin{exercise}
+    Geef hiervoor een verklaring. Waarmee komen deze lijnen overeen in 3D?
+    \begin{oplossing}
+        De bissectrices zijn de meetkundige plaats van de punten die even ver liggen van
+        twee opeenvolgende zijden van de driehoek. In 3D komen ze overeen met de ribben van
+        de piramide. Korrels op de ribben weten niet naar welke kant ze moeten vallen en
+        blijven dus liggen.
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    We weten dat de drie bissectrices van een driehoek elkaar in \'e\'en punt snijden. Wat
+    weet je van dit snijpunt?
+    \begin{oplossing}
+        Omdat het snijpunt op elk van de bissectrices ligt, ligt het even ver van de drie
+        zijden van de driehoek. De loodlijnen op de zijden geven de kortste weg aan voor een
+        zandkorrel om naar beneden te rollen.
+    \end{oplossing}
+\end{exercise}
+
+% TODO (afbeelding ontbreekt): \afbeelding[8cm]{zandopdriehoek.png}.
+
+\begin{exercise}
+    Wat betekent het snijpunt van de bissectrices uit het bovenaanzicht voor de zandhoop?
+    \begin{oplossing}
+        Dit snijpunt is de projectie van de top van de zandhoop. Deze top is het punt dat
+        zich even ver van de drie randen van het grondvlak bevindt.
+    \end{oplossing}
+\end{exercise}
+
+\end{document}

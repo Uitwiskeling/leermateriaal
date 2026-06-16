@@ -1,0 +1,91 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Een hoop zand op een rechthoekig grondvlak}{}
+
+\begin{exercise}
+    Welke zandhoop verwacht je bij een rechthoekig grondvlak? Maak een schets van het te
+    verwachten bovenaanzicht en voer daarna pas het experiment uit.
+    \begin{oplossing}
+        Je krijgt geen piramide meer. Er is niet \'e\'en top maar een lijnstuk met hoogste
+        punten. (In de bouw kom je dit soort ruimtelijk lichaam tegen in de vorm van een
+        \textit{schilddak}.)
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Wat kun je zeggen over de rusthoek?
+    \begin{oplossing}
+        Deze is weer constant en gelijk aan die bij de kegel en de piramide met vierkant
+        grondvlak. De rusthoek hangt immers enkel af van het soort materiaal.
+    \end{oplossing}
+\end{exercise}
+
+Hoogtelijnen ken je uit de aardrijkskundeles: het zijn lijnen op een kaart die alle punten
+met een gelijke hoogte boven het zeeniveau verbinden.
+
+\begin{exercise}
+    Vul je tekening van het bovenaanzicht aan met enkele hoogtelijnen.
+    \begin{oplossing}
+        De hoogtelijnen zijn evenwijdig met de zijden van de rechthoek en de afstand tussen
+        twee opeenvolgende hoogtelijnen is altijd dezelfde. Dit komt omdat de flanken overal
+        even steil zijn.
+    \end{oplossing}
+\end{exercise}
+
+% TODO (afbeelding ontbreekt): in de bron stond hier \afbeelding[6cm]{LRHhoogtelijnen.png}.
+
+De hoogtelijn met de hoogste punten noemen we \textemdash{} net zoals bij echte bergen
+\textemdash{} de \emph{kamlijn}. Ze is evenwijdig met de langste zijde van het grondvlak
+en staat loodrecht op de kortste zijde. Je ziet dat die in het midden ligt. Het kan zijn
+dat je die niet getekend hebt. Verderop proberen we de positie van de kamlijn meetkundig
+te bepalen.
+
+\begin{exercise}
+    Verbind de hoekpunten van de hoogtelijnen.
+    \begin{oplossing}
+        Je krijgt een figuur waarin door elk hoekpunt van de hoogtelijnen een schuine
+        rechte loopt onder \(45^\circ\) met de zijden.
+    \end{oplossing}
+\end{exercise}
+
+% TODO (afbeelding ontbreekt): in de bron stond hier \afbeelding[6cm]{LRHhoogtelijnenbiss.png}.
+
+\begin{exercise}
+    Aan welke eigenschap voldoen
+    \begin{enumerate}[label=(\alph*)]
+        \item punten die op de kamlijn liggen, zoals het punt \(R\);
+        \item punten op \'e\'en van de schuine rechten die de hoekpunten van de
+            rechthoekige hoogtelijnen verbinden, zoals het punt \(P\);
+        \item punten die op zowel de kamlijn als op de twee schuine rechten liggen, zoals
+            het punt \(S\)?
+    \end{enumerate}
+    \begin{hint}
+        Denk telkens aan de afstand van het punt tot de randen van het grondvlak. Hoe ver
+        ligt een zandkorrel op dit punt van de verschillende randen?
+    \end{hint}
+    \begin{oplossing}
+        \begin{enumerate}[label=(\alph*)]
+            \item Punten op de kamlijn bevinden zich even ver van de twee overstaande
+                zijden, zowel in 3D als in het bovenaanzicht. Dit verklaart waarom de
+                kamlijn in het bovenaanzicht in het midden tussen de twee lange randen ligt.
+            \item Deze punten liggen even ver van twee opeenvolgende randen, ook weer zowel
+                in 3D als in bovenaanzicht. Dit verklaart waarom deze lijnen een hoek van
+                \(45^\circ\) maken met deze zijden.
+            \item Deze punten bevinden zich even ver van drie opeenvolgende randen.
+        \end{enumerate}
+    \end{oplossing}
+\end{exercise}
+
+% TODO (afbeelding ontbreekt): in de bron stond hier \afbeelding[6cm]{LRHbiss.png}
+% (met de punten R, P en S erop aangeduid).
+
+In het bovenaanzicht is de \textit{kamlijn} dus de meetkundige plaats van de punten die
+zich even ver bevinden van de twee dichtstbijzijnde zijden. De punten op het uiteinde van
+de kamlijn liggen op gelijke afstand van drie zijden. In 3D kunnen we de ribben daarom ook
+kamlijnen noemen.
+
+\end{document}
