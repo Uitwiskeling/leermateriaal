@@ -344,6 +344,9 @@ xmDevEnvFiles.tgz
 ## TOBECONVERTED
 TOBECONVERTED/fullfoldersnotcommitted/
 TOBECONVERTED/_compilelogs/
-TOBECONVERTED/OUTPUTTEDPDFS/
 TOBECONVERTED/python
 *.ptc
+
+## Gecompileerde referentie-PDF's (worden getrackt als visuele vergelijking)
+!TOBECONVERTED/OUTPUTTEDPDFS/
+!TOBECONVERTED/OUTPUTTEDPDFS/*.pdf

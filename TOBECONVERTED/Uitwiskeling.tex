@@ -32,11 +32,9 @@
 %% ============================================================================
 
 %% \circled{inhoud} — icon binnen een cirkel (UW3704/UW3904 e.a.)
-%% UW3903 definieert zijn eigen TikZ-versie via \newcommand*; als \circled dan
-%% al bestaat, mislukt dat. Gebruik \ifstrequal om voor UW3903 over te slaan.
-\ifstrequal{\uwid}{UW3903}{}{%
-  \providecommand*{\circled}[1]{\textcircled{\small #1}}%
-}
+%% UW3903 definieert zijn eigen TikZ-versie via \renewcommand*\circled; fallback
+%% via \providecommand* zodat \newcommand* in UW3903 niet crasht als override.
+\providecommand*{\circled}[1]{\textcircled{\small #1}}
 
 \newcommand*{\uitgavenr}{XX/YY}
 \newcommand*{\uitgaveseizoen}{Uitwiskeling}

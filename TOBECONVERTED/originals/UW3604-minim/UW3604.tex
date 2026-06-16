@@ -87,7 +87,7 @@ Hoe veilig is dit netwerk in het kader van de verspreiding van virussen? Binnen 
 Hoewel de \textit{diameter} een interessante maat is, moeten we er vooral voor zorgen dat onze intense contacten zo geclusterd mogelijk blijven. De \textit{clusteringscoëfficiënt} van een persoon bereken je door na te gaan hoe geconnecteerd zijn vertrouwelingen zijn. Bekijken we bijvoorbeeld de clusteringscoëfficiënt van Axel. We zien dat die vier vertrouwelingen heeft: Bert, Elke, Elio en Ellen. Binnen zo’n groepje van vier vertrouwelingen kan elke vertrouweling potentieel een connectie maken met de drie andere vertrouwelingen, wat neer komt op $4\cdot 3 = 12$ connecties. We hebben hier echter dubbel geteld. Als je samen afspreekt maak je een connectie. Als Ellen een connectie maakt met Elke, dan maakt Elke ook een connectie met Ellen. We moeten de twaalf dus nog door twee delen. Binnen een groepje van vier vertrouwelingen zijn er dus zes mogelijke connecties. Als we alle bogen tussen Bert, Elke, Elio en Ellen tellen op het bovenstaande schema, zijn dat ook zes bogen. Dat is dus zes op zes: alle mogelijke vertrouwensbanden tussen de vertrouwelingen van Axel zijn effectief gesmeed. Axel heeft een clusteringscoëfficiënt van 100$\%$. Willen we nu de clusteringscoëfficient van Elio berekenen, dan zoeken we hoe zijn vertrouwelingen Ellen, Axel, Bert, Elke en Zohra onderling verbonden zijn. Binnen dit groepje van vijf vertrouwelingen kan elke vertrouweling potentieel een connectie maken met de vier andere vertrouwelingen. Dat komt  neer op $5\cdot4 = 20$ connecties. We hebben opnieuw dubbel geteld en moeten twintig nog door twee delen. Binnen een groepje van vijf vertrouwelingen zijn er dus tien mogelijke connecties. De vertrouwelingen Ellen, Axel, Bert en Elke zijn allemaal met elkaar verbonden wat zes connecties oplevert (tel het aantal bogen in bovenstaand schema). Zohra is met niemand van de andere vertrouwelingen verbonden. In totaal zijn dat zes connecties op de tien mogelijke connecties. De clusteringscoëfficient van Elio bedraagt zo slechts 60$\%$. Zijn clusteringscoëfficiênt gaat sterk omlaag door zijn extra connectie met Zohra.
 \end{multicols}
 \begin{kader}
-\textbf{Abstractie}\\
+\noindent\textbf{Abstractie}\\
 \ \\
 \noindent In de bovenstaande tekst bouwden we de formule van de clusteringscoëfficiënt van een knoop intuïtief op. Een abstracte formule opbouwen is een stuk lastiger. 
 
@@ -119,7 +119,7 @@ Ook deze graaf is samenhangend, de diameter is slechts drie (de langste afstand 
  \end{multicols}
  \vspace{0.5 cm}
 \begin{kader}
-\textbf{Abstractie}\\
+\noindent\textbf{Abstractie}\\
 \ \\
 \noindent De globale clusteringscoëfficiënt $\overline{C}$ van een ongerichte graaf $G=(V,E)$ wordt gedefinieerd als:
 $$\overline{C} = \frac{1}{|V|} \sum_{v_i \in V} C_i$$
@@ -541,11 +541,7 @@ Veronderstel dat de prevalentie 60$\%$ bedraagt bij mensen die zich in het zieke
 %\noindent \textbf{Antwoord}\\
 \emph{\noindent (a) 98,5\% ; (b) 98,2\%.}\\
 \eindewerktekst
-\begin{multicols}{2}
-
-
-\end{multicols}
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering\begin{center}
 		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
 		\begin{axis}[
