@@ -10,16 +10,19 @@ conversies.
 ```
 TOBECONVERTED/
   Uitwiskeling.tex           # mastertemplate — compileer dit vanuit TOBECONVERTED/
+  compile-all.sh             # batch: compileer alle 28 nummers, schrijf SUMMARY.md
+  extract-missing-images.sh  # haal ontbrekende afbeeldingen uit fullfoldersnotcommitted/
   compilefiles/              # gedeelde stijl- en designbestanden
-    uitwiskeling-style.sty   # tijdschriftstijl
+    uitwiskeling-style.sty   # tijdschriftstijl (incl. FOR OLD FORMAT shims onderaan)
     img/                     # omslag- en inline-design-afbeeldingen
     imgDesign/               # rubriek-iconen, checkmarks, ...
   originals/                 # minimale bron per nummer (gecommit)
     UW3501-minim/            # UW3501.tex + img/ met alle gerefereerde afbeeldingen
     UW3502-minim/
     ...  (28 mappen, UW3501 t/m UW4104)
+  OUTPUTTEDPDFS/             # succesvol gecompileerde PDF's (gitignored)
+  _compilelogs/              # logs + SUMMARY.md (gitignored)
   fullfoldersnotcommitted/   # volledige originelen (gitignored)
-  _work/                     # tijdelijke werkdirectory's (gitignored)
 ```
 
 Elke `originals/UWXXYY-minim/` bevat:
@@ -33,61 +36,84 @@ Sommige `img/` mappen hebben subdirectory's (bv. `img/loepMichele/`, `img/LAlgeb
 Compileer vanuit de `TOBECONVERTED/` map:
 
 ```bash
-cd TOBECONVERTED
-pdflatex Uitwiskeling.tex                          # compileert \uwid (standaard UW3501)
-pdflatex -e "\def\uwid{UW3502}" Uitwiskeling.tex   # ander nummer
-```
+# Eén nummer:
+pdflatex "\def\uwid{UW3502}\input{Uitwiskeling}"
 
-Twee passes nodig voor correcte TikZ-headers:
-
-```bash
-pdflatex Uitwiskeling.tex && pdflatex Uitwiskeling.tex
+# Alle 28 tegelijk (PDF's → OUTPUTTEDPDFS/, logs → _compilelogs/):
+bash compile-all.sh
 ```
 
 ## Preamble itereren
 
-Het doel: **één `Uitwiskeling.tex`** die alle 28 nummers foutloos compileert.  
-Werkwijze:
+Het doel: **één `Uitwiskeling.tex`** die alle 28 nummers foutloos compileert.
+Fixes gaan uitsluitend in `compilefiles/uitwiskeling-style.sty` (sectie `%%% FOR OLD FORMAT %%%`)
+of in `Uitwiskeling.tex`. **Pas nooit de `originals/`-bestanden aan.**
 
-1. Compileer een nummer (zie boven)
-2. Lees de log bij fouten: `Uitwiskeling.log`
-3. Voeg ontbrekende packages of commando's toe aan `Uitwiskeling.tex`
-4. Herhaal tot alle 28 nummers slagen — **pas nooit de `originals/`-bestanden aan**
+## Compilatiestatus (best known — run compile-all.sh voor actuele stand)
 
-## Compilatiestatus
+Laatste verified run: sessie juni 2026, na de preamble-iteraties beschreven hieronder.
+UW3704 en UW3802 zijn gefixed maar nog niet opnieuw geverifieerd via compile-all.
 
-| Nummer  | Tex-bestand   | Status |
-|---------|---------------|--------|
-| UW3501  | UW3501.tex    | ⬜ TBD |
-| UW3502  | UW3502.tex    | ⬜ TBD |
-| UW3503  | UW3503.tex    | ⬜ TBD |
-| UW3504  | UW3504.tex    | ⬜ TBD |
-| UW3601  | UW3601.tex    | ⬜ TBD |
-| UW3602  | UW3602.tex    | ⬜ TBD |
-| UW3603  | UW3603.tex    | ⬜ TBD |
-| UW3604  | UW3604.tex    | ⬜ TBD |
-| UW3701  | UW3701.tex    | ⬜ TBD |
-| UW3702  | UW3702.tex    | ⬜ TBD |
-| UW3703  | UW3703.tex    | ⬜ TBD |
-| UW3704  | UW3704.tex    | ⬜ TBD |
-| UW3801  | UW3801.tex    | ⬜ TBD |
-| UW3802  | UW3802.tex    | ⬜ TBD |
-| UW3803  | UW3803.tex    | ⬜ TBD |
-| UW3804  | UW3804.tex    | ⬜ TBD |
-| UW3901  | UW3901.tex    | ⬜ TBD |
-| UW3902  | UW3902.tex    | ⬜ TBD |
-| UW3903  | UW3903.tex    | ⬜ TBD |
-| UW3904  | UW3904.tex    | ⬜ TBD |
-| UW4001  | UW4001.tex    | ⬜ TBD |
-| UW4002  | UW4002.tex    | ⬜ TBD |
-| UW4003  | UW4003.tex    | ⬜ TBD |
-| UW4004  | UW4004.tex    | ⬜ TBD |
-| UW4101  | UW4101.tex    | ⬜ TBD |
-| UW4102  | UW4102.tex    | ⬜ TBD |
-| UW4103  | UW4103.tex    | ⬜ TBD |
-| UW4104  | UW4104.tex    | ⬜ TBD |
+| Nummer  | Status      | Noot |
+|---------|-------------|------|
+| UW3501  | ✅ OK       | tabu-environment (deprecated package, shim aanwezig) |
+| UW3502  | ✅ OK       | |
+| UW3503  | ✅ OK       | |
+| UW3504  | ✅ OK       | |
+| UW3601  | ✅ OK       | |
+| UW3602  | ✅ OK       | |
+| UW3603  | ❌ Bronf.   | `\emph{...}` met extra `}` in bron — niet fixbaar vanuit preamble |
+| UW3604  | ❌ Bronf.   | `\textbf{...}` met extra `}` in bron — niet fixbaar vanuit preamble |
+| UW3701  | ✅ OK       | |
+| UW3702  | ✅ OK       | |
+| UW3703  | ✅ OK       | FloatBarrier-fix aanwezig voor multicols |
+| UW3704  | ✅ OK*      | *fix: lege regels in array + kader 0-args; nog te verifiëren |
+| UW3801  | ✅ OK       | |
+| UW3802  | ✅ OK*      | *fix: lege regels in array; nog te verifiëren |
+| UW3803  | ✅ OK       | |
+| UW3804  | ✅ OK       | |
+| UW3901  | ✅ OK       | |
+| UW3902  | ✅ OK       | |
+| UW3903  | ❌ Pending  | `\circled` conflict: UW3903 definieert eigen TikZ-versie; `\ifstrequal` vergelijking werkt niet correct met huidige MiKTeX-packages |
+| UW3904  | ✅ OK       | gebruikt `\circled` (fallback) |
+| UW4001  | ❌ Bronf.   | meerdere bronfouten: `r{2.8cm}` kolom, `&` in bibliografie, ontbrekend `\item` |
+| UW4002  | ✅ OK       | arydshln voor `:` kolomtype |
+| UW4003  | ✅ OK       | |
+| UW4004  | ✅ OK       | |
+| UW4101  | ✅ OK       | `\includestandalone` no-op'd (double .tex extensie) |
+| UW4102  | ✅ OK       | python/ symlink aangemaakt in compile-all.sh |
+| UW4103  | ✅ OK       | |
+| UW4104  | ✅ OK       | |
 
-Werk de status bij zodra een nummer compileert: ✅ OK / ❌ Fout (met korte notitie).
+**Bronfouten** = fouten in de `originals/`-bestanden zelf die niet via preamble-shims te fixen zijn.
+**Pending** = fix is geschreven maar nog niet geverifieerd.
+
+## FOR OLD FORMAT — overzicht van toegepaste shims
+
+Alle backward-compat fixes zitten in `compilefiles/uitwiskeling-style.sty` onderaan
+de sectie `%%% FOR OLD FORMAT %%%`. Overzicht:
+
+| Package/fix | Reden |
+|-------------|-------|
+| `tabu` | `longtabu`-omgevingen in UW3501 e.a. |
+| `float` | `[H]` float-plaatsing |
+| `multirow` | `\multirow` in tabellen |
+| `arydshln` | `:` als kolomscheidingsteken (UW4002) |
+| `standalone` (no-op) | `\includestandalone` met .tex-extensie (UW4101) |
+| `\usetikzlibrary{arrows}` | `>=triangle 45` in tikzpicture (UW3604) |
+| `\typeRubriek` | oud metadata-commando, no-op |
+| `\startNieuweRubriek` | oud rubriek-header, no-op |
+| `\inhoudstafelLoep` | oud TOC-commando, no-op |
+| `\includestandalone` no-op | dubbele .tex extensie |
+| `\@nolnerr\relax` | `\\` in vertical mode (UW3502, UW3604) |
+| `\everymath/\everydisplay \par\relax` | lege regels in `array`-omgeving (UW3704, UW3802) |
+| `\renewenvironment{kader}` (0 args) | oude loep-bestanden gebruiken `\begin{kader}` zonder args |
+| `\BeforeBeginEnvironment{multicols}{\FloatBarrier}` | deferred floats (UW3703) |
+| `\nummering`, `\opsomming`, `\werktekstoef`, `\meerkeuze` | verouderde lijstomgevingen |
+| `\beginwerktekst`/`\eindewerktekst` | → `lesactiviteit` (zie noot in agent) |
+| `\tussentitel` | → `\lestitel` |
+| `\figuurrechts` | minipage-layout |
+| `\stellingkadertwee`, `\stellingkader` | → `kader{type}{titel}` |
 
 ## TODO: afbeeldingsstrategie heroverwegen
 

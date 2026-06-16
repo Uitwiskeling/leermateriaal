@@ -1,0 +1,56 @@
+\documentclass[tikz]{standalone}
+\tikzstyle{level 1}=[level distance=2cm, sibling distance=1.8cm]
+\tikzstyle{level 2}=[level distance=2cm, sibling distance=0.9cm]
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=1em, text centered]
+
+\begin{document}
+\begin{tikzpicture}[grow=right, sloped]
+\node[bag] {}
+    child {
+        node[bag] {$A_n$}        
+           child {
+                node[end, label=right: {...}] {}
+                            }
+           child {
+                node[end, label=right: {B}] {}
+                node[xshift=1.5cm,yshift=-0.04cm, red] {$P(A_n \cap B)$}
+                edge from parent
+                node[above=0cm,red] {\hspace{0.5cm}$P(B|A_n)$}
+                            }
+           edge from parent 
+           node[above=0cm,red] {\hspace{0.3cm} $P(A_n)$}
+    }
+    child {
+        node[bag] {...}        
+    }
+    child {
+        node[bag] {$A_2$}        
+           child {
+                node[end, label=right: {...}] {}
+            }
+            child {
+                node[end, label=right: {B}] {}
+                node[xshift=1.5cm,yshift=-0.04cm,red] {$P(A_2 \cap B)$}
+                edge from parent
+                node[above=0cm,red] {\hspace{0.5cm}$P(B|A_2)$}
+                            }
+           edge from parent 
+           node[above=0cm,red] {\hspace{0.3cm} $P(A_2)$}
+    }
+    child {
+        node[bag] {$A_1$}        
+           child {
+                node[end, label=right: {...}] {}
+           }
+           child {
+                node[end, label=right: {B}] {}
+                node[xshift=1.5cm,yshift=-0.04cm,red] {$P(A_1 \cap B)$}
+                edge from parent
+                node[above=0cm,red] {\hspace{0.5cm}$P(B|A_1)$}
+                            }
+           edge from parent 
+           node[above=0cm,red] {\hspace{0.3cm} $P(A_1)$}
+    };
+\end{tikzpicture}
+\end{document}

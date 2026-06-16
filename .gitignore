@@ -343,4 +343,7 @@ xmDevEnvFiles.tgz
 
 ## TOBECONVERTED
 TOBECONVERTED/fullfoldersnotcommitted/
+TOBECONVERTED/_compilelogs/
+TOBECONVERTED/OUTPUTTEDPDFS/
+TOBECONVERTED/python
 *.ptc

@@ -966,12 +966,42 @@
 %% Nooit de originals/ aanpassen — shims hier toevoegen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% tabu is verwijderd uit de stijl maar nog aanwezig in oudere loep-bestanden
-\usepackage{tabu}
+%% Packages vereist door oudere loep-bestanden
+\usepackage{tabu}           % tabu/longtabu-omgevingen (UW3501 e.a.)
+\usepackage{float}          % [H] float-plaatsingsoptie
+\usepackage{multirow}       % \multirow in tabellen
+\usepackage{arydshln}       % ':' als kolomscheidingsteken in tabular (UW4002)
+\usepackage{standalone}     % \includestandalone (UW4101)
+\usetikzlibrary{arrows}     % >=triangle 45 in tikzpicture (UW3604)
 
 %% \typeRubriek was een verouderd commando; loep-bestanden doen \renewcommand —
 %% hier gedefinieerd zodat die override niet crasht
 \newcommand*{\typeRubriek}{}
+
+%% Verouderde structuurcommando's voor de rubriek-opmaak
+%% \startNieuweRubriek{titel}{auteur} — old-format rubriek-header, nu no-op
+\newcommand*{\startNieuweRubriek}[2]{}
+%% \inhoudstafelLoep (hoofdletter L) — old-format inhoudsopgave; no-op voor
+%% referentiecompilatie (gebruikt \startcontents[mainsections] i.p.v. [inhoudloep])
+\newcommand*{\inhoudstafelLoep}{}
+
+%% \includestandalone met .tex-extensie in argument (UW4101) geeft double-tex.
+%% No-op: de TikZ standalone-figuren zijn niet essentieel voor referentie-PDF.
+\renewcommand{\includestandalone}[2][]{}
+
+%% '\\' in vertical mode (na \eindewerktekst + blanco regel) geeft "There's no
+%% line here to end". Onderdruk die fout voor referentiecompilatie.
+\makeatletter\let\@nolnerr\relax\makeatother
+
+%% Lege regels in \begin{array}...\end{array} geven "\par in math mode" → cascade.
+%% Fix: onderdruk \par in wiskundemodus via \everymath/\everydisplay.
+\everymath{\let\par\relax}
+\everydisplay{\let\par\relax}
+
+%% Floats die voor \begin{multicols} niet zijn geplaatst, veroorzaken de fout
+%% "Deferred floats not cleared" wanneer een \section binnen multicols staat
+%% (placeins voegt dan \FloatBarrier in). Fix: flush floats vóór multicols.
+\BeforeBeginEnvironment{multicols}{\FloatBarrier}
 
 %% Verouderde lijstomgevingen → standaard LaTeX-equivalenten
 \newenvironment{nummering}{\begin{enumerate}}{\end{enumerate}}
@@ -996,3 +1026,13 @@
   \noindent\begin{minipage}[c]{#1}#3\end{minipage}\hfill%
   \begin{minipage}[c]{#2}#4\end{minipage}\par%
 }
+
+%% stellingkadertwee (niet-genummerde stelling) → kader{type}{titel}
+%% stellingkader (genummerd) → kader{type}{titel} (zelfde opmaak, nummer ontbreekt)
+\newenvironment{stellingkadertwee}[2]{\begin{kader}{#1}{#2}}{\end{kader}}
+\newenvironment{stellingkader}[2]{\begin{kader}{#1}{#2}}{\end{kader}}
+
+%% Oude loep-bestanden gebruiken \begin{kader} zonder argumenten (0 args).
+%% De huidige definitie verwacht 2 args én is '*' (geen \par toegestaan).
+%% Herdefinieer met 0 args via mdframed; eenvoudigere opmaak (geen kleur) volstaat.
+\renewenvironment{kader}{\begin{mdframed}}{\end{mdframed}}
