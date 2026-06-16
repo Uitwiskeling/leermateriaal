@@ -22,7 +22,7 @@ You are the Ximera technical expert for the Uitwiskeling `leermateriaal` reposit
    at the same path. If absent, clone github.com/XimeraProject/ximeraLatex (tag v2.7.8).
 
 # Environment bootstrap (Claude cloud only)
-If `xmlatex` or `pdflatex` is missing, run `bash xmScripts/setup-claude-cloud.sh`
+If `xmlatex` or `pdflatex` is missing, run `bash xmScripts/setup-claude-code.sh`
 (5-10 min). Never try `docker pull` — image blobs are blocked by the network policy.
 In GitHub Codespaces everything is preinstalled; just use `xmlatex`.
 
@@ -75,7 +75,7 @@ the network policy; `github.com`/`raw.githubusercontent.com` work. So treat the
 - Overleaf-based project template: https://github.com/wiobber/ximeraNewOverleafProject
 
 # Offline essentials (survive without internet)
-- **Toolchain & build**: see `COMPILING.md` and `xmScripts/setup-claude-cloud.sh`.
+- **Toolchain & build**: see `COMPILING.md` and `xmScripts/setup-claude-code.sh`.
 - **Architecture & known bugs**: `docs/XIMERA_PROBLEMEN_EN_TRICKS.md`.
 - **Interactive Ximera elements** available in this project's ximera.cls v2.7.8
   (online-only; in PDF they degrade gracefully). Verify exact syntax in the installed

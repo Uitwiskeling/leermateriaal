@@ -21,5 +21,17 @@
     "deny": [
       "Bash(docker pull *)"
     ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then bash \"$CLAUDE_PROJECT_DIR/xmScripts/setup-claude-code.sh\"; fi"
+          }
+        ]
+      }
+    ]
   }
 }

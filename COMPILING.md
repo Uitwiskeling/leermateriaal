@@ -29,10 +29,10 @@ faalt wordt de (gedeeltelijke) PDF hernoemd naar `bestand.pdf.failed`.
 
 Docker-images kunnen hier **niet** gepulled worden (de netwerkpolicy blokkeert de
 blob-hosts van ghcr.io en Docker Hub). Daarom bouwen we de inhoud van de officiële
-container native na met `xmScripts/setup-claude-cloud.sh`:
+container native na met `xmScripts/setup-claude-code.sh`:
 
 ```bash
-bash xmScripts/setup-claude-cloud.sh   # eenmalig per sessie, ±5-10 min
+bash xmScripts/setup-claude-code.sh   # eenmalig per sessie, ±5-10 min
 ```
 
 Het script installeert TeX Live via apt, cloont `ximeraLatex@v2.7.8` (met luaxake en
