@@ -958,3 +958,41 @@
 \definecolor{kleurcorrectbetekenis}{HTML}{F3E79B}
 \definecolor{kleurmeestalcorrect}{HTML}{AED3C5}
 \definecolor{randomkleurvanFilip}{HTML}{F4B797}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FOR OLD FORMAT %%%
+%% Backward-compatibiliteitsshims voor oudere loep-bestanden (originals/).
+%% Deze bestanden gebruiken een oudere versie van uitwiskeling-style.
+%% Nooit de originals/ aanpassen — shims hier toevoegen.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% tabu is verwijderd uit de stijl maar nog aanwezig in oudere loep-bestanden
+\usepackage{tabu}
+
+%% \typeRubriek was een verouderd commando; loep-bestanden doen \renewcommand —
+%% hier gedefinieerd zodat die override niet crasht
+\newcommand*{\typeRubriek}{}
+
+%% Verouderde lijstomgevingen → standaard LaTeX-equivalenten
+\newenvironment{nummering}{\begin{enumerate}}{\end{enumerate}}
+\newenvironment{opsomming}{\begin{itemize}}{\end{itemize}}
+\newenvironment{werktekstoef}{\begin{itemize}}{\end{itemize}}
+\newenvironment{meerkeuze}{\begin{enumerate}}{\end{enumerate}}
+
+%% Verouderde werktekst-commando's → lesactiviteit-omgeving
+%% NB: \beginwerktekst/\eindewerktekst ≠ altijd lesactiviteit; in sommige
+%% loep-bestanden omhullen ze gewoon een opgavetekst zonder die opmaak.
+%% Voor referentiecompilatie volstaat lesactiviteit als visueel equivalent.
+%% \leavevmode na \end{} zodat een eventuele \\ erna niet crasht in vertical mode.
+\newcommand{\beginwerktekst}[1]{\begin{lesactiviteit}{#1}}
+\newcommand{\eindewerktekst}{\end{lesactiviteit}\leavevmode}
+
+%% \tussentitel → gekleurde section* (= \lestitel uit huidige stijl)
+\newcommand*{\tussentitel}[1]{\lestitel{#1}}
+
+%% \figuurrechts{textbreedte}{figuurmarge}{tekst}{figuur}
+%% Tekst links, figuur rechts naast elkaar in minipages.
+\newcommand*{\figuurrechts}[4]{%
+  \noindent\begin{minipage}[c]{#1}#3\end{minipage}\hfill%
+  \begin{minipage}[c]{#2}#4\end{minipage}\par%
+}

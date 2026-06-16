@@ -88,3 +88,24 @@ Werkwijze:
 | UW4104  | UW4104.tex    | ⬜ TBD |
 
 Werk de status bij zodra een nummer compileert: ✅ OK / ❌ Fout (met korte notitie).
+
+## TODO: afbeeldingsstrategie heroverwegen
+
+De huidige aanpak: elke `originals/UWXXYY-minim/` heeft een `img/`-map; de loep-tex
+verwijst naar `img/foo.jpg`; `\graphicspath` wordt zo gezet dat `img/` in de juiste
+map wordt gevonden.
+
+Twee alternatieven om af te wegen:
+
+**A. Unieke bestandsnamen in één gedeelde map**
+Alle afbeeldingen van alle nummers in één `compilefiles/img/` of `originals/shared-img/`,
+met een prefix zoals `UW3501_foo.jpg`. Voordeel: simpele `\graphicspath`; nadeel:
+grote map, moeilijker te onderhouden per nummer.
+
+**B. Vlakke bestandsnamen + dynamische `\graphicspath` per nummer (huidige richting)**
+Elk nummer heeft zijn eigen `img/`; de graphicspath-macro `{originals/\uwid-minim/}`
+zorgt dat `img/foo.jpg` altijd naar de juiste map wijst. Voordeel: nummers zijn
+zelfstandig; nadeel: subdirectory-namen zijn al als prefix ingebakken bij het
+platslaan (bv. `img/loepMichele_fig.png`) — dat is een half-compromis.
+
+Kies vóór je meer nummers converteert welke strategie je wilt doorvoeren.

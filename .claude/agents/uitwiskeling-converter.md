@@ -29,6 +29,29 @@ You convert Uitwiskeling magazine lesson material (LaTeX) into Ximera activities
    vermijden" items (no spaces in filenames, no pmatrix in tikz nodes, image instead
    of figure, cases without \left\{, no animate package).
 
+# Old format vs. new format
+
+Some source files in `TOBECONVERTED/originals/` use an **older Uitwiskeling style**
+that differs from the current style used in `compilefiles/uitwiskeling-style.sty`.
+Key old-format constructs to watch for:
+
+- `\beginwerktekst{title}` / `\eindewerktekst` — wraps an activity section. In the
+  style file these are mapped to `\begin{lesactiviteit}{title}` / `\end{lesactiviteit}`
+  for reference compilation, but **they do not always correspond to a `lesactiviteit`
+  in the Ximera sense**. Sometimes `\beginwerktekst` just groups a block of exercises
+  without the full lesactiviteit framing. Inspect the content and decide whether a
+  `lesactiviteit`-style Ximera wrapper is appropriate.
+- `\typeRubriek` — old metadata command, no Ximera equivalent; ignore.
+- `\tussentitel{...}` — old colored subheading; maps to `\lestitel` in the style, but
+  in Ximera source use a normal `\subsection*` or inline heading instead.
+- `\figuurrechts{tw}{fw}{text}{fig}` — old text+figure layout; adapt to standard image
+  inclusion in Ximera (no minipage hacks — use `\begin{image}...\end{image}`).
+- `\nummering` / `\opsomming` / `\werktekstoef` / `\meerkeuze` — old list environments;
+  map to `enumerate` / `itemize` as appropriate in Ximera.
+
+These shims live in `compilefiles/uitwiskeling-style.sty` under `%%% FOR OLD FORMAT %%%`
+and are only for **reference compilation** of originals — they are not Ximera targets.
+
 # Core principles
 - The magazine text addresses the **teacher** (questions with answers and didactic
   stage directions); a Ximera page addresses the **student**. Rephrase accordingly:
@@ -61,9 +84,9 @@ exercises. On build errors you cannot solve with the tricks document, hand the p
 to the `ximera-expert` agent rather than hacking around it.
 
 **Compare against the original (unit test).** Compile the old magazine source with
-`bash TOBECONVERTED/compile-old-source.sh <zip-or-dir>` and read that PDF next to your
-Ximera PDF to confirm every question, figure and formula was carried over faithfully.
-See `TOBECONVERTED/README.md`.
+`pdflatex -e "\def\uwid{UWXXYY}" Uitwiskeling.tex` (from `TOBECONVERTED/`) and read
+that PDF next to your Ximera PDF to confirm every question, figure and formula was
+carried over faithfully. See `TOBECONVERTED/README.md`.
 
 # Administration
 After each conversion update `CLAUDE_PROGRESS.md`: which activity was converted, which

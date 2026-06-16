@@ -17,16 +17,17 @@
 \newtoggle{printversion}
 \toggletrue{printversion}
 
-%% Afbeeldingspaden: eerst de loep-map, daarna de gedeelde designbestanden
+%% Afbeeldingspaden: loep-map (bevat img/) + gedeelde designbestanden (bevat imgDesign/)
+%% De paden worden geprefixed voor de bestandsnaam: img/foo.jpg → originals/UW3501-minim/img/foo.jpg
 \usepackage{graphicx}
 \graphicspath{%
-  {originals/\uwid-minim/img/}%
-  {compilefiles/img/}%
-  {compilefiles/imgDesign/}%
+  {originals/\uwid-minim/}%
+  {compilefiles/}%
 }
 
 %% === PACKAGES & COMMANDO'S — voeg hier toe bij compile-fouten ===============
 \usepackage{compilefiles/uitwiskeling-style}
+%% uitwiskeling-style laadt ook de FOR OLD FORMAT shims (tabu, typeRubriek, ...)
 \usepackage{paracol}
 %% ============================================================================
 
