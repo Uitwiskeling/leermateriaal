@@ -2,7 +2,7 @@
 %%                           ONDER DE LOEP ARTIKEL                            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\artikelfoto{Speltheorie}{}{Michel Roelens\\ Els Vanlommel\\Luc Van den Broeck }{img/Lspeltheorie/bannerspeltheorie.jpg}
+\artikelfoto{Speltheorie}{}{Michel Roelens\\ Els Vanlommel\\Luc Van den Broeck }{img/Lspeltheorie_bannerspeltheorie.jpg}
 
 \startcontents[inhoudloep]	% om inhoud voor het loep artikel te beginnen
 
@@ -328,7 +328,7 @@ Neem een rechthoekig stuk chocolade dat verdeeld is in $m\times n$ vierkante blo
 
 In \autoref{chomp} zie je een eenvoudig spelverloop met een rechthoek van $4\times 5$ blokjes. Na  4 zetten moet de beginner, speler \textcolor{red}{rood}, het vergiftigde stukje nemen.
 
-\afbeelding[8cm]{img/Lspeltheorie/chomp.png}{Een eenvoudig spelverloop}{chomp}
+\afbeelding[8cm]{img/Lspeltheorie_chomp.png}{Een eenvoudig spelverloop}{chomp}
 
 Het spel Chomp is duidelijk een spel met een eindig aantal zetten. Er zijn geen ex aequo's: er is slechts één speler die mag sterven door het consumeren van een vergiftigd blokje chocolade. 
 
@@ -342,7 +342,7 @@ De reputatie van na-aperij is wellicht bijna even kwalijk als die van strategier
 
 Stel bijvoorbeeld dat je Chomp speelt met een vierkante chocoladerechthoek. In dit geval is de winnende strategie voor \textcolor{red}{rood} wél gekend. De winnende strategie steunt op na-aperij. De beginner, \textcolor{red}{rood} dus, kiest eerst voor blokje $b_{22}$. De chocolade die hij voor \textcolor{green}{groen} nalaat is van de volgende vorm. 
 
-\afbeelding[2cm]{img/Lspeltheorie/chomp2.jpg}{Chomp met een vierkant stuk chocolade}{chomp2}
+\afbeelding[2cm]{img/Lspeltheorie_chomp2.jpg}{Chomp met een vierkant stuk chocolade}{chomp2}
 
 Vervolgens heeft \textcolor{green}{groen} de keuze om een aantal blokjes af te breken van de horizontale rij of van de verticale kolom die overblijft. Speler \textcolor{red}{rood} aapt hem na bij de overgebleven arm. Zo herstelt hij het evenwicht en blijven beide armen even lang. Als beide armen opgegeten zijn, rest enkel het vergiftigde blokje voor \textcolor{green}{groen}.
 
@@ -760,7 +760,7 @@ $$\text{P}(\text{Holmes overleeft)}=\left(\frac{3}{2}p-1 \right)q+\left(1-\frac{
 
 De grafiek hieronder vat de strategieën van beide personages samen. Op de horizontale as is de kans $p$ uitgezet en op de verticale as de kans $q$. In het groen zie je de optimale waarde van $p$ in functie van $q$ en in het rood de optimale waarde van $q$ in functie van $p$.
 
-\afbeelding[6.5cm]{img/Lspeltheorie/nash.png}{}{}
+\afbeelding[6.5cm]{img/Lspeltheorie_nash.png}{}{}
 
 Het snijpunt $\left( \frac{2}{3}, \frac{1}{3}\right)$ is het zogenaamde \emph{Nash-evenwicht}. Van zodra Holmes afwijkt van $p=\frac{2}{3}$, kan zijn tegenstander zijn overlevingskans naar nul brengen door een geschikte keuze van $q$ (namelijk $1$ of $0$). Analoog kan Moriarty geen betere $q$-waarde nemen dan $\frac{1}{3}$, want anders kan Holmes een $p$-waarde nemen (namelijk $0$ of $1$) die hem met zekerheid doet ontsnappen.
 
@@ -777,7 +777,7 @@ Sherlock Holmes moet dus met kans $\frac{2}{3}$ in Canterbury uitstappen. Hij ka
 
 In deze paragraaf bekijken we speltheorie in de context van het trappen van penalty's bij voetbalwedstrijden. We zien het trappen van een penalty als een spel met twee spelers waarbij de penaltytrapper steeds de rijspeler is en de keeper de kolomspeler. We bestuderen het vereenvoudigde model waarbij de penaltytrapper enkel links (L) of rechts (R) trapt en de keeper enkel links (L) of rechts (R) duikt. Belangrijke afspraak: als de penaltytrapper links kiest en de keeper ook (dus beiden L), dan bedoelen we dat de keeper naar de hoek duikt waar de bal terecht komt. We hanteren met andere woorden L en R altijd vanuit het perspectief van de trapper  (zie figuur \ref{fig:penalty09}).
 
-\afbeelding{img/Lspeltheorie/penalty09.jpg}{Links (L) en rechts (R) trappen en duiken}{fig:penalty09}
+\afbeelding{img/Lspeltheorie_penalty09.jpg}{Links (L) en rechts (R) trappen en duiken}{fig:penalty09}
 
 Andere gevallen, zoals bijvoorbeeld de situatie dat een penaltytrapper de bal naar het midden van de goal trapt, laten we achterwege. We maken ook geen onderscheid tussen de bal over de grond trappen of in de winkelhaak enz., al zijn dat strategisch natuurlijk ook wel interessante keuzes.
 
@@ -915,7 +915,7 @@ We kunnen deze situatie grafisch interpreteren als het snijpunt van de twee rech
 
 We doen nog een andere interessante vaststelling: $\displaystyle \textcolor{purple}{\left(\frac{4}{7}, \frac{3}{7}\right)}$ is een minimax-strategie. Op de gemengde strategie van de keeper zal de trapper steeds reageren door te kiezen voor de strategie die hem maximale winst oplevert, d.w.z. zoveel mogelijk goals. De keeper moet bijgevolg kiezen voor de strategie die de maximale winst voor de trapper minimaliseert. Hij minimaliseert in dat geval het verlies dat hijzelf hoogstens kan hebben. De grafiek die de maximale winst voor de trapper aangeeft, is in blauw getekend in figuur \ref{fig:penalty01}. Het snijpunt is het punt waar die maximale minst zo klein mogelijk is. De strategie die erbij hoort, is dus een minimax-strategie.
 
-\afbeelding[0.8\textwidth]{img/Lspeltheorie/penalty01.jpg}{Verwachte winsten van de penaltytrapper (als hij links of rechts trapt) in functie van $q$. In het snijpunt zijn deze winsten gelijk en maakt het niet uit hoe hij trapt.}{fig:penalty01}
+\afbeelding[0.8\textwidth]{img/Lspeltheorie_penalty01.jpg}{Verwachte winsten van de penaltytrapper (als hij links of rechts trapt) in functie van $q$. In het snijpunt zijn deze winsten gelijk en maakt het niet uit hoe hij trapt.}{fig:penalty01}
 
 
 Bekijken we nu wat de penaltytrapper moet doen. De redenering is helemaal analoog. We stellen de strategie van de penaltytrapper $(1-p,p)$ en zoeken de waarde van $p$ waarvoor het niet uitmaakt wat de keeper doet. Als de keeper links kiest, dan is zijn verwachte winst $1\cdot (1-p)+0,25\cdot p=1-0,75p$. Duikt hij rechts dan is dat $0\cdot (1-p)+1\cdot p=p$.
@@ -938,7 +938,7 @@ De trapper moet er met zijn strategie voor zorgen dat de keeper geen voordeel ka
 
 We kunnen opnieuw grafisch inzien dat hier een minimax-strategie wordt gespeeld. De penaltytrapper zal voor de strategie kiezen die de maximale winst voor de keeper minimaliseert. Hij minimaliseert hiermee het verlies dat hijzelf hoogstens kan verwachten. De grafiek die de maximale verwachte winst voor de keeper aangeeft, is in blauw getekend in figuur \ref{fig:penalty02}. Het snijpunt is het punt waar die maximale winst zo klein mogelijk is.
 
-\afbeelding[0.8\textwidth]{img/Lspeltheorie/penalty02.jpg}{Verwachte winsten van de keeper (als hij links of rechts duikt) in functie van $p$. In het snijpunt zijn deze winsten gelijk en maakt het niet uit hoe de keeper duikt.}{fig:penalty02}
+\afbeelding[0.8\textwidth]{img/Lspeltheorie_penalty02.jpg}{Verwachte winsten van de keeper (als hij links of rechts duikt) in functie van $p$. In het snijpunt zijn deze winsten gelijk en maakt het niet uit hoe de keeper duikt.}{fig:penalty02}
 
 Conclusie: het Nash-evenwicht is de combinatie van de minimax-strategieën $\displaystyle \left( \textcolor{green}{\left(\frac{3}{7},\frac{4}{7} \right)},\textcolor{purple}{\left(\frac{4}{7},\frac{3}{7} \right)}  \right)$. De spelers wisselen hierbij random tussen links en rechts volgens de verdeling uit het evenwicht. Geen van beide spelers kan zich in die situatie verbeteren door eenzijdig van strategie te veranderen.
 
@@ -1001,7 +1001,7 @@ De waarschijnlijkheid van links duiken $(1-q)$ of rechts duiken $(q)$ moet zo zi
 
 In figuur \ref{fig:penalty03} zie je de visualisering van deze situatie. Merk hier opnieuw op dat de keeper bij deze strategie zijn maximaal verwachte verlies zo klein mogelijk maakt. De strategie die de keeper zal volgen, is een minimax-strategie.
 
-\afbeelding[0.8\textwidth]{img/Lspeltheorie/penalty03.jpg}{Verwachte winsten van de penaltytrapper (als hij links of rechts trapt) in functie van $q$. In het snijpunt zijn deze winsten gelijk en maakt het niet uit hoe er getrapt wordt.}{fig:penalty03}
+\afbeelding[0.8\textwidth]{img/Lspeltheorie_penalty03.jpg}{Verwachte winsten van de penaltytrapper (als hij links of rechts trapt) in functie van $q$. In het snijpunt zijn deze winsten gelijk en maakt het niet uit hoe er getrapt wordt.}{fig:penalty03}
 
 Wat moet de penaltytrapper doen? We kennen ondertussen de procedure: de strategie van de penaltytrapper moet zo zijn dat het niet uitmaakt wat de keeper doet. De winsten van de keeper moeten gelijk zijn.
 \begin{center}
@@ -1024,7 +1024,7 @@ Conclusie: het Nash-evenwicht is de combinatie van de twee gevonden strategieën
 
 Zien we dit evenwicht terug in de waargenomen data over de echte strafschoppen in het onderzoek? In het onderzoek van Palacios-Heurta wordt getoond dat spelers inderdaad randomiseren tussen links en rechts trappen of duiken. In figuur \ref{fig:penalty04} vergelijken we de waargenomen frequenties met de theoretische Nash-frequenties die we net berekend hebben op basis van de bimatrix met de empirische kansen. We weten bijvoorbeeld dat penaltytrappers in $38\%$ van de gevallen links zouden moeten trappen volgens de voorspellingen bij het Nash-evenwicht. Dit komt goed overeen met de waarnemingen: bij de 1417 onderzochte penalty's wordt er in $40\%$ van de gevallen naar links getrapt bij een penalty enz. 
 
-\afbeelding[0.8\textwidth]{img/Lspeltheorie/penalty04.jpg}{Vergelijking van de berekende Nash-frequenties met de waargenomen frequenties uit de steekproef.}{fig:penalty04}
+\afbeelding[0.8\textwidth]{img/Lspeltheorie_penalty04.jpg}{Vergelijking van de berekende Nash-frequenties met de waargenomen frequenties uit de steekproef.}{fig:penalty04}
 
 De overeenkomsten zijn duidelijk: professionele voetbalspelers spelen op groepsniveau blijkbaar bijna perfect volgens de gemengde minimax-strategieën bij het Nash-evenwicht!
 \end{multicols}
@@ -1035,7 +1035,7 @@ De overeenkomsten zijn duidelijk: professionele voetbalspelers spelen op groepsn
 
 Speltheorie is als discipline ontstaan in de jaren 1920. Eén van de grondleggers is de Hongaars-Amerikaanse wiskundige John von Neumann (1903–1957).
 
-\afbeelding[0.6\linewidth]{img/Lspeltheorie/penalty10.jpg}{John von Neumann}{fig:penalty10}
+\afbeelding[0.6\linewidth]{img/Lspeltheorie_penalty10.jpg}{John von Neumann}{fig:penalty10}
 
 In 1928 publiceerde von Neumann het artikel ``Zur Theorie der Gesellschaftsspiele'' waarin hij de minimax-stelling formuleerde. Dit werk was belangrijk voor de ontwikkeling van speltheorie als op zichzelf staande discipline omdat het bewees dat strategisch gedrag wiskundig te modelleren valt. De grote doorbraak kwam in 1944 toen von Neumann samen met de Oostenrijkse econoom Oskar Morgenstern het invloedrijke boek ``Theory of Games and Economic Behavior'' publiceerde. Dit werk legde de wiskundige basis voor de toepassing van speltheorie in de economie en sociale wetenschappen. Het maakte de theorie bekend buiten de zuiver wiskundige wereld. The New York Times wijdde er zelfs een voorpaginaverhaal aan, een eer die tot dan toe alleen Einstein was te beurt gevallen.
 
@@ -1046,7 +1046,7 @@ In de jaren 1950 bouwde de Amerikaanse wiskundige John Nash (1928-2015) in de sp
 John Forbes Nash jr werd in 1928 geboren in West Virginia en toonde al op jonge leeftijd uitzonderlijke wiskundige talenten. Na zijn studie aan het Carnegie Institute of Technology promoveerde hij in 1950 aan Princeton University met een proefschrift over speltheorie van slechts 27 pagina’s lang. Daarin introduceerde hij een 
 revolutionair concept dat later bekend zou worden als het Nash-evenwicht. Dit maakte de speltheorie toepasbaar op een breder scala aan situaties, ook bij spellen waarin samenwerkingen tussen spelers mogelijk zijn.
 
-\afbeelding[0.6\linewidth]{img/Lspeltheorie/penalty11.jpg}{John Nash}{fig:penalty11}
+\afbeelding[0.6\linewidth]{img/Lspeltheorie_penalty11.jpg}{John Nash}{fig:penalty11}
 
 De ideeën uit Nash's proefschrift vormden de wiskundige ruggengraat van veel moderne economische theorieën. Hij werd voor dit werk in 1994 dan ook erkend met de Nobelprijs voor de economie (die hij deelde met John Harsanyi en Reinhard Selten).
 

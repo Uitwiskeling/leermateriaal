@@ -1,4 +1,4 @@
-\artikelfoto{Wiskundig programmeren in Python}{}{Dennis Presotto \\ Luc Van den Broeck}{img/LOEP/pythonbanner.jpeg}
+\artikelfoto{Wiskundig programmeren in Python}{}{Dennis Presotto \\ Luc Van den Broeck}{img/LOEP_pythonbanner.jpeg}
 
 \startcontents[inhoudloep]	% om inhoud voor het loep artikel te beginnen
 
@@ -78,7 +78,7 @@
 
         De convergentie van de rij uit de bovenstaande lesactiviteit kan op twee manieren beargumenteerd worden. Enerzijds kun je deze convergentie grafisch inzien via een zogenaamde webgrafiek. Hierbij construeer je via de rechte met vergelijking $y=x$ en de grafiek van $f(x)=\dfrac{1}{1+x^2}$ alle koppels van de vorm $(x_n,f(x_n))=(x_n,x_{n+1})$. Het feit dat de rij convergeert, herken je aan de inwaartse spiraal die in dit geval ontstaat bij de webgrafiek. (Je kunt zelf webgrafieken maken via bijvoorbeeld de GeoGebra-applet van Wim Haazen: \url{https://www.geogebra.org/m/pEJYpjQ9}.)
 
-        \includegraphics[width=0.45\textwidth]{img/LOEP/Webgrafiek.jpg}\\
+        \includegraphics[width=0.45\textwidth]{img/LOEP_Webgrafiek.jpg}\\
 
         Anderzijds kan de convergentie ook algebra\"isch beargumenteerd worden: de rij convergeert naar het unieke fixpunt van de functie $f$. Dat laatste volgt uit het feit dat het beeld van $f$ gelijk is aan $]0,1]$ en uit het feit dat de beperking van $f$ tot het interval $[0,1]$ een zogenaamde (Lipschitz-)contractie is. We verwijzen naar (Labie \& Stulens, 2005) voor wie meer informatie wil over webgrafieken en stellingen in verband met fixpunten en iteratie.
 
@@ -149,7 +149,7 @@
             \vraag{Hoeveel termen heb je in deze reeks nodig om $\pi$ tot op 0,001 nauwkeurig te bepalen?}
             \antwoord{Aangezien we een alternerende reeks hebben waarvan de termen in absolute waarde dalen en naar nul convergeren, weten we zeker dat de $n$-de partieelsom $s_n$ nauwkeurig genoeg is, wanneer de absolute waarde van de $(n+1)$-de term kleiner is dan $0,001$. Op onderstaande tekening wil dat zeggen dat de afstand tussen de limiet $s$ en de partieelsom $s_n$ hoogstens $0,001$ is wanneer $b_{n+1} =  |s_{n+1}-s_n|$ hoogstens $0,001$ is. De limiet $s$ ligt immers tussen deze twee partieelsommen in. Voor het huidige voorbeeld is $b_n = \dfrac{4}{2n+1}$.
             \begin{center}
-               \includegraphics[width=0.5\textwidth]{img/LOEP/Alternating2.jpg} \\
+               \includegraphics[width=0.5\textwidth]{img/LOEP_Alternating2.jpg} \\
                (afbeelding gebaseerd op \url{https://www.youtube.com/watch?v=j1VlpaNBkkA})
             \end{center}
             Voor deze reeks vinden we
@@ -181,7 +181,7 @@
         De bekendste methode voor het benaderen van de nulwaarden van een functie is vermoedelijk de methode van Newton-Raphson. Deze methode is gebaseerd op het volgende centrale idee: wanneer we de nulwaarde van een functie benaderen door een bepaalde $x$-waarde en voor deze $x$-waarde de raaklijn tekenen aan de grafiek van de functie, dan is de nulwaarde van de eerstegraadsfunctie die de raaklijn beschrijft meestal een betere benadering van de nulwaarde van de functie dan de $x$-waarde waarvan we vertrokken zijn. Deze constructie genereert dus een rij van alsmaar betere benaderingen voor de nulwaarde van de functie. Visueel ziet dit er als volgt uit.
 
         \begin{center}
-        \includegraphics[width=0.45\textwidth]{img/LOEP/Newtonraphson.png}
+        \includegraphics[width=0.45\textwidth]{img/LOEP_Newtonraphson.png}
         \captionof{figure}{Benadering van het nulpunt met de methode van Newton-Raphson}
         \end{center}
         
@@ -226,7 +226,7 @@
             We kunnen met de hand narekenen dat de benaderingen in de volgende oneindige lus terecht komen: $$x_0=0, x_1=-1, x_2=0, x_3=-1, \ldots$$ 
             Met Python zouden we dit kunnen zien door de while-lus te vervangen door een for-lus waarbij we het aantal iteraties op voorhand vastleggen. We kunnen de oneindige lus ook grafisch zien: de raaklijn aan de grafiek van $f$ in het punt $(0,f(0))$ snijdt de $x$-as in $(-1,0)$ en de raaklijn aan $f$ in het punt $(-1,f(-1))$ snijdt de $x$-as in $(0,0)$.
             \columnbreak
-            \includegraphics[width=0.27\textwidth]{img/LOEP/NewtonRaphsononeindig.png}
+            \includegraphics[width=0.27\textwidth]{img/LOEP_NewtonRaphsononeindig.png}
             \end{multicols}}
         \end{vraagenantwoord}
         Uiteraard kun je veel van die oneindige lussen vermijden door de startwaarde voldoende dicht bij de nulwaarde te kiezen. Toch zijn er ook functies waarbij Newton-Raphson nooit naar de nulwaarde zal convergeren (bijvoorbeeld $f(x) = \sqrt[3]{x^3-2x-2}$). Om zulke problemen met oneindige lussen te vermijden kun je een safestop inbouwen. In de bovenstaande code kan dit door een extra variabele \inline{stap} in te voeren die onthoudt hoeveel keer de lus al doorlopen is:\\
@@ -290,7 +290,7 @@
             \begin{multicols}{2}
             \antwoord{Bij de regula-falsi-methode convergeert slechts \'e\'en van de grenswaarden van het interval naar de nulwaarde. Welke grenswaarde dit is, hangt af van de tekens van $f(a)$ en $f(b)$ en van het feit of de grafiek hol of bol is in de omgeving van de nulwaarde. Voor de functie van de grafiek hiernaast zien we dat enkel de rechtergrens van het interval naar de nulwaarde zal convergeren. Het verschil $b_i-a_i$ gaat niet naar nul.   
             \columnbreak
-            \includegraphics[width=0.3\textwidth]{img/LOEP/RegulaFalsiGrenspunt2.png}}
+            \includegraphics[width=0.3\textwidth]{img/LOEP_RegulaFalsiGrenspunt2.png}}
             \end{multicols}
             
             \vraag{Geef een alternatief stopcriterium dat wel zou werken voor deze methode.}
@@ -349,10 +349,10 @@
 		
     \antwoord{We zien een tabel met \num{10958} rijen waarin voor elke rij naast elkaar een datum staat, een dagnaam en een aantal geboortes. Elke rij stelt een waarneming uit onze dataset voor. De waarnemingen zijn niet in de meest gebruiksvriendelijke vorm weergegeven: alles staat in de meest linkse kolom (zie onderstaande figuur links). Dat is de standaardinstelling als je op een csv-bestand klikt om het in Excel te openen maar het is niet de meest gebruiksvriendelijke. Om deze data makkelijk te kunnen analyseren, moeten we de gegevens over verschillende kolommen vepreiden (zie onderstaande figuur rechts). Je kunt dit doen door in Excel de separator `komma' in te stellen via de gegevenswizard (gegevens > uit tekstbestand/csv). De gegevens zijn nu overzichtelijker gepresenteerd maar het grote aantal rijen in het dataframe blijft het overzicht belemmeren. Er zijn talrijke mogelijkheden in Excel om selecties in het rekenblad te maken en hier analyses op te doen. Je zult echter af en toe door lange tabellen moeten scrollen en het is sowieso lastig om te zien of je de juiste blokken hebt geselecteerd in deze tabellen. Foutjes zijn hier snel gemaakt.}
     \begin{minipage}[t]{0.5\linewidth}
-            \includegraphics[width=6cm]{img/LOEP/excelGeboorten.jpg}
+            \includegraphics[width=6cm]{img/LOEP_excelGeboorten.jpg}
         \end{minipage}\hfill
         \begin{minipage}[t]{0.5\linewidth}
-            \includegraphics[width=6.5cm]{img/LOEP/excelGeboorten2.jpg}
+            \includegraphics[width=6.5cm]{img/LOEP_excelGeboorten2.jpg}
         \end{minipage}
 		
     \vraag{Kun je de gegevens ook in een rekenblad van GeoGebra invoeren?}
@@ -375,7 +375,7 @@
     \antwoord{In regel 4 wordt Pandas geïmporteerd. Verderop zal er naar Pandas verwezen worden met de afkorting \inline{pd}. Als we een functie uit Pandas willen gebruiken, noteren we deze functie achter de modulenaam, gescheiden door een punt. Zo wordt in regel 9 de functie \inline{read_csv} uit Pandas gebruikt om een csv-bestand te lezen.}
 
     \vraag{Laat het programma lopen en beschrijf wat je ziet.}
-    \afbeelding[7cm]{img/LOEP/csvGeboorten.jpg}{}{geboorten}
+    \afbeelding[7cm]{img/LOEP_csvGeboorten.jpg}{}{geboorten}
     \antwoord{Hierboven zie je dat een dataframe een automatische nummering in de linkerkolom heeft die begint bij $0$. Er zijn \num{10958} rijen. De kolommen in een dataframe hebben een titel die aangeeft wat er in elke kolom staat. Alleen de eerste en de laatste vijf rijen worden getoond. De rest is verborgen achter de stippeltjes. Kijken naar deze output leert je niet veel. Om meer zicht te krijgen op de situatie kan er bijvoorbeeld ook een grafische voorstelling gemaakt worden.}
     \end{vraagenantwoord}
 \end{lesactiviteit}
@@ -419,10 +419,10 @@ Verderop zullen we de grafische interpretaties wiskundig ondersteunen door het b
 
     \antwoord{Door een kleine wijziging in regel 16 wordt er één staafje per eenheid voorzien: bins=$350$. Merk op dat je dit laatste frequentiediagram nu ook een histogram mag noemen. De frequenties zijn zowel af te lezen van de hoogte als van de oppervlaktes van de staafjes (met breedte \emph{\(1\)}).\\
     \begin{minipage}[t]{0.5\linewidth}
-        \includegraphics[width=6cm]{img/LOEP/histogramgeboorten1.jpg}
+        \includegraphics[width=6cm]{img/LOEP_histogramgeboorten1.jpg}
     \end{minipage}\hfill
     \begin{minipage}[t]{0.5\linewidth}
-        \includegraphics[width=6cm]{img/LOEP/histogramgeboorten2.jpg}
+        \includegraphics[width=6cm]{img/LOEP_histogramgeboorten2.jpg}
     \end{minipage}
     }
   \end{vraagenantwoord} 
@@ -456,7 +456,7 @@ Maar er zijn mogelijk nog andere besluiten te trekken uit de vorm van een punten
     \vraag{Laat het Python-programma lopen en interpreteer het resultaat zo goed mogelijk.}
     \antwoord{De grafiek hieronder maakt een cyclische beweging met $31$ toppen en $31$ dalen. Wellicht heeft dit te maken met een jaarlijkse cyclische beweging: veel sterfte in de winter, weinig sterfte in de zomer.}
     
-    \afbeelding[10cm]{img/LOEP/overlijdens.jpg}{}{sterfte}
+    \afbeelding[10cm]{img/LOEP_overlijdens.jpg}{}{sterfte}
      
     \vraag{Aan de rechterkant van de grafiek zien we enkele uitzonderlijk hoge waarden. Kun je deze verklaren?}
     
@@ -501,7 +501,7 @@ In de volgende lesactiviteit berekenen we kengetallen als het gemiddelde en de s
 
     De puntenwolk die aan het csv-bestand \inline{openmeteoantwerpen.csv} gekoppeld is, lijkt min of meer periodisch. Dat zie je duidelijk op de figuur hieronder. De jaarlijkse cyclus verbaast uiteraard niet.
 
-    \afbeelding[10cm]{img/LOEP/gemiddeldedagtemperatuur.jpg}{}{dagtemp}
+    \afbeelding[10cm]{img/LOEP_gemiddeldedagtemperatuur.jpg}{}{dagtemp}
     
     In plaats van de puntenwolk samen te vatten in twee getallen (gemiddelde en standaardafwijking) kunnen we ze ook samenvatten met een grafiek die een langjarige tendens laat zien die geen rekening houdt met uitschieters in zomer en winter. Statistici omschrijven dit als een weergave die ontdaan is van `ruis'. Deze grafiek zorgt ervoor dat we enkel focussen op de essentie. De blauwe rechte bovenop de puntenwolk in de figuur hieronder geeft een langjarige tendens weer. We noemen deze rechte een \emph{regressielijn} of een \emph{best passende grafiek}.
 
@@ -537,10 +537,10 @@ De normale verdeling is cruciaal in de statistiek. Bij sommige metingen gaan we 
    
     \vraag{Het databestand `\inline{geboortesperdag.csv}' heeft een kolom met dagnamen. Hierdoor kunnen we een onderscheid maken tussen de gegevens van de weekdagen en van de weekenddagen. We kunnen hiermee twee aparte frequentiediagrammen opstellen. Je ziet ze in de onderstaande figuur. Ben je er nu van overtuigd dat beide frequentiediagrammen normaalverdeeld zijn? \\
         \begin{minipage}[t]{0.5\linewidth}
-            \includegraphics[width=7cm]{img/LOEP/geboorten4.jpg}
+            \includegraphics[width=7cm]{img/LOEP_geboorten4.jpg}
         \end{minipage}\hfill
         \begin{minipage}[t]{0.5\linewidth}
-            \includegraphics[width=7cm]{img/LOEP/geboorten6.jpg}
+            \includegraphics[width=7cm]{img/LOEP_geboorten6.jpg}
         \end{minipage}  }
         
     \antwoord{Beide frequentiediagrammen lijken normaalverdeelde klokvormen. Deze uitspraak is enkel op intuïtie gebaseerd. Om echt zeker te zijn van de normaliteit van de verdeling, moeten we bijkomend onderzoek doen.}
@@ -577,10 +577,10 @@ Hiermee kunnen we op een visuele manier beoordelen hoe goed de dataset aansluit 
 
 \end{multicols}
         \begin{minipage}[t]{0.5\linewidth}
-            \includegraphics[width=7cm]{img/LOEP/geboorten5.jpg}
+            \includegraphics[width=7cm]{img/LOEP_geboorten5.jpg}
         \end{minipage}\hfill
         \begin{minipage}[t]{0.5\linewidth}
-            \includegraphics[width=7cm]{img/LOEP/geboorten7.jpg}
+            \includegraphics[width=7cm]{img/LOEP_geboorten7.jpg}
         \end{minipage}
         %\captionof{figure}{QQ-plot voor weekdagen (links) en weekenddagen (rechts)}
 \begin{multicols}{2}
@@ -623,7 +623,7 @@ Om een programma in Python te laten lopen (te runnen)  is het handig dat je gebr
 
 \begin{center}
     \includegraphics[width=0.4
-    \linewidth]{img/LOEP/logo2.jpg}
+    \linewidth]{img/LOEP_logo2.jpg}
     \captionof{figure}{Het logo van Visual Studio Code}
     \label{logo2}
 \end{center}
@@ -635,7 +635,7 @@ Veelgebruikte bibliotheekprogramma's (packages) staan automatisch op je computer
 
 \begin{center}
     \includegraphics[width=0.4
-    \linewidth]{img/LOEP/logo3.png}
+    \linewidth]{img/LOEP_logo3.png}
     \captionof{figure}{Het logo van Thonny}
     \label{logo3}
 \end{center} 
