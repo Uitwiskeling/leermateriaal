@@ -1,0 +1,960 @@
+\ProvidesPackage{uitwiskeling-style}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     OVERZICHT COMMANDO'S EN OMGEVINGEN                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% RUBRIEKEN & ARTIKELS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \rubriek{type}{titel} 						- begin nieuwe rubriek van gegeven type
+%% \rubriekkleur 								- kleur van de huidige rubriek
+%% \artikel{titel}{subtitel}{auteur} 			- begin nieuw artikel
+%% \artikelfoto{titel}{subtitel}{auteur}{foto} 	- begin nieuw artikel met foto (foto staat altijd tegen de paginarand, 10.4cm breed incl. 5mm afloop)
+%% \auteurslot{auteur} 							- auteur op het eind van een artikel (bv. redactioneel, bibwijzer)
+
+%% TUSSENTITELS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \section{}, \subsection{}, \subsubsection{}, \paragraph{} - hierachie van tussentitels
+%% \section, \subsection 						- genummerde tussentitels
+%% \section*, \subsection* 						- ongenummerde tussentitels (met ster *)
+%% \subsubsection, \paragraph 					- altijd ongenummerd
+
+%% BRONNEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{bronnen} \item bron ... \end{bronnen}	- bronvermelding op het eind van een artikel
+
+%% AFBEELDINGEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Noot: gebruik enkel deze, gebruik GEEN {figure} omgeving, dit werkt namelijk niet binnen een multicols omgeving (geen floats toegestaan)
+%% \afbeelding[breedte]{bestand}{onderschrift}{label}	- plaats afbeelding in lijn met tekst
+%% \afbeeldingtotrand{l|r|b}{bestand}					- plaats een decoratieve afbeelding die tot de paginarand loopt (in multicols kolom: 10.4cm breed incl. 5mm afloop; buiten multicols kolom: 22cm breed incl. 2x 5mm afloop)
+
+%% LESACTIVITEITEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{lesactiviteit}{titel} ... \end{lesactiviteit}	- lesactiviteit kader
+%% \lestitel, \lessubtitel								- tussentitels lesactiviteit (ongenummerd en in kleur)
+
+%% OPSOMMINGEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{vraagenantwoord} \vraag{...} \antwoord{...} ... \end{vraagenantwoord} - omgeving voor een vraag/antwoord structuur (gebruik bv. binnen lesactiviteit)
+%% 		\vraag{tekst}			- voor de vraagtekst binnen {vraagenantwoord} omgeving
+%% 		\antwoord{tekst}		- voor de antwoordtekst binnen {vraagenantwoord} omgeving
+%% \begin{enumerate}\ item ... \end{enumerate} 	- genummerde opsomming
+%% \begin{itemize}\ item ... \end{itemize} 		- ongenummerde opsomming
+
+%% CITATEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{citaat}[auteur/bron] ... \end{citaat}		- een citaat met optionele auteur/bron
+
+%% KADERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{kader}{type}{titel} ... \end{kader} 		- plaats tekst binnen een kader
+
+%% TABELLEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Noot: gebruik enkel dit, gebruik GEEN {table} omgeving, dit werkt namelijk niet binnen een multicols omgeving (geen floats toegestaan)
+%% \begin{tabel} \begin{tabular}{...} ... \end{tabular} \end{tabel}
+
+%% OVERIGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \clearpage  		- manuele paginabreak, nodig boven elk artikel behalve het 1ste artikel in een rubriek
+%% \clearcolumn 	- manuele kolombreak (eindig de linkerkolom, ga naar de rechterkolom)
+%% \smallskip, \medskip, \bigskip - extra verticale ruimte creëren
+%% \comments{} 		- snel meerdere lijnen in comment zetten (verbergen in output)
+
+%% AFMETINGEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tekstbreedte buiten multicols kolom:	16.2cm
+%% Tekstbreedte binnen lesactiviteit: 	15.0cm
+%% Tekstbreedte binnen multicols kolom:	 7.5cm
+%% Breedte afbeelding tot paginarand buiten multicols kolom: 22.0cm (=21cm + 2x 5mm afloop, dit is de volledige paginabreedte)
+%% Breedte afbeelding tot paginarand binnen multicols kolom: 10.4cm (7.5cm + 2.4cm marge + 5mm afloop)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Noot: nieuwe commands aangeduid met "ENKEL HULPMACRO" zijn hulpmacro's voor andere macro's, en niet bedoeld om rechtstreeks in een document te gebruiken.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PACKAGES %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% WISKUNDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath, amsthm}					% uitgebreide wiskundige mogelijkheden
+\allowdisplaybreaks[1]							% optie van amsmath package, laat toe dat een formuleblok over twee pagina's mag splitsen
+
+\usepackage{mathtools}  						% fixes & uitbreiding van amsmath
+
+\usepackage{icomma}                             % spatiëring na decimale komma in orde brengen
+
+\usepackage[charter]{mathdesign}				% lettertype Bitstream Charter voor wiskundesymbolen (aansluitend bij lettertype voor body tekst)
+
+\usepackage{siunitx} % voor betrouwbare meter, en andere eenheden. BV: \SI{2}{\metre} voor 2 m; \si{\metre} voor m op zich
+\sisetup{output-decimal-marker = {,}} % voor nederlandse manier
+\usepackage[left]{eurosym} % voor clean euro symbol http://www.theiling.de/eurosym.html; wij zetten eurotekens links https://www.wikiwand.com/nl/Euroteken#Plaats_van_het_euroteken_bij_het_aangeven_van_een_bedrag
+
+
+%% TAAL & TYPOGRAFIE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[dutch]{babel}						% stel taal in op Nederlands (voor typo regels, woordafbreking, ...)
+\usepackage[utf8]{inputenc}						% niet-ascii-symbolen typen
+\usepackage[T1]{fontenc}						% gebruik fonts met glyphs met accenttekens
+
+\usepackage[scaled=1.00]{XCharter}				% lettertype Bitstream Charter (serif) + uitbreiding (gebruikt voor body tekst) %naam=XCharter-TLF
+%https://mirror.lyrahosting.com/CTAN/fonts/xcharter/doc/xcharter-doc.pdf incl. advies voor math font pairing met XCharter
+
+\usepackage[defaultsans,scale=0.95]{opensans}	% lettertype Open Sans (noot: geen small caps mogelijk)
+\DeclareRobustCommand\ebseries{\fontseries{eb}\selectfont}	% extra bold weight
+\DeclareRobustCommand\sbseries{\fontseries{sb}\selectfont}	% semi-bold weight
+\DeclareRobustCommand\ltseries{\fontseries{l}\selectfont}	% light weight
+\DeclareTextFontCommand{\texteb}{\ebseries}					% extra bold weight
+\DeclareTextFontCommand{\textsb}{\sbseries}					% semi-bold weight
+\DeclareTextFontCommand{\textlt}{\ltseries}					% light weight
+
+\usepackage{beramono}                           % lettertype Bera Mono (monospaced, versie van Bitstream Vera Mono) (gebruikt voor code etc) %naam=fvm
+
+\usepackage{relsize}							% fontsize te veranderen relatief tov omringende tekst
+
+\usepackage{microtype}                          % splitsen van woorden tot een minimum beperken
+
+
+%% AFBEELDINGEN & KLEUREN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[cmyk,table]{xcolor}					% tekst en achtergronden (ook bv. cellen in tabellen) in kleur zetten (laden vóór tikz & mdframed!)
+
+\usepackage{graphicx} 							% afbeeldingen verwerken en minipages maken
+
+\usepackage{tikz}								% vectorfiguren maken
+\usepackage{pgfplots}							% grafieken maken (d.m.v. TikZ package)
+\pgfplotsset{compat=newest}						% stelt in welke versie van pgfplots er gebruikt moet worden (ivm achterwaartse compatibiliteit)
+
+\usepackage[framemethod=tikz]{mdframed}			% kaders maken (laden na amsthm)
+% Patch voor mdframed om skipbelow argument te doen werken
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\endmdframed}
+	{\aftergroup\endmdf@trivlist\color@endgroup}
+	{\endmdf@trivlist\color@endgroup\@doendpe}
+	{}{}
+\makeatother
+
+%% PARAGRAFEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{setspace}							% interlinie (line spacing) instellen
+
+%% Afstand tussen paragrafen instellen
+%% Zet \parskip op de helft van de baseline skip (plus glue om de afstand te vergroten/verkleinen waar nodig). Tweaks wat andere parameters (bv. zet parindent op 0).
+%% Om zelf lokaal afstand toe te voegen kun je \smallskip, \medskip en \bigskip gebruiken.
+\usepackage{parskip}
+
+%% Weduwen en wezen zoveel mogelijk vermijden (enkele lijn aan het begin of einde van een pagina); max is 10000, maar gebruik van dit getal kan tot vreemd gedrag leiden
+\widowpenalty=5000	% om weduwen te vermijden (laatste lijn van paragraaf aan het begin van een pagina)
+\clubpenalty=5000   % om wezen te vermijden (eerste lijn van paragraaf aan het eind van een pagina)
+
+
+%% PAGINAINDELING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}							% paginagrootte & indeling
+
+\usepackage{multicol}							% verdeel een pagina in meerdere kolommen - let op, binnen een kolom is het gebruik van floats niet mogelijk
+\newcommand*{\clearcolumn}{\vfill\null}			% manuele kolombreak (eindigt linkerkolom)
+\newbool{InMulticol}
+\AtBeginEnvironment{multicols}{\booltrue{InMulticol}} % (etoolbox) check of in multicols env
+
+\usepackage{changepage}                         % check oneven/even pagina & marge aanpassingen mid-document
+
+\usepackage{fancyhdr}  							% opmaak kopteksten en voetteksten
+
+\usepackage[explicit]{titlesec}					% opmaak van titels (section, subsection, etc.)
+%% [explicit] optie: specifieer titels expliciet via #1 (nodig voor rubriekdefinitie obv \part)
+%% Opmaak titels via: \titleformat{command}[shape]{format}{label}{sep}{before}[after]
+%% Spacing titels via: \titlespacing*{command}{left}{before-sep}{after-sep}[right-sep]
+
+
+%% TABELLEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{tabu}								% NIET MEER GEBRUIKEN! deze package wordt niet meer onderhouden en krijgt geen bug fixes meer; meer info: https://github.com/tabu-issues-for-future-maintainer/tabu
+
+\usepackage{array}  % voor meer kolom specs in tabellen & \arraybackslash voor in newcolumntype
+
+\renewcommand*{\arraystretch}{1.3} 				% meer spacing in tabelrijen, dit is een globale setting voor alle tabellen
+
+
+%% OVERIGE OPMAAK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[figurewithin=none,tablewithin=none]{caption}	% opmaak van bijschriften bij figuren, tabellen & custom omgevingen; de opties zorgen dat het chapter nummer niet mee in de caption staat
+\captionsetup{margin=6pt, font={footnotesize, it}, labelfont=bf, labelsep=endash, justification=RaggedRight, singlelinecheck=off}  % globale bijschriftopmaak
+
+\usepackage{titletoc}							% opmaak inhoudstafel + mogelijkheid tot mini-inhoud per rubriek
+
+\usepackage{enumitem} 							% opmaak van opsommingen
+\setlist{leftmargin=*, itemsep={.8ex plus .2ex minus .2ex}, parsep={.5ex plus .1ex minus .1ex}, topsep={.5ex plus .1ex minus .1ex}}				% globale lijstopmaak
+
+\usepackage[section,above]{placeins}			% voor \FloatBarrier commando, floats mogen niet voorbij dit commando floaten
+%% Optie 'section': barrier ingevoegd bij start van elke section
+%% Optie 'above': floats mogen boven hun sectie staan indien op dezelfde pagina
+
+
+%% OVERIGE TOOLS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xstring}							% voor stringbewerkingen, bv. de if case in command voor rubriek voor bepalen rubriektype
+\usepackage{lipsum}								% voor dummytekst in Latijn (lorum ipsum)
+\usepackage[colorinlistoftodos]{todonotes}		% om tekstballonnetjes te maken met opmerkingen voor redactie
+
+%% NODIG OF NIET?
+\usepackage{hyphenat}  							% extra hyphenation opties (wordt dit gebruikt?)
+%https://mirror.lyrahosting.com/CTAN/macros/latex/contrib/hyphenat/hyphenat.pdf
+
+\usepackage{textgreek}							% upright greek letters in tekst (wordt dit gebruikt?) 
+%https://ctan.org/pkg/textgreek?lang=en
+
+
+%% LADEN ALS LAATSTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Klikbare hyperlinks (als laatste laden!)
+\definecolor{linkkleur}{cmyk}{0.85,0.50,0.00,0.00}  % blauwe kleur voor links
+\iftoggle{printversion}{% printversie, laad hyperref wel (makkelijkste) maar verberg links
+	\usepackage[breaklinks,hidelinks]{hyperref} 
+}{% digitale versie
+	\usepackage[breaklinks]{hyperref}
+	\hypersetup{  % linkkleur instellen
+		colorlinks	= true,
+		linkcolor	= linkkleur,
+		menucolor 	= linkkleur,
+		citecolor 	= linkkleur,
+		filecolor 	= linkkleur,
+		runcolor 	= linkkleur,
+		urlcolor	= linkkleur,
+		anchorcolor	= black
+	}
+} %end iftoggle
+\urlstyle{same} 									% url typesetten in zelfde font als body (niet in monospace font)
+
+\usepackage[numbered,open,openlevel=2]{bookmark} 	% bookmarks in PDF (werkt beter dan de hyperref bookmarks)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ALGEMENE FUNCTIES VOOR BEREKENINGEN ETC %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Multiline comment - snel een grote blok code weglaten uit de output door deze te omsluiten met \comments{}
+\newcommand{\comments}[1]{\ignorespaces}
+
+%% Geeft in #3 het minimum van de twee lengtes #1 and #2 terug
+\newcommand{\MinLength}[3]{%
+	\ifthenelse{\lengthtest{\the#1<\the#2}}
+	{\setlength{#3}{#1}}
+	{\setlength{#3}{#2}}}
+
+%% Geeft in #3 het maximum van de twee lengtes #1 and #2 terug
+\newcommand{\MaxLength}[3]{%
+	\ifthenelse{\lengthtest{\the#1>\the#2}}
+	{\setlength{#3}{#1}}
+	{\setlength{#3}{#2}}}
+
+%% Hyperlink anchor op bovenkant van pagina (bv. voor rubriek TOC links & bookmarks)
+\AddToHook{shipout/background}{\raisebox{1in}[0pt][0pt]{\hypertarget{pagetop.\thepage}{}}}
+\makeatletter
+\newcommand{\phantompageref}{\def\@currentHref{pagetop.\thepage}}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PAGINA-INDELING %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Afmetingen pagina, papier, afloop, marges
+%% Afloop wordt na het drukken afgesneden, zodat elementen tot de paginarand kunnen lopen zonder dat er witte randjes ontstaan bij afsnijden
+\newlength{\pagewidth}
+\setlength{\pagewidth}{210mm}		% A4 breedte (paginabreedte na afsnijding)
+\newlength{\pageheight}
+\setlength{\pageheight}{297mm}		% A4 hoogte (paginahoogte na afsnijding)
+			
+\newlength{\aflooplen}
+\setlength{\aflooplen}{5mm}
+\newlength{\afloop}
+\iftoggle{printversion}{ % versie voor drukker, inclusief afloop
+	\setlength{\afloop}{\aflooplen}
+}{ % digitale versie, zonder afloop
+	\setlength{\afloop}{0mm}
+} % end iftoggle
+
+\newlength{\paperwidthfull}
+\setlength{\paperwidthfull}{\pagewidth+2\afloop} 	% papierbreedte vóór afsnijding
+\newlength{\paperheightfull}
+\setlength{\paperheightfull}{\pageheight+2\afloop} 	% papierhoogte vóór afsnijding
+
+\newlength{\outermargin}
+\setlength{\outermargin}{24mm}		% buitenste marge (na afsnijding)
+\newlength{\innermargin}
+\setlength{\innermargin}{24mm}		% binnenste marge (na afsnijding)
+
+\newlength{\extendmargin}
+\setlength{\extendmargin}{10mm}		% verbreding marge voor kop- & voetteksten etc
+
+
+%% Stel paginaindeling in via geometry package
+\geometry{papersize={\paperwidthfull, \paperheightfull}, inner=\innermargin, outer=\outermargin}
+
+\iftoggle{printversion}{ %versie voor drukker, inclusief afloop
+	\geometry{layoutsize={\pagewidth, \pageheight}, layoutvoffset=\afloop, layouthoffset=\afloop}	% positioneer de pagina op het papier
+}{} %end iftoggle
+
+\geometry{marginparwidth=60pt, top=30mm, bottom=35mm, headheight=22pt, headsep=15mm, footskip=12mm}
+%headsep is afstand tussen bovenkant body en onderkant header
+%footskip is afstand tussen onderkant body en onderkant footer
+
+
+%% Afmetingen pagina & papier voor PDF page boxes (belangrijk voor printversie)
+%% pdfpageattr boxes should be given in PS points (bp): 1 PS point = 1/72 inch = 1bp in TeX (NOT pt! 1pt in TeX = 1/72.27 inch...)
+\makeatletter
+\edef\paperwidthpt{\strip@pt\dimexpr0.996264009963\paperwidthfull\relax} % papierbreedte in PS points
+\edef\paperheightpt{\strip@pt\dimexpr0.996264009963\paperheightfull\relax} % papierhoogte in PS points
+\edef\aflooppt{\strip@pt\dimexpr0.996264009963\afloop\relax} % afloop in PS points
+\edef\pagetoprightx{\strip@pt\dimexpr0.996264009963\pagewidth+0.996264009963\afloop\relax}
+\edef\pagetoprighty{\strip@pt\dimexpr0.996264009963\pageheight+0.996264009963\afloop\relax}
+\makeatother
+
+\edef\mypdfpageattr{
+	/MediaBox [0 0 \paperwidthpt\space\paperheightpt]^^J
+	/BleedBox [0 0 \paperwidthpt\space\paperheightpt]^^J
+	/TrimBox [\aflooppt\space\aflooppt\space\pagetoprightx\space\pagetoprighty]
+}
+\expandafter\pdfpageattr\expandafter{\mypdfpageattr}
+
+
+%% Kolom-gerelateerde afmetingen
+\setlength{\columnsep}{12mm}					% afstand tussen de twee kolommen
+\newlength{\twocoltextwidth}					% breedte van 1 tekstkolom wanneer er 2 kolommen zijn
+\setlength{\twocoltextwidth}{(\textwidth-\columnsep)/2}
+
+
+%% Interlinie voor het hele document (met setspace package)
+\singlespacing          						% 1-spacing (default)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% KOP- EN VOETTEKSTEN %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\oldfootrule\footrule  						% bewaar originele definitie van footrule
+\renewcommand*{\chaptermark}[1]{}				% voorkom dat \markboth overschreven wordt
+\renewcommand*{\sectionmark}[1]{}				% voorkom dat \markright overschreven wordt 
+\renewcommand*{\subsectionmark}[1]{} 			% voorkom dat \markright overschreven wordt (enkel nodig wanneer article class gebruikt wordt)
+\renewcommand*{\footruleskip}{0pt}  			% zet afstand tussen footer top & footrule op 0
+
+%% Paginanummer in verfstreep. Breedte blokje=extended margin.
+\newcommand*{\pagenrblockR}{%
+	\raisebox{-.6\height}{\includegraphics[width=\extendmargin,keepaspectratio]{\rubriekpagenrbg}}%
+	\hspace*{-.5\extendmargin}%
+	\makebox[0pt][c]{\textcolor{white}{\textbf{\thepage}}}%
+	\hspace*{.5\extendmargin}%
+}
+\newcommand*{\pagenrblockL}{%
+	\raisebox{-.6\height}{\reflectbox{\includegraphics[width=\extendmargin,keepaspectratio]{\rubriekpagenrbg}}}%
+	\hspace*{-.5\extendmargin}%
+	\makebox[0pt][c]{\textcolor{white}{\textbf{\thepage}}}%
+	\hspace*{.5\extendmargin}%
+}
+
+%% Definieer een nieuwe paginastijl: uitwiskeling
+\fancypagestyle{uitwiskeling}{ %
+	\fancyhf{}  								% verwijder alle stijldefinities
+	\addtolength{\headwidth}{2\extendmargin}  	% verander breedte van header & footer, default is \textwidth
+	\fancyhfoffset[F]{\extendmargin}			% hercentreer footer na verbreden
+	\renewcommand*{\headrulewidth}{0pt}			% geen header lijn
+	\renewcommand*{\footrulewidth}{1pt}			% footer lijn dikte
+	\renewcommand*{\footrule}{{\color{\rubriekkleur}\oldfootrule}} % footer lijn kleur
+	
+	%% Kopteksten
+	\fancyhead[LE]{\sffamily\small\bfseries\color{\rubriekkleur}%
+		\raisebox{-.25\height}{\includegraphics[width=5mm,keepaspectratio]{\rubriekheaderimg}}%	
+		\enspace \MakeUppercase{\leftmark}}
+	
+	\fancyhead[RO]{\sffamily\small\sbseries\color{\rubriekkleur}%
+		\raisebox{-.25\height}{\rule{0pt}{5mm}}%	
+		\rightmark}
+	
+	%% Voetteksten
+	\fancyfoot[LE]{{\sffamily\small\color{\rubriekkleur}\pagenrblockL \quad Uitwiskeling \uitgavenr \enspace \textendash \enspace \uitgaveseizoen}}
+	
+	\fancyfoot[RO]{{\sffamily\small\color{\rubriekkleur}Uitwiskeling \uitgavenr \enspace \textendash \enspace \uitgaveseizoen \quad \pagenrblockR}}
+}
+
+%% Herdefinieer de plain paginastijl (gebruikt voor eerste pagina van rubriek & artikel)
+%% Maak koptekst leeg, behoud voettekst uit uitwiskeling stijl
+\fancypagestyle{plain}{
+	\fancyhead{}
+	\renewcommand*{\headrule}{}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OPMAAK RUBRIEKEN, ARTIKELS & TUSSENTITELS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% DEFINIEER RUBRIEKKLEUREN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{kleurredact}{cmyk}{0.79,0.23,0.32,0.05}  	% blauwgroen
+\definecolor{kleurspin}{cmyk}{0.57,0.00,1.00,0.00}  	% geelgroen
+\definecolor{kleurloep}{cmyk}{0.16,0.79,0.00,0.00}  	% roze
+\definecolor{kleurbib}{cmyk}{0.00,0.58,0.94,0.00}  		% oranje
+\definecolor{kleuractua}{cmyk}{0.88,0.14,0.00,0.00}  	% blauw
+\definecolor{kleurnone}{cmyk}{0.00,0.00,0.00,0.60}  	% grijs 60%
+
+
+%% DEFINIEER RUBRIEKEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\rubriekkleur}{kleurnone}
+\newcommand*{\rubriekimg}{}
+\newcommand*{\rubriekheaderimg}{}
+\newcommand*{\rubriekcheckmark}{}
+\newcommand*{\rubriekpagenrbg}{}
+
+%% Start nieuwe rubriek commando - typeset hoofding en stel o.a. de rubriekkleur in
+%% \rubriek{type}{titel}
+%% Argument 1: type rubriek: redactioneel, spin, loep, bib, actua
+%% Argument 2: titel die getoond wordt
+\newcommand*{\rubriek}[2]{%
+	\clearpage%
+	\IfEqCase{#1}{%
+		{redactioneel}{%
+			\renewcommand*{\rubriekkleur}{kleurredact}}%
+		{spin}{%
+			\renewcommand*{\rubriekkleur}{kleurspin}}%
+		{loep}{%
+			\renewcommand*{\rubriekkleur}{kleurloep}}%
+		{bib}{%
+			\renewcommand*{\rubriekkleur}{kleurbib}}%
+		{actua}{%
+			\renewcommand*{\rubriekkleur}{kleuractua}}%
+		}[\PackageError{rubriek}{Ongedefinieerd rubriektype: #1}{}]%
+	\renewcommand*{\rubriekimg}{imgDesign/RubriekImg_#1.jpg}%
+	\renewcommand*{\rubriekheaderimg}{imgDesign/Uitwiskeling_logo_mini_#1.png}%
+	\renewcommand*{\rubriekcheckmark}{imgDesign/checkmark_#1.png}%
+	\renewcommand*{\rubriekpagenrbg}{imgDesign/paginanrbg_#1.png}%
+	\part*{#2}%							% rubriek is eigenlijk ongenummerde part
+	\phantompageref%					% zodat links naar linkerbovenhoek pagina gaan
+	\addcontentsline{toc}{part}{#2}%	% voor rubrieknaam in TOC
+	\markboth{#2}{}%  					% voor rubrieknaam in header
+	\thispagestyle{plain}%				% enkel footer, geen header
+}
+
+%% Opmaak rubriekhoofding (via titlesec, rubriek = numberless part)
+\titleclass{\part}{top} % zet part op "top" type om standaard erop volgende paginabreak te verwijderen
+
+\titleformat{name=\part,numberless}{%
+	\sffamily\ebseries\fontsize{38}{46}\color{white}\selectfont\raggedleft}{}{0pt}%
+	{%
+		\begin{tikzpicture}[remember picture,overlay]%
+			\node[anchor=north west,inner sep=0pt,xshift=-\aflooplen+\afloop,yshift=\aflooplen-\afloop] at (current page.north west)%
+			{\includegraphics[width=\pagewidth+2\aflooplen,keepaspectratio]{\rubriekimg}};%
+		\end{tikzpicture}%
+	\begin{adjustwidth}{0mm}{0mm}\vspace{.9ex}\raggedleft\MakeUppercase{#1}\vspace{-1ex}\end{adjustwidth}%
+	}%
+	[\thispagestyle{plain}]
+
+\titlespacing*{name=\part,numberless}{0pt}{-40mm}{30pt}
+
+%% NOT USED: numbered parts
+%\titleformat{\part}{}{}{}{}[]
+%\titlespacing*{\part}{0pt}{-40mm}{30pt}
+
+
+%% Einde rubrieken, reset rubriekparameters
+\newcommand*{\einderubrieken}{%
+	\clearpage%
+	\renewcommand*{\rubriekkleur}{kleurnone}%
+	\renewcommand*{\rubriekimg}{}%
+	\renewcommand*{\rubriekheaderimg}{imgDesign/Uitwiskeling_logo_mini_grijs.png}%
+	\renewcommand*{\rubriekcheckmark}{}%
+	\renewcommand*{\rubriekpagenrbg}{imgDesign/paginanrbg_grijs.png}%
+	\markboth{}{}%  				% voor rubrieknaam in header
+	%\pagestyle{plain}%				% geen header, enkel footer
+}
+
+
+%% DEFINIEER ARTIKELHOOFDINGEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start nieuw artikel commando - typeset hoofding
+%% \artikel{titel}{subtitel}{auteur}
+%% Argument 1: titel 
+%% Argument 2: subtitel, mag leeg zijn
+%% Argument 3: auteur, mag leeg zijn
+\newcommand*{\artikel}[3]{%
+	{\raggedright\artikelbasis{#1}{#2}{#3}\par}}
+
+%% ENKEL HULPMACRO: Artikelhoofding rechts uitgelijnd (voor foto versie)
+\newcommand*{\artikelrechts}[3]{%
+	{\raggedleft\artikelbasis{#1}{#2}{#3}\par}}
+
+%% ENKEL HULPMACRO: Basiscommando voor artikelhoofding
+\newcommand*{\artikelbasis}[3]{%
+	\thispagestyle{plain}%				% geen header
+	\FloatBarrier						% floats van vorig artikel mogen niet verder komen
+	%#1=TITEL
+	{\setstretch{0.9}\setlength{\parskip}{0ex}\sffamily\bfseries\Huge#1\par}%
+	%#2=SUBTITEL
+	\setbox0=\vbox{#2\unskip}\ifdim\wd0=0pt%
+		%#subtitel is leeg, doe niets (ook geen vspace)
+	\else%
+		{\setstretch{1.0}\setlength{\parskip}{0ex}\sffamily\sbseries\huge#2\par}%
+	\fi%
+	\vspace{3.5ex}%
+	%#3=AUTEUR
+	\setbox0=\vbox{#3\unskip}\ifdim\wd0=0pt%
+		%auteur is leeg, doe niets (ook geen vspace)
+	\else%
+		{\setstretch{1.0}\setlength{\parskip}{0ex}\sffamily\sbseries\Large#3\par}%
+		\vspace{4ex}%
+	\fi%
+	\textcolor{\rubriekkleur}{\rule{16mm}{5pt}}%
+	\vspace{3.5ex plus 1.0ex minus 1.0ex}%
+	\refstepcounter{chapter}%			% "nummer" artikels als chapters
+	\phantompageref%					% zodat links naar linkerbovenhoek pagina gaan
+	\addcontentsline{toc}{chapter}{#1}%	% voor artikelnaam in TOC
+	\markright{#1}%   					% voor artikelnaam in header
+	\setcounter{figure}{0}              % nummering figuren opnieuw op 0 zetten
+	\setcounter{table}{0}              	% nummering tabellen opnieuw op 0 zetten
+}
+
+%% Start nieuw artikel met foto commando - typeset hoofding met foto tot aan de paginarand
+%% Foto staat links op oneven pagina's, rechts op oneven pagina's (altijd aan de outer margin)
+%% \artikelfoto{titel}{subtitel}{auteur}{foto}
+%% Argument 1: titel 
+%% Argument 2: subtitel, mag leeg zijn
+%% Argument 3: auteur, mag leeg zijn
+%% Argument 4: pad/bestandsnaam foto (hiervan wordt een strook met breedte \aflooplen links (oneven pagina) of rechts (even pagina) afgesneden); de breedte staat vast en zal altijd zelfde zijn (10.4cm incl. afloop), de hoogte kun je mee variëren (6cm hoog is aanbevolen)
+\newlength{\artikelimgwidth}				% breedte afbeelding naast titel artikel
+\setlength{\artikelimgwidth}{\twocoltextwidth+\outermargin+\aflooplen}
+\newlength{\artikelimgheight}				% hoogte afbeelding naast titel artikel
+\newlength{\artikelhoofdheight}				% minimumhoogte artikelhoofding
+\newlength{\artikelhoofdheightmin}			% absolute minimumhoogte artikelhoofding
+\setlength{\artikelhoofdheightmin}{50mm}
+
+\newcommand*{\artikelfoto}[4]{%
+	\settoheight{\artikelimgheight}{\includegraphics[width=\artikelimgwidth,keepaspectratio]{#4}}%  % haal de hoogte van de afbeelding op
+	\setlength{\artikelimgheight}{\dimexpr\artikelimgheight-13mm\relax}%  % -13mm ivm yshift
+	\MaxLength{\artikelimgheight}{\artikelhoofdheightmin}{\artikelhoofdheight}%
+	\checkoddpage%
+	\ifoddpage%
+		\begin{tikzpicture}[remember picture]%  		% artikelhoofding tekst oneven
+			\node[minimum height=\artikelhoofdheight,text width=\twocoltextwidth,inner sep=0pt] (nodebox) {};%
+			\node[anchor=north west,text width=\twocoltextwidth,inner sep=0pt] at (nodebox.north west) {\artikel{#1}{#2}{#3}};%
+		\end{tikzpicture}%
+		\begin{tikzpicture}[remember picture,overlay]% 	% artikelhoofding foto oneven
+			\node[anchor=north west,inner sep=0pt,xshift=(\twocoltextwidth+\columnsep),yshift=13mm] at (nodebox.north west)%
+			{\includegraphics[width=\artikelimgwidth,keepaspectratio]{#4}};%
+		\end{tikzpicture}%
+	\else%
+		\begin{tikzpicture}[remember picture]%			% artikelhoofding tekst even
+			\node[minimum height=\artikelhoofdheight,text width=\textwidth,inner sep=0pt,xshift=(\twocoltextwidth+\columnsep)] (nodebox) {};%
+			\node[anchor=north east,text width=\twocoltextwidth,inner sep=0pt,align=flush right] at (nodebox.north east) {\artikelrechts{#1}{#2}{#3}};%
+		\end{tikzpicture}%
+		\begin{tikzpicture}[remember picture,overlay]%	% artikelhoofding foto even
+			\node[anchor=north east,inner sep=0pt,xshift=-(\twocoltextwidth+\columnsep),yshift=13mm] at (nodebox.north east)%
+			{\includegraphics[width=\artikelimgwidth,keepaspectratio]{#4}};%
+		\end{tikzpicture}%
+	\fi%
+	\markright{#1}%   % voor artikelnaam in header, herhalen want werkt niet binnen tikzpicture
+}
+
+
+%% Voorbeeldafbeelding
+\newcommand*{\dummyimgartikel}{%
+	%\checkoddpage% % niet nodig, al gecheckt in \artikelfoto
+	\ifoddpage
+		img/dummy-104x60mm-rechts.jpg%
+	\else
+		img/dummy-104x60mm-links.jpg%
+	\fi
+}
+
+
+
+%% OPMAAK TUSSENTITELS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Chapters (bv. titel inhoudsopgave)
+\titleformat{\chapter}{%
+	\sffamily\Huge\bfseries\raggedright}{\thechapter}{1em}{#1}
+\titleformat{name=\chapter,numberless}{%
+	\sffamily\Huge\bfseries\raggedright}{}{0pt}{#1}
+
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+
+%% Section, subsection, subsubsection, paragraph & subparagraph
+\titleformat{\section}{%
+	\sffamily\Large\bfseries\raggedright}{\thesection}{1em}{#1}
+\titleformat{\subsection}{%
+	\sffamily\large\bfseries\raggedright}{\thesubsection}{1em}{#1}
+\titleformat{\subsubsection}{%
+	\sffamily\normalsize\bfseries\raggedright}{\thesubsubsection}{1em}{#1}
+\titleformat{\paragraph}[runin]{%
+	\sffamily\normalsize\bfseries\raggedright}{\theparagraph}{1em}{#1}
+\titleformat{\subparagraph}[runin]{%
+	\sffamily\normalsize\bfseries\raggedright}{\thesubparagraph}{1em}{#1}
+
+\titleformat{name=\section,numberless}{%
+	\sffamily\Large\bfseries\raggedright}{}{0pt}{#1}
+\titleformat{name=\subsection,numberless}{%
+	\sffamily\large\bfseries\raggedright}{}{0pt}{#1}
+\titleformat{name=\subsubsection,numberless}{%
+	\sffamily\normalsize\bfseries\raggedright}{}{0pt}{#1}
+\titleformat{name=\paragraph,numberless}[runin]{%
+	\sffamily\normalsize\bfseries\raggedright}{}{0pt}{#1}
+\titleformat{name=\subparagraph,numberless}[runin]{%
+	\sffamily\normalsize\bfseries\raggedright}{}{0pt}{#1}
+
+\titlespacing*{\section} {0pt}{3.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsection} {0pt}{3.25ex plus 1ex minus .2ex}{1.2ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.0ex plus .2ex}
+\titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+
+%% Geen chapter nummers tonen in secties etc
+\renewcommand{\thesection}{\arabic{section}}
+
+
+%% OVERIGE CONTENTBLOKKEN HORENDE BIJ RUBRIEKEN & ARTIKELS %%%%%%%%%%%%%%%%%%%%%
+%% Auteur op het eind van een artikel (bv. redactioneel, bibwijzer)
+%% \auteurslot{auteur}
+%% Argument 1: auteur
+\newcommand*{\auteurslot}[1]{%
+	{\par{\raggedleft\textcolor{\rubriekkleur}{\Huge\raisebox{-.5ex}{\textbullet}}\textit{\,#1}\par}}
+}
+
+%% Bronvermelding op het eind van een artikel
+%% \begin{bronnen} \item bron ... \end{bronnen}
+%% Argument 1: (optioneel) titel, default=BRONNEN
+\newenvironment*{bronnen}[1][BRONNEN]{%
+	\vspace{6pt}
+	\section*{#1}
+	\begin{itemize}[label={},leftmargin=20pt,itemindent=-20pt,itemsep=6pt,parsep=0pt]%
+	}
+	{\end{itemize}}
+
+%% Aparte inhoudstafel voor het loep artikel
+\newcommand*{\inhoudstafelloep}{
+	\setcounter{tocdepth}{1}		% enkel secties & subsecties
+	\titlecontents{loepsection}[14pt]{\bfseries}{\contentslabel{14pt}}{\hspace*{-14pt}}{{\mdseries\titlerule*[8pt]{.}}\contentspage}
+	\titlecontents{loepsubsection}[36pt]{}{\contentslabel{22pt}}{\hspace*{-22pt}}{\titlerule*[8pt]{.}\contentspage}
+	\begin{mdframed}
+		[linewidth=0, backgroundcolor=\rubriekkleur!10, 
+		innerleftmargin=3mm, innerrightmargin=3mm,
+		innertopmargin=0mm, innerbottommargin=4mm]%
+		\parskip=0.2em%
+		\printcontents[inhoudloep]{loep}{1}{\section*{INHOUD}}%
+	\end{mdframed}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SPECIALE OMGEVINGEN EN COMMANDO'S %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% AFBEELDING IN LIJN MET TEKST %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Noot: figure omgeving werkt niet binnen een multicols omgeving (geen floats toegestaan)
+%% Hier definiëren we een nieuwe figuur omgeving die wel overal werkt, inclusief onderschrift en label
+\newlength{\figwidth}
+\newlength{\figwidthuser}
+
+%% ENKEL HULPMACRO: Nieuwe figuur omgeving
+%% \captionsetup stelt de hyperlink anchor in voor deze custom omgeving (zodat link naar top van figuur gaat ipv naar de caption)
+\newenvironment{afbeeldingenv}[1][\linewidth]
+	{\par\smallskip\noindent\minipage{#1}\captionsetup{type=figure}\centering}
+	{\endminipage\par\smallskip}
+
+
+%% Nieuw \afbeelding commando om makkelijker figuren met onderschrift te typesetten
+%% \afbeelding[breedte]{bestand}{onderschrift}{label}
+%% Argument 1: (optioneel) breedte figuur, wordt automatisch op max. tekstbreedte ingesteld
+%% Argument 2: pad & bestandsnaam
+%% Argument 3: onderschrift (caption, mag leeg zijn)
+%% Argument 4: label om naar te refereren via \ref{label} of \autoref{label} (mag leeg zijn)
+%% Noot: \linewidth =\twocoltextwidth in two column mode; =\textwidth in single column mode (kan afwijken binnen een lijst, bv. vraagenantwoord omgeving)
+
+\newcommand*{\afbeelding}[4][\linewidth]{
+	\setlength{\figwidthuser}{#1}	% nodig om als lengte te kunnen vergelijken
+	\MinLength{\figwidthuser}{\linewidth}{\figwidth}  % figuur mag niet breder dan tekst zijn
+	\begin{afbeeldingenv}%
+		\includegraphics[width=\figwidth,keepaspectratio]{#2}%
+		\setbox0=\vbox{#3\unskip}\ifdim\wd0=0pt%
+			%#caption is leeg, dus geen caption tonen (ook niet "Figuur #", dus label heeft ook geen zin)
+            % TODO: caption zelf is aligned zo links mogelijk, niet in lijn met figuur zelf
+		\else%
+			\caption{#3}\label{#4}%
+		\fi%
+	\end{afbeeldingenv}%
+}
+
+
+
+%% DECORATIEVE AFBEELDING TOT DE PAGINARAND %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Commando voor decoratieve afbeelding tot paginarand (decoratief dus zonder caption of label)
+%% \afbeeldingtotrand{l|r|b}{bestand}
+%% Argument 1: l(inks tot rand), r(echts tot rand), b(eide kanten tot rand) -> gebruiker moet aangeven in welke context de afbeelding nodig is, kan niet automatisch detecteren of je in linker- of rechterkolom zit
+%% Argument 2: pad + bestandsnaam (afbeelding moet afloop omvatten! - extra strook met breedte \aflooplen aan de kant(en) waar die de paginarand raakt)
+\newlength{\leftpagemargin}
+\newlength{\rightpagemargin}
+\newcommand*{\afbeeldingtotrand}[2]{%
+	\ifoddpage%
+		\setlength{\leftpagemargin}{\innermargin}%
+		\setlength{\rightpagemargin}{\outermargin}%
+	\else%
+		\setlength{\leftpagemargin}{\outermargin}%
+		\setlength{\rightpagemargin}{\innermargin}%
+	\fi%
+	\IfEqCase{#1}{%
+		{l}{%
+			\afbeeldingtotrandbasis{\twocoltextwidth}{\dimexpr\leftpagemargin+\aflooplen\relax}{0pt}{#2}}%
+		{r}{%
+			\afbeeldingtotrandbasis{\twocoltextwidth}{0pt}{\dimexpr\outermargin+\aflooplen\relax}{#2}}%
+		{b}{%
+			\afbeeldingtotrandbasis{\textwidth}{\dimexpr\leftpagemargin+\aflooplen\relax}{\dimexpr\outermargin+\aflooplen\relax}{#2}}%
+	}[\PackageError{afbeeldingtotrand}{Ongedefinieerd type: #1. Kies type l, r of b.}{}]%
+}
+
+%% ENKEL HULPMACRO
+\newcommand*{\afbeeldingtotrandbasis}[4]{%
+	\par\medskip\noindent%
+	\makebox[#1][l]{%	% omsluit de minipage om overfull warnings te stoppen
+	\begin{minipage}{#1}%
+		\begin{adjustwidth}{-#2}{-#3}%
+			\includegraphics[width=#1+#2+#3,keepaspectratio]{#4}%
+		\end{adjustwidth}%
+	\end{minipage}}\par\medskip%
+}
+
+
+
+%% TABELLEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Noot: table omgeving werkt niet binnen een multicols omgeving (geen floats toegestaan)
+%% Hier definiëren we een nieuwe tabel omgeving die wel overal werkt, inclusief onderschrift en label
+
+%% Nieuwe tabel omgeving
+%% \captionsetup stelt de hyperlink anchor in voor deze custom omgeving (zodat link naar top van tabel gaat ipv naar de caption)
+\newenvironment{tabel}[1][\linewidth]
+{\par\smallskip\noindent\minipage{#1}\captionsetup{type=table}\centering%
+	\rowcolors{2}{\rubriekkleur!10}{white}%		% gestreepte rijen in kleur/wit
+	\arrayrulecolor{\rubriekkleur}%				% scheidingslijnen in kleur
+	\setlength{\tabcolsep}{2mm}% 				% kolomafstand, wordt aan beide kanten van kolom bijgeteld
+	\ifbool{InMulticol}{\setlength{\tabcolsep}{1mm}}{}%	% kleinere kolomafstand in multicol
+}{\endminipage\par\smallskip}
+
+
+%% Nieuw kolomtype C{width}: gecentreerde fixed width kolom (zoals m{2cm} maar dan C{2cm})
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}	% op basis van kolomtype m, kan ook p of b zijn
+
+
+%% Tabelhoofding opmaak (per kolom, kan niet voor de hele rij ineens zonder grotere hacks)
+%% Omsluit een kolomhoofding hierin, bv. \tableheader{Kolom 1} & \tableheader{Kolom 2}
+\newcommand*{\tableheader}[1]{{\cellcolor{\rubriekkleur}\sffamily\bfseries\color{white}#1}}
+
+
+%% Dikkere horizontale lijnen in tabellen met \hlinethick (gebruik waar gewenst in plaats van \hline)
+\newlength{\arrayrulewidthdef}
+\setlength{\arrayrulewidthdef}{\arrayrulewidth}  % arrayrulewidth is globaal dus sla originele definitie op om hierop terug te kunnen zetten
+\newcommand*{\hlinethick}{\noalign{\global\arrayrulewidth=2.5\arrayrulewidthdef} \hline \noalign{\global\arrayrulewidth=1.5\arrayrulewidthdef}}
+
+
+
+%% LESACTIVITEIT KADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tussentitels lesactiviteit (in kleur): \lestitel{titel} en \lessubtitel{titel}
+\newcommand*{\lestitel}[1]{{\color{\rubriekkleur}\section*{#1}}}
+\newcommand*{\lessubtitel}[1]{{\color{\rubriekkleur}\subsection*{#1}}}
+
+%% Lesactiviteit omgeving
+%% \begin{lesactiviteit}{titel} ... \end{lesactiviteit}
+%% Argument 1: titel lesactiviteit
+\newenvironment*{lesactiviteit}[1]
+	{\lestitel{#1}}
+	{\vspace*{\bigskipamount}}
+
+%% Opmaak van de omkadering (met mdframed package)
+\surroundwithmdframed[%
+	leftmargin=0pt,rightmargin=0pt,%
+	skipabove=\topskip,skipbelow=\topskip,%
+	innerleftmargin=5mm,innerrightmargin=5mm,%
+	innertopmargin=4pt,innerbottommargin=4pt,%
+	hidealllines=true,leftline=true,rightline=true,%
+	linecolor=\rubriekkleur!30,%
+	linewidth=1mm,%
+	frametitle={LESACTIVITEIT \enspace \raisebox{-.15\height}{\makebox[2mm][l]{\includegraphics[width=4mm,keepaspectratio]{imgDesign/lamp_wit.png}}}},%
+	frametitlefont={\sffamily\bfseries\small\color{white}},%
+	frametitlealignment={\raggedleft},%
+	frametitlebackgroundcolor=\rubriekkleur,%
+	frametitleaboveskip=3pt,frametitlebelowskip=3.2pt,%
+	%repeatframetitle=true,%
+	singleextra={\draw[line width=8pt, color=\rubriekkleur] ([xshift=3pt,yshift=4pt]current bounding box.south west) -- ([xshift=-3pt,yshift=4pt]current bounding box.south east);},%
+	secondextra={\draw[line width=8pt, color=\rubriekkleur] ([xshift=3pt,yshift=4pt]current bounding box.south west) -- ([xshift=-3pt,yshift=4pt]current bounding box.south east);}%
+	]{lesactiviteit}
+
+
+
+%% VRAAG & ANTWOORD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Nieuwe genummerde lijst voor vraag & antwoord (bv. lesoefeningen, maar kan ook buiten lesactiviteit gebruikt worden)
+%% \begin{vraagenantwoord} \vraag{vraagtekst} \antwoord{antwoordtekst} ... \end{vraagenantwoord}
+\newlist{vraagenantwoord}{enumerate}{2}  %max depth = 2: maximum 1 geneste lijst
+
+%% Opmaak van het eerste niveau van deze lijst: 1, 2 etc
+\setlist[vraagenantwoord]{label=\colorbox{\rubriekkleur}{\makebox[4.5mm][c]{\arabic*}}, font={\sffamily\ebseries\smaller\color{white}}, leftmargin=*, itemsep={2ex plus .4ex minus .4ex}, parsep={.5ex plus .1ex minus .1ex}, topsep={1ex plus .2ex minus .2ex}} 
+
+%% Opmaak van de eerste (en enige) geneste lijst: (a), (b) etc
+\setlist*[vraagenantwoord,2]{label=\colorbox{\rubriekkleur}{\makebox[4.5mm][c]{\alph*}}, topsep={2ex plus .4ex minus .4ex}}
+
+%% Vraag en antwoord commando's, enkel te gebruiken binnen de vraagenantwoord omgeving
+%% \vraag{vraagtekst}
+%% \antwoord{antwoordtekst}
+\newcommand*{\vraag}[1]{\item{#1}\par}
+\newcommand*{\antwoord}[1]{\makebox[0pt][r]{\includegraphics[width=3mm,keepaspectratio]{\rubriekcheckmark}\hspace*{\labelsep}}\textit{#1}\par}
+
+
+
+%% CITATEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Nieuwe citaat omgeving
+%% \begin{citaat}[auteur/bron] ... \end{citaat} of \begin{citaat} ... \end{citaat}
+%% Argument (optioneel): auteur of bron van het citaat
+\newenvironment*{citaat}[1][]{%
+	\setbox0=\vbox{#1\unskip}\ifdim\wd0=0pt%
+		\def\quotesource{}%		%geen auteur/bron (default)
+	\else%
+		\def\quotesource{\parskip=\smallskipamount\par\nobreak{\raggedleft---~#1\par}}%
+	\fi%
+	\begingroup%  % maak margeaanpassingen lokaal binnen deze group
+	\setlength{\leftmargini}{7.5mm}%	% stel marges in
+	\medskip\begin{quote}\itshape}
+	{{\quotesource}\end{quote}\endgroup\medskip}
+
+
+
+%% MULTIFUNCTIONEEL KADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{kader}{type}{titel} ... \end{kader}
+%% Argument 1: type kader, bv. "Stelling", "Bewijs", ... (mag leeg zijn)
+%% Argument 2: titel (mag leeg zijn)
+\newenvironment*{kader}[2]{%
+	\setbox0=\vbox{#1\unskip}\ifdim\wd0=0pt%
+		% type kader is leeg
+	\else%
+		{\sffamily{\color{\rubriekkleur}{\ebseries#1}\enspace{\Large\raisebox{-.3ex}{\normalfont\textbullet}}}\enspace}%
+	\fi%
+	\setbox0=\vbox{#2\unskip}\ifdim\wd0=0pt%
+		% titel kader is leeg
+	\else%
+		{\sffamily\bfseries#2}\par%
+	\fi%
+	}{}
+
+%% Opmaak van de omkadering (met mdframed package)
+\surroundwithmdframed[%
+	default,%
+	leftmargin=0pt,rightmargin=0pt,%
+	skipabove=\topskip,skipbelow=0pt,%
+	innerleftmargin=3mm,innerrightmargin=3mm,%
+	innertopmargin=3mm,innerbottommargin=3mm,%
+	linecolor=\rubriekkleur,%
+	linewidth=1.5pt,%
+	backgroundcolor=\rubriekkleur!10%
+	]{kader}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SPECIALE WISKUNDIGE COMMANDO'S %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% AFKORTINGEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\aanh}[1]{`#1'}			% iets tussen enkele aanhalingstekens plaatsen
+\newcommand{\aanhd}[1]{``#1''}		% iets tussen dubbele aanhalingstekens plaatsen
+
+\newcommand{\Z}{\mathbb{Z}}			% Verzameling van de gehele getallen
+\newcommand{\Zn}{\mathbb{Z}_n}		% Verzameling van de gehele getallen modulo n
+\newcommand{\N}{\mathbb{N}}			% Verzameling van de natuurlijke getallen
+\newcommand{\Q}{\mathbb{Q}}			% Verzameling van de breuken
+\newcommand{\R}{\mathbb{R}}			% Verzameling van de reële getallen
+\newcommand{\X}{\mathbb{C}}			% Verzameling van de complexe getallen
+
+
+
+%% VECTOREN, MATRICES, DETERMINANTEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\Im}{\mathrm{Im}}
+\newcommand{\voorbr}[1]{\langle #1\rangle}											% voortbrengend deel		
+\newcommand{\abs}[1]{\lvert #1\rvert}												% absolute waarde
+\renewcommand{\vec}[1]{\textbf{#1}}													% vector
+\newcommand{\p}[1]{\left( #1 \right)}												% tussen parenthesis
+\newcommand{\pmM}[1]{\left(\begin{smallmatrix} #1 \end{smallmatrix}\right)}			% parenthesis minimatrix
+\newcommand{\pmMr}[1]{\left(\begin{smallmatrix*}[r] #1 \end{smallmatrix*}\right)}	% parenthesis minimatrix rechts uitgelijnd
+\newcommand{\pM}[1]{\left(\begin{matrix} #1 \end{matrix}\right)}					% parenthesis matrix
+\newcommand{\pMr}[1]{\left(\begin{matrix*}[r] #1 \end{matrix*}\right)}				% parenthesis matrix rechts uitgelijnd
+\newcommand{\dmM}[1]{\left|\begin{smallmatrix} #1 \end{smallmatrix}\right|}			% determinant minimatrix
+\newcommand{\dmMr}[1]{\left|\begin{smallmatrix*}[r] #1 \end{smallmatrix*}\right|}	% determinant minimatrix rechts uitgelijnd
+\newcommand{\dM}[1]{\left|\begin{matrix} #1 \end{matrix}\right|}					% determinant matrix
+\newcommand{\dMr}[1]{\left|\begin{matrix*}[r] #1 \end{matrix*}\right|}				% determinant matrix rechts uitgelijnd
+
+
+
+%% OPERATOREN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator {\Hom} {Hom}		% homomorfisme
+\DeclareMathOperator {\End} {End}		% endomorfisme
+\DeclareMathOperator {\Ker} {Ker}		% kern
+\DeclareMathOperator {\Reeel} {Re}		% reële gedeelte
+\DeclareMathOperator {\Imag} {Im}		% imaginaire gedeelte
+\DeclareMathOperator {\Span} {Span}		% opspanning
+\DeclareMathOperator {\Dim} {dim}		% dimensie
+\DeclareMathOperator {\Det} {det}		% determinant
+\DeclareMathOperator {\Spec} {Spec}		% spectrum
+\DeclareMathOperator {\Co} {co}			% coordinaat
+\DeclareMathOperator {\Ra} {rang}		% rang
+\DeclareMathOperator {\Asin} {Asin}		% boogsinus
+\DeclareMathOperator {\Acos} {Acos}		% boogcosinus
+\DeclareMathOperator {\Atan} {Atan}		% boogtangens
+\DeclareMathOperator {\Bgsin} {Bgsin}	% boogsinus
+\DeclareMathOperator {\Bgcos} {Bgcos}	% boogcosinus
+\DeclareMathOperator {\Bgtan} {Bgtan}	% boogtangens
+\DeclareMathOperator {\Dom} {Dom}	% boogtangens
+\DeclareMathOperator {\Bld} {Bld}	% boogtangens
+
+%%%%%%% PYTHON CODE WEERGEVEN
+
+\definecolor{codegreen}{rgb}{0,0.9,0.4}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.8,0.8,0.8}
+
+\usepackage{listings}
+
+\lstdefinestyle{pythonstyle}{
+    language=python,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\normalsize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\newcommand{\inline}[1]{\textup{\lstinline[style=pythonstyle]@#1@}} % Adapted from https://tex.stackexchange.com/questions/225267/how-to-set-not-italic-or-not-bold to make text upright and listings documentation, ONLY WORKS IF NO @ symbol is present in the inline code
+
+
+%%%%%%%%%%%%%%%%%%%% FILIPS TOEVOEGINGEN AAN DE PREAMBULE ALLEMAAL SAMEN HIER
+\newenvironment*{testjezelf}[1]
+	{\lestitel{#1}}
+	{\vspace*{\bigskipamount}}
+
+\surroundwithmdframed[%
+	leftmargin=0pt,rightmargin=0pt,%
+	skipabove=\topskip,skipbelow=\topskip,%
+	innerleftmargin=5mm,innerrightmargin=5mm,%
+	innertopmargin=4pt,innerbottommargin=4pt,%
+	hidealllines=true,leftline=true,rightline=true,%
+	linecolor=\rubriekkleur!30,%
+	linewidth=1mm,%
+	frametitle={Test jezelf! \enspace \raisebox{-.15\height}{\makebox[2mm][l]{\includegraphics[width=4mm,keepaspectratio]{imgDesign/lamp_wit.png}}}},%
+	frametitlefont={\sffamily\bfseries\small\color{white}},%
+	frametitlealignment={\raggedleft},%
+	frametitlebackgroundcolor=\rubriekkleur,%
+	frametitleaboveskip=3pt,frametitlebelowskip=3.2pt,%
+	%repeatframetitle=true,%
+	singleextra={\draw[line width=8pt, color=\rubriekkleur] ([xshift=3pt,yshift=4pt]current bounding box.south west) -- ([xshift=-3pt,yshift=4pt]current bounding box.south east);},%
+	secondextra={\draw[line width=8pt, color=\rubriekkleur] ([xshift=3pt,yshift=4pt]current bounding box.south west) -- ([xshift=-3pt,yshift=4pt]current bounding box.south east);}%
+	]{testjezelf}
+
+\definecolor{kleurOCaddLOelders}{HTML}{A185A5}
+\definecolor{kleurmeestalOC}{HTML}{D1B0E0}
+\definecolor{kleurmeestalLO}{HTML}{A7C5E7}
+\definecolor{kleurcorrectbetekenis}{HTML}{F3E79B}
+\definecolor{kleurmeestalcorrect}{HTML}{AED3C5}
+\definecolor{randomkleurvanFilip}{HTML}{F4B797}
