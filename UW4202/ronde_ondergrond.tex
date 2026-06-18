@@ -1,0 +1,91 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Een hoop zand op een ronde ondergrond}{}
+
+Giet zo veel mogelijk zand of zout op een ronde basisvorm, bijvoorbeeld een rond
+bierviltje of een omgekeerd plastieken bekertje. Je moet het niet al te voorzichtig doen:
+wat te veel is, glijdt er af. Daarom staat je basisvorm best een beetje hoger.
+
+\begin{exercise}
+    Welke vorm hebben de hopen?
+    \begin{oplossing}
+        Het zijn allemaal kegels. Je zult merken dat deze kegels niet noodzakelijk perfect
+        zijn: de top is niet juist \'e\'en punt. We werken hier met een \textit{wiskundig
+        model} dat vrij goed aansluit bij de realiteit, maar er niet helemaal mee samenvalt.
+    \end{oplossing}
+\end{exercise}
+
+We definiëren een nieuw begrip: de \emph{rusthoek} is de hoek tussen de beschrijvende
+rechten van de kegel en de horizontale richting. Die hoek is over de hele flank gelijk,
+dus niet enkel vanonder.
+
+% TODO (afbeelding ontbreekt): in de bron stond hier \afbeelding[5cm]{Lrusthoek} ter
+% illustratie van de rusthoek. Deze lijntekening zit niet (meer) in img/. Voeg ze toe
+% wanneer beschikbaar.
+
+\begin{exercise}
+    Denk even na hoe je de rusthoek zo nauwkeurig mogelijk kunt meten.
+    \begin{hint}
+        Een geodriehoek lijkt voor de hand te liggen, maar zodra je de hoop raakt, begint
+        die te schuiven. Kun je de hoek meten \emph{zonder} de zandhoop aan te raken?
+    \end{hint}
+    \begin{oplossing}
+        Een geodriehoek gebruiken is lastig: zodra je de hoop raakt, begint die te schuiven.
+        Beter neem je een foto van de kegel in vooraanzicht en meet je daarop de rusthoek,
+        of je plakt de foto in GeoGebra en meet de rusthoek daar. Je kunt ook de straal
+        van het grondvlak en de hoogte van de kegel meten en daarmee de tangens van de
+        rusthoek \textemdash{} en dus de rusthoek zelf \textemdash{} berekenen.
+    \end{oplossing}
+\end{exercise}
+
+% TODO (afbeelding ontbreekt): in de bron stond hier
+% \afbeelding[6cm]{rusthoek meten met geogebra}. Niet aanwezig in img/.
+
+\begin{exercise}
+    Meet en noteer de rusthoeken voor hopen met dezelfde diameter maar met verschillend
+    materiaal. Verdeel eventueel het werk. Wat besluit je?
+    \begin{oplossing}
+        Een voorbeeld van meetresultaten:
+        \begin{center}
+        \begin{tabular}{l l l}
+            \textbf{diameter} & \textbf{materiaal} & \textbf{rusthoek} \\
+            \(10\) cm & zand  & \(32^\circ\) \\
+            \(10\) cm & rijst & \(25^\circ\) \\
+            \(10\) cm & zout  & \(30^\circ\) \\
+        \end{tabular}
+        \end{center}
+        Als je de diameter van het grondvlak constant houdt, dan hangt de rusthoek af van
+        het soort materiaal.
+        \begin{image}[6cm]
+            \includegraphics[width=6cm,keepaspectratio]{lmateriaal.jpg}
+        \end{image}
+        Verschillende materialen geven een verschillende rusthoek.
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Doe nu hetzelfde voor hopen van hetzelfde materiaal maar met verschillende diameters.
+    Meet en noteer ook hier je meetresultaten in een tabel. Wat besluit je?
+    \begin{oplossing}
+        Een voorbeeld van meetresultaten:
+        \begin{center}
+        \begin{tabular}{l l l}
+            \textbf{materiaal} & \textbf{diameter} & \textbf{rusthoek} \\
+            zand & \(10\) cm & \(32^\circ\) \\
+            zand & \(15\) cm & \(32^\circ\) \\
+            zand & \(20\) cm & \(32^\circ\) \\
+        \end{tabular}
+        \end{center}
+        De rusthoek hangt niet af van de diameter van het grondvlak.
+    \end{oplossing}
+\end{exercise}
+
+\end{document}

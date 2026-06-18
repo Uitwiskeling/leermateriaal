@@ -23,9 +23,13 @@
 - [x] Agent `uitwiskeling-converter` aangemaakt
 - [x] `docs/CONVERSIE.md` geschreven
 - [x] `docs/XIMERA_PROBLEMEN_EN_TRICKS.md` geschreven (uit git history + sessiebevindingen)
-- [ ] **VOLGENDE STAP:** UW4202 `simpele_zandhopen` effectief converteren met de
-      `uitwiskeling-converter` agent (inhoud staat klaar in comments; figuren deels in
-      `UW4202/img/`, sommige verwijzen naar `UW4201/img/`-paden die niet bestaan — checken!)
+- [x] **UW4202 zandhopen geconverteerd én opgesplitst** (sessie 3 + 4). Het monolithische
+      `simpele_zandhopen.tex` is opgesplitst in 10 losse Ximera-activiteiten + 1 inleidingsfile
+      (`zandhopen_inleiding.tex`, met artikellink, leerdoelen, doelpubliek, voorbereiding).
+      Alle 11 opgenomen in de xourse `activiteitenvolgensnummer.tex` onder `\part{UW42/02: Zandhopen}`.
+      Bronnenlijst verwijderd. **Gecompileerd: alle 11 standalone (pdf+html) én de xourse
+      (pdf+html), 0 ontbrekende beelden.**
+      Nog te doen: ontbrekende lijntekeningen (`.png`, zie `% TODO`-comments) aanleveren.
 - [ ] GitHub Action opnieuw laten draaien na merge en controleren dat hij groen wordt
 - [ ] Beslissing Alexander: `preamble.tex` en `printstyle.sty` verwijderen?
       (verouderde kopieën; xmPreamble/xmPrintstyle zijn de echte; zie tricks-doc #1)
@@ -42,6 +46,42 @@
       of de cursus-URL https://leermateriaal.uitwiskeling.be/ klopt na eerste publish
 
 ## Wat is er gedaan (log, nieuwste bovenaan)
+
+### 2026-06-16 (sessie 4) — zandhopen opsplitsen + compileren
+- **`UW4202/simpele_zandhopen.tex` opgesplitst** in 10 losse activiteiten
+  (`ronde_ondergrond`, `vierkant`, `rechthoekig_grondvlak`, `driehoekig_grondvlak`,
+  `trapezia`, `convexe_veelhoeken`, `schijf_met_gat`, `cirkelsegment`,
+  `nietconvexe_veelhoek`, `ellips`) + inleidingsfile `zandhopen_inleiding.tex`
+  (artikellink, leerdoelen, doelpubliek, voorbereiding). Monolithisch bestand verwijderd.
+- **Xourse** `activiteitenvolgensnummer.tex`: `\part{UW42/02: Zandhopen}` toegevoegd met
+  artikellink en alle 11 `\activitychapter`-regels.
+- **Bronnenlijst verwijderd** (op verzoek).
+- **Beeldpaden gefixt** (dual-cwd): kale bestandsnamen + `\g@addto@macro\Ginput@path`
+  i.p.v. een vast `UW4202/img/`-pad (zie tricks-doc #7b).
+- **Volledig gecompileerd:** alle 11 activiteiten standalone pdf+html, én de xourse
+  pdf+html — 0 ontbrekende beelden, 0 fouten.
+
+### 2026-06-13 (sessie 3) — conversie zandhopen
+- **`UW4202/simpele_zandhopen.tex` geconverteerd** van Uitwiskeling-formaat (`%`-comments)
+  naar Ximera. Titel: ``Zandhopen: kegels, piramides en kegelsneden''. 8 deelparagrafen
+  (`\subsection*`): ronde ondergrond, vierkant, rechthoek, driehoek, trapezia (convex),
+  oefening convexe veelhoeken, schijf met gat, cirkelsegment, niet-convexe veelhoek, ellips.
+  33 `exercise`, 9 progressieve `hint`, 33 `oplossing`, 1 `instructorNotes` (didactische
+  regie bij de trapezia), 23 `image`-omgevingen. Bronnen onderaan als `itemize` (open
+  beslissing, geflagd).
+- **Afbeeldingen waren al hernoemd** (staged in git, commit/working tree): `Zand 01.JPG`
+  → `zand01.jpg`, `Lmateriaal.jpg` → `lmateriaal.jpg`, enz. (spaties/hoofdletters/`.JPG`
+  weg). Alle 33 `\includegraphics` in het bestand wijzen naar bestaande `UW4202/img/*.jpg`.
+- **Ontbrekende figuren:** alle lijntekeningen (`.png`) en diverse `L*`-figuren uit de bron
+  zitten NIET in `img/` (`.png` is gitignored; ze werden nooit gecommit). Voorbeelden:
+  `Lrusthoek`, `LPiramide`, `LRHhoogtelijnen.png`, `Ltrapezia.png`, `Ltrap2/3/4*.png`,
+  `Lconvexeveelhoeken.png`, `zandopdriehoek.png`, `Ldriehoekkortsteweg.png`. Op elke plek
+  staat een `% TODO`-comment. **Alexander: deze lijntekeningen aanleveren of opnieuw maken.**
+- **Niet gecompileerd:** `xmlatex`/`pdflatex` niet aanwezig in deze sessie; setup duurt
+  5-10 min en mocht niet gedraaid worden. Wel gecontroleerd: alle environments gebalanceerd,
+  alle beeldpaden bestaan. Verificatie pdf+html overgelaten aan CI / volgende sessie.
+- **Xourse NIET aangeraakt** (zoals gevraagd): `activiteitenvolgensnummer.tex` ongewijzigd;
+  wiring volgt apart.
 
 ### 2026-06-13 (sessie 2)
 - **GitHub-push werkt nu** (branch `claude/focused-dirac-x12mr3`); de GitHub App kreeg
@@ -105,7 +145,22 @@ docs/XIMERA_PROBLEMEN_EN_TRICKS.md, .claude/agents/ximera-expert.md,
 .claude/agents/uitwiskeling-converter.md, xmScripts/setup-claude-code.sh.
 
 ## Aandachtspunten voor volgende sessie
-- Verse cloud-sessie = kale container: eerst `bash xmScripts/setup-claude-cloud.sh`.
+
+### ⭐ UW4202 zandhopen — verbeteringen (Alexander, 2026-06-14). NIET uitvoeren tot Alexander de extra bestanden levert!
+Status: branch `claude/uw4202-zandhopen-conversie` (PR #4) bouwt GROEN; wacht enkel op
+Alexanders deploy-goedkeuring. De stale-cache-theorie was juist (CI compileerde een oude
+versie; afbeeldingen waren wél geldig en gecommit). Te doen zodra de extra bestanden er zijn:
+1. **Opsplitsen per subsection in aparte Ximera-activiteiten** en bundelen via de xourse
+   zoals UW42/01 Vectorruimten (meerdere `\activitychapter{UW4202/<onderwerp>.tex}` onder
+   één `\part{UW42/02: Zandhopen}`), i.p.v. één groot bestand `simpele_zandhopen.tex`.
+2. **Geen bronnen en geen leerkrachtennota's (`instructorNotes`) in de bestanden** — vervang
+   ze door één expliciete hyperlink (`\href{...}{...}`) naar het Uitwiskeling-artikel.
+   (Beslist: de eerdere "open beslissingen" over bronnen/instructorNotes vervallen hiermee.)
+3. **Alle afbeeldingen moeten erin.** Dubbelcheck welke wél/niet gevonden worden; hernoem
+   zelf waar nodig (geen spaties/hoofdletters/underscores). De ontbrekende lijntekeningen
+   (`.png`, gitignored) komen van Alexander — wacht daarop. Heel belangrijk dat niets ontbreekt.
+
+
 - De zandhopen-bron verwijst naar figuren als `UW4201/img/Lrusthoek` die mogelijk niet
   in het repo zitten (img-map van UW4202 heeft andere namen) — inventariseer vóór de
   conversie welke figuren ontbreken en meld dat aan Alexander.

@@ -1,0 +1,130 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Zand op een ellips}{}
+
+\begin{exercise}
+    Giet zoveel mogelijk droog zand op een ellips die in karton is uitgeknipt en horizontaal
+    op een bekertje rust. Wat zie je?
+    \begin{oplossing}
+        In bovenaanzicht zien we een kamlijn: een stuk van de grote as, symmetrisch rond het
+        middelpunt. Deze kamlijn lijkt niet tot aan de toppen op de grote as te gaan. Een
+        eerste hypothese: misschien vallen de eindpunten van (het bovenaanzicht van) de
+        kamlijn samen met de brandpunten van de ellips? In vooraanzicht zien we dat deze kam
+        niet horizontaal loopt, maar in het midden hoger is dan opzij. Dat is niet
+        verwonderlijk: de punten in het midden van de ellips liggen verder van de rand.
+        \begin{image}[12cm]
+            \includegraphics[width=6cm,keepaspectratio]{zand35.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{zand36.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+Vanaf nu werken we in het bovenaanzicht. De punten van de kamlijn beschouwen we als punten
+van de grote as van de ellips. We kunnen verwijzen naar de afrollende zandkorrels in de
+ruimte, maar als we punten of rechten benoemen, doen we aan vlakke meetkunde.
+
+\begin{exercise}
+    Net als in de vorige opgaven kun je de kamlijn bekijken als een meetkundige plaats van
+    punten die aan een bepaalde voorwaarde voldoen. Aan welke voorwaarde moeten de punten
+    van de kamlijn voldoen?
+    \begin{oplossing}
+        De kamlijn is de meetkundige plaats van de punten op gelijke loodrechte afstand tot
+        twee of meer randen van de figuur, hier dus tot de ellips. Zandkorrels rollen immers
+        naar de dichtste rand; korrels aan de ene kant van de kamlijn rollen naar de ene
+        rand, korrels aan de andere kant naar de andere rand.
+
+        Voor de punten van de grote as \([DE]\) die niet te ver van het middelpunt liggen,
+        klopt dit duidelijk. Punten van de grote as die dicht bij een top \(D\) of \(E\)
+        liggen, rollen recht naar die top: zij liggen niet op een kamlijn, want er is maar
+        \'e\'en dichtste randpunt. De vraag is dus: waar liggen de eindpunten \(A\) en \(B\)
+        van de kamlijn, zo dat een punt \(P\) tussen \(A\) en \(B\) twee dichtste randpunten
+        \(M\) en \(M'\) heeft, en een punt tussen \(A\) en \(D\) (of tussen \(B\) en \(E\))
+        slechts \'e\'en, namelijk \(D\) (of \(E\))?
+        \begin{image}[6cm]
+            \includegraphics[width=6cm,keepaspectratio]{zand37.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Je kunt het misschien omkeren. In plaats van een variabel punt \(P\) op de grote as te
+    nemen en je af te vragen hoe dicht het bij de top moet liggen, kun je een variabel punt
+    \(M\) van de ellips nemen, dat steeds dichter naar de top \(D\) laten gaan, en bepalen
+    waar het bijbehorende punt \(P\) van de grote as in de limiet naartoe gaat. Onderzoek
+    dit met GeoGebra voor de ellips \(\frac{x^2}{25} + \frac{y^2}{9} = 1\).
+    \begin{oplossing}
+        Teken deze ellips met GeoGebra, neem een punt \(M\) erop, en gebruik de knoppen
+        `raaklijn' en `loodlijn' om de normaal in \(M\) te tekenen en met de grote as te
+        snijden. Voor \(M\) heel dicht bij de top \(D\) heeft het punt \(P\) coördinaat
+        \((3{,}2;\, 0)\). Dit is nog geen exacte methode, maar het lijkt er al op dat het
+        eindpunt \(A\) van de kam niet het brandpunt is. Deze ellips heeft brandpunten
+        \(F_{1,2}(\pm 4,\, 0)\).
+        \begin{image}[12cm]
+            \includegraphics[width=6cm,keepaspectratio]{zand38.jpg}
+            \quad
+            \includegraphics[width=6cm,keepaspectratio]{zand39.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    We willen nu het eindpunt \(A\) aan de rechterkant van de kam exact lokaliseren. Ken je
+    een eigenschap van de ellips waar de normaal een rol in speelt?
+    \begin{oplossing}
+        De weerkaatsingseigenschap zegt dat \(F_1 M\) en \(F_2 M\) gelijke hoeken vormen met
+        de normaal \(MP\) (waardoor een lichtstraal die in \(F_1\) vertrekt, in \(F_2\)
+        toekomt en omgekeerd). Dus: \(MP\) is de bissectrice van de hoek
+        \(\widehat{F_1 M F_2}\).
+        \begin{image}[8.5cm]
+            \includegraphics[width=8.5cm,keepaspectratio]{zand40.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Wat zegt dit over de positie van punt \(P\) op de grote as? Preciezer: wat weet je over
+    de verhouding \(\frac{|F_1 P|}{|F_2 P|}\)?
+    \begin{hint}
+        Pas de bissectricestelling toe in de driehoek \(F_1 M F_2\), met \(MP\) als
+        bissectrice vanuit \(M\).
+    \end{hint}
+    \begin{oplossing}
+        De bissectricestelling zegt: de bissectrice van een hoek van een driehoek verdeelt
+        de overstaande zijde in stukken die in dezelfde verhouding staan als de aanliggende
+        zijden. In de driehoek \(F_1 M F_2\) geeft dit
+        \[
+            \frac{|F_1 P|}{|F_2 P|} = \frac{|F_1 M|}{|F_2 M|} .
+        \]
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Maak de redenering af: waar komt \(P\) terecht als \(M\) naar de top \(D\) gaat? Maak
+    het ten slotte concreet voor de ellips \(\frac{x^2}{25} + \frac{y^2}{9} = 1\).
+    \begin{oplossing}
+        Als \(M\) naar \(D\) gaat, komt \(P\) in het grenspunt \(A\) van de kamlijn
+        \([AB]\). Het punt \(A\) is dus bepaald door
+        \[
+            \frac{|F_1 A|}{|F_2 A|} = \frac{|F_1 D|}{|F_2 D|} .
+        \]
+        Voor de ellips \(\frac{x^2}{25} + \frac{y^2}{9} = 1\) is de halve grote as \(5\) en
+        de halve kleine as \(3\). We hebben \(D(5, 0)\), \(F_1(4, 0)\) en \(F_2(-4, 0)\).
+        Stel \(A(u, 0)\); we zoeken \(u\) met
+        \[
+            \frac{4 - u}{u - (-4)} = \frac{5 - 4}{5 - (-4)} .
+        \]
+        Oplossen naar \(u\) geeft \(u = 3{,}2\), precies wat we met GeoGebra vonden. (We
+        gingen ervan uit dat \(u < 4\), wat het GeoGebra-onderzoek overtuigend liet zien.)
+    \end{oplossing}
+\end{exercise}
+
+\end{document}

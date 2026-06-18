@@ -1,0 +1,99 @@
+\documentclass{ximera}
+% xmPreamble.tex en xmPrintstyle.sty worden automatisch geladen door ximera.cls (v2.7.8);
+% NIET nog eens \input{./preamble.tex} of \addPrintStyle{.} doen (geeft 'already defined'-fouten).
+
+\makeatletter % eigen img-map toevoegen aan het zoekpad (werkt standalone én vanuit de xourse)
+\g@addto@macro\Ginput@path{{img/}{UW4202/img/}}
+\makeatother
+
+\begin{document}
+\author{Alexander Holvoet}
+\xmtitle{Zand op een cirkelsegment}{}
+
+\begin{image}[5cm]
+    \includegraphics[width=5cm,keepaspectratio]{zand16.jpg}
+\end{image}
+Een cirkelsegment als grondvlak.
+
+We nemen als basis voor een zandhoop een deel van een cirkelschijf aan \'e\'en kant van een
+koorde. Deze figuur noemen we een \emph{cirkelsegment}. Het weggesneden stuk is ook een
+cirkelsegment. We nemen hier een `groot' cirkelsegment \textemdash{} dit wil zeggen het
+stuk met het middelpunt erop \textemdash{} maar het gaat even goed met een `klein'
+cirkelsegment.
+
+\begin{exercise}
+    Teken (het bovenaanzicht van) de kamlijn die je verwacht, giet dan zand op het
+    kartonnen exemplaar om dit te verifi\"eren, en bepaal waaraan de punten van de kamlijn
+    voldoen.
+    \begin{oplossing}
+        Voor elk punt \(P\) van de kamlijn is de afstand \(|PQ|\) tot de koorde gelijk aan
+        de afstand \(|PR|\) tot de rand van de cirkel.
+        \begin{image}[5cm]
+            \includegraphics[width=5cm,keepaspectratio]{zand17.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+Je vermoedt waarschijnlijk dat (het bovenaanzicht van) de kamlijn een parabool is. In de
+volgende opgaven bewijs je dit.
+
+\begin{exercise}
+    Om te bewijzen dat de kamlijn een parabool is, heb je een brandpunt en een richtlijn
+    nodig. Het brandpunt is het middelpunt \(M\) van de cirkel. Waar ongeveer moet de
+    richtlijn \(d\) liggen? Toon dit met je vinger.
+    \begin{oplossing}
+        De richtlijn is een rechte evenwijdig met de koorde (vanwege de symmetrie) en
+        `onder' de kamlijn. De precieze plaats komt in de volgende vraag aan bod.
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Bewijs, door een geschikte keuze van de richtlijn, dat de kamlijn inderdaad een
+    parabool is.
+    \begin{hint}
+        Neem een willekeurig punt \(P\) van de kamlijn en noem \(r\) de straal. Gebruik dat
+        \(|PR| = |PQ|\), dus \(|PM| = r - |PR| = r - |PQ|\). Op welke afstand van de koorde
+        moet je \(d\) leggen opdat \(|PM| = |PS|\)?
+    \end{hint}
+    \begin{oplossing}
+        Neem een willekeurig punt \(P\) van de kamlijn en noem \(r\) de straal van de
+        cirkel. We bepalen de richtlijn \(d\) zo dat de afstand \(|PM|\) tot het brandpunt
+        gelijk is aan de afstand \(|PS|\) tot de rechte \(d\). We weten dat \(|PR| = |PQ|\),
+        en dus
+        \[
+            |PM| = r - |PR| = r - |PQ| .
+        \]
+        Om \(|PM| = |PS|\) te krijgen, moeten we \(d\) op afstand \(r\) van de koorde nemen.
+        Dan geldt inderdaad
+        \[
+            |PM| = r - |PR| = r - |PQ| = |QS| - |PQ| = |PS| .
+        \]
+        \begin{image}[5cm]
+            \includegraphics[width=5cm,keepaspectratio]{zand18.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\begin{exercise}
+    Construeer de kamlijn met hoogtelijnen.
+    \begin{image}[5cm]
+        \includegraphics[width=5cm,keepaspectratio]{zand19.jpg}
+    \end{image}
+    \begin{oplossing}
+        Construeer de snijpunten van de overeenkomstige hoogtelijnen. De rechte hoogtelijnen
+        horen bij een schuin vlak dat volgens de rusthoek afloopt naar de koorde van het
+        grondvlak. De cirkelvormige hoogtelijnen horen bij de kegel die je zou hebben als de
+        basis de volledige cirkelschijf was. De kamlijn is de doorsnede van die kegel met
+        het schuine vlak (even schuin als de beschrijvenden van de kegel). Dit is nog een
+        extra manier om in te zien dat het een stuk parabool is.
+        \begin{image}[15cm]
+            \includegraphics[width=5cm,keepaspectratio]{zand20.jpg}
+            \quad
+            \includegraphics[width=5cm,keepaspectratio]{zand21.jpg}
+            \quad
+            \includegraphics[width=5cm,keepaspectratio]{zand22.jpg}
+        \end{image}
+    \end{oplossing}
+\end{exercise}
+
+\end{document}
